@@ -1,4 +1,6 @@
 import style from './style.module.css';
+import heartUnactive from "../../assets/heart_unactive.svg";
+
 
 export default function ProductCard({ card }) {
   function generateTags() {
@@ -50,7 +52,7 @@ export default function ProductCard({ card }) {
         <button className={style.saveButton} aria-label="Сохранить">
           <img
             className={style.save}
-            src="/icons/heart.svg"
+            src={heartUnactive}
             alt="Сохранить"
           />
         </button>
