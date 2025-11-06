@@ -1,0 +1,14 @@
+
+.containerProducts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.empty {
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+}
