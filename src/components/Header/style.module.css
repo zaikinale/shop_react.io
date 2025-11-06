@@ -20,11 +20,7 @@
 .exit, .link, .settings {
     border-radius: 20px;
     background-color: rgb(175, 175, 175);
-    text-decoration: none;
-    padding: 8px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 8px;
-    color: rgb(70, 70, 70);
 }
