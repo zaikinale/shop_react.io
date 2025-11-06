@@ -1,9 +1,13 @@
 
 
 .search {
+    border: none;
     text-decoration: none;
     align-items: center;
-    border-radius: 50%;
-    background-color: bisque;
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: white;
     color: gray;
 }
