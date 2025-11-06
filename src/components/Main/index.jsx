@@ -9,7 +9,6 @@ export default function Main ({cards, types}) {
     return (
         <>
             <div className={style.main}>
-                <h1>Test</h1>
                 <SearchEngine ></SearchEngine>
                 <SliderProductTypes typesList={types}></SliderProductTypes>
                 <ProductContainer cardsList={cards}></ProductContainer>

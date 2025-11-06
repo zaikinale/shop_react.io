@@ -3,6 +3,7 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Main from './components/Main/index.jsx'
+import Header from './components/Header/index.jsx'
 
 
 function App() {
@@ -80,6 +81,7 @@ const types = [
 
   return (
     <>
+      <Header></Header>
       <Main cards={cards} types={types}></Main>
     </>
   )
