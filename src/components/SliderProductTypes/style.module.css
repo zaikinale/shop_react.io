@@ -1,11 +1,12 @@
 .sliderTypes {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
+    box-sizing: border-box;
     width: 100%;
-    gap: 20px;
-    overflow: hidden;
+    gap: 10px;
+    /* overflow: hidden; */
     overflow-x: scroll;
     margin: 20px;
 }

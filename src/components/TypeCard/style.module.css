@@ -9,9 +9,10 @@ h3 {
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
+    box-sizing: border-box;
     padding: 5px;
     background-color: gray;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .card__img {
