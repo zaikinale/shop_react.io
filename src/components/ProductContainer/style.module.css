@@ -1,10 +1,18 @@
 
 .containerProducts {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    box-sizing: border-box;
+    width: 100%;
+    /* align-items: center; */
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    /* justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center; */
+    gap: 10px;
+    /* flex-wrap: wrap; */
 }
 
 .empty {
