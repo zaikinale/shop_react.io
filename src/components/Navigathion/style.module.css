@@ -9,6 +9,11 @@
     border-radius: 30px;
     background-color: white;
     margin-top: 20px;
+    position: fixed;
+    width: 80%;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .navBtn {

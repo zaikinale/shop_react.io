@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.author_block {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 60px;
+}
+
+.author_img {
+  width: 40px;
+  height: 40px;
+}
+
+.author_text {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}

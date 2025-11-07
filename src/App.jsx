@@ -6,6 +6,8 @@ import Main from './components/Main/index.jsx'
 import Header from './components/Header/index.jsx'
 import Navigathion from './components/Navigathion/index.jsx'
 
+import LogoIcon from './assets/logo_xp.jpeg'
+
 
 function App() {
 
@@ -84,6 +86,10 @@ const types = [
     <>
       <Header></Header>
       <Main cards={cards} types={types}></Main>
+      <div className='author_block'>
+        <img className='author_img' src={LogoIcon} alt="A&S" />
+        <h4 className='author_text'>by A&S</h4>
+      </div>
       <Navigathion></Navigathion>
     </>
   )
