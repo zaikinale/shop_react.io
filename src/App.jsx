@@ -51,6 +51,36 @@ function App() {
     salary: 0,
     name: 'Футболка мужская Комары',
     img: 'https://i.ibb.co/jvVYhy5D/2025-10-06-17-20-49.jpg',
+  },
+  { 
+    id: 5,
+    price: 1000,
+    isHit: true,
+    isPremium: false,
+    isNew: false,
+    salary: 90,
+    name: 'Футболка мужская Комары Комары Комары Комары Комары Комары Комары Комары Комары',
+    img: 'https://i.ibb.co/jvVYhy5D/2025-10-06-17-20-49.jpg',
+  },
+  { 
+    id: 6,
+    price: 1000000,
+    isHit: true,
+    isPremium: false,
+    isNew: false,
+    salary: 10,
+    name: 'Футболка женская Комары',
+    img: 'https://i.ibb.co/jvVYhy5D/2025-10-06-17-20-49.jpg',
+  },
+  { 
+    id: 7,
+    price: 10,
+    isHit: false,
+    isPremium: false,
+    isNew: false,
+    salary: 10,
+    name: 'Футболка женская Комары',
+    img: 'https://i.ibb.co/jvVYhy5D/2025-10-06-17-20-49.jpg',
   }
 ]
 
@@ -79,6 +109,56 @@ const types = [
     id: 5,
     img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
     name: 'Дилдаки',
+  },
+  {
+    id: 6,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Дамиры',
+  },
+  {
+    id: 7,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Дениски',
+  },
+  {
+    id: 8,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Сосиски',
+  },
+  {
+    id: 9,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Картинки',
+  },
+  {
+    id: 10,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Вадимки',
+  },
+  {
+    id: 11,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Пипирки',
+  },
+  {
+    id: 12,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Сардельки',
+  },
+  {
+    id: 13,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Палки',
+  },
+  {
+    id: 14,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Кружки',
+  },
+  {
+    id: 15,
+    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    name: 'Тарелки',
   },
 ]
 
