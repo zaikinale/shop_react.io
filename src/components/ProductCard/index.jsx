@@ -1,8 +1,13 @@
 import style from './style.module.css';
+import { useState } from 'react';
 import heartUnactive from "../../assets/heart_unactive.svg";
+import heartActive from "../../assets/heart_active.svg";
 
 
 export default function ProductCard({ card }) {
+
+  const [isOn, setIsOn] = useState(false)
+
   function generateTags() {
     const tags = [];
     if (card.isHit) {
@@ -43,16 +48,20 @@ export default function ProductCard({ card }) {
     }
   }
 
+  function toggleBtnSave () {
+    setIsOn(state => !state)
+  }
+
   return (
     <div className={style.cardProduct}>
       <div className={style.headerCard}>
         <div className={style.tags}>
           {generateTags()}
         </div>
-        <button className={style.saveButton} aria-label="Сохранить">
+        <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
           <img
             className={style.save}
-            src={heartUnactive}
+            src={isOn ? heartActive : heartUnactive }
             alt="Сохранить"
           />
         </button>
