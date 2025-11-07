@@ -1,6 +1,7 @@
 
 
 .search {
+    box-sizing: border-box;
     border: none;
     text-decoration: none;
     align-items: center;

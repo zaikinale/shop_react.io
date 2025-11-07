@@ -4,7 +4,7 @@
     box-sizing: border-box;
     width: 100%;
     /* align-items: center; */
-    grid-template-columns: repeat(auto-fit, 250px);
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     justify-content: center;
     align-items: center;
     /* justify-items: center;
