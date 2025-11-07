@@ -1,18 +1,12 @@
 
 .containerProducts {
     display: grid;
-    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center; 
+    gap: 16px;
     width: 100%;
-    /* align-items: center; */
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    justify-content: center;
-    align-items: center;
-    /* justify-items: center;
-    justify-content: center;
-    align-items: center;
-    align-content: center; */
-    gap: 10px;
-    /* flex-wrap: wrap; */
+    padding: 0 8px;
+    box-sizing: border-box;
 }
 
 .empty {
