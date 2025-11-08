@@ -80,8 +80,9 @@ p, h4 {
 }
 
 .salary {
-    color: rgb(216, 72, 0);
-
+    font-weight: 700;
+    font-size: 14px;
+    color: #FF6723;
 }
 
 .descriptionContainer {
