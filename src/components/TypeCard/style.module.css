@@ -11,7 +11,7 @@ h3 {
     flex-wrap: nowrap;
     box-sizing: border-box;
     padding: 5px;
-    background-color: gray;
+    background-color: var(--bg);
     border-radius: 10px;
 }
 
@@ -19,12 +19,12 @@ h3 {
     width: 90px;
     height: 90px;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .card__title {
     font-size: 16px;
-    font-weight: bold;
-    color: white;
+    font-weight: 500;
+    color: var(--tc);
 }
 

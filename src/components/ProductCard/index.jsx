@@ -14,7 +14,7 @@ export default function ProductCard({ card }) {
       tags.push(<p key="hit" className={style.statusCardHit}>ХИТ</p>);
     }
     if (card.isPremium) {
-      tags.push(<p key="premium" className={style.statusCardPremium}>Премиум</p>);
+      tags.push(<p key="premium" className={style.statusCardPremium}>ПРЕМИУМ</p>);
     }
     if (card.isNew) {
       tags.push(<p key="new" className={style.statusCardNew}>NEW</p>);

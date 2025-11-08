@@ -4,7 +4,7 @@
 import './App.css'
 import Main from './components/Main/index.jsx'
 import Header from './components/Header/index.jsx'
-import Navigathion from './components/Navigathion/index.jsx'
+import Navigation from './components/Navigation/index.jsx'
 
 import LogoIcon from './assets/logo_xp.jpeg'
 
@@ -87,77 +87,77 @@ function App() {
 const types = [
   {
     id: 1,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Аксессуар',
   },
   {
     id: 2,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Телефон',
   },
   {
     id: 3,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Штаны',
   },
   {
     id: 4,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Кроссовки',
   },
   {
     id: 5,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Дилдаки',
   },
   {
     id: 6,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Дамиры',
   },
   {
     id: 7,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Дениски',
   },
   {
     id: 8,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Сосиски',
   },
   {
     id: 9,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Картинки',
   },
   {
     id: 10,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Вадимки',
   },
   {
     id: 11,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Пипирки',
   },
   {
     id: 12,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Сардельки',
   },
   {
     id: 13,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Палки',
   },
   {
     id: 14,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Кружки',
   },
   {
     id: 15,
-    img: 'https://i.ibb.co/4nZ2KSWW/logo-black-on-black.jpg',
+    img: 'https://i.ibb.co/vvvpX1yV/logo-xp.jpg',
     name: 'Тарелки',
   },
 ]
@@ -170,7 +170,7 @@ const types = [
         <img className='author_img' src={LogoIcon} alt="A&S" />
         <h4 className='author_text'>by A&S</h4>
       </div>
-      <Navigathion></Navigathion>
+      <Navigation></Navigation>
     </>
   )
 

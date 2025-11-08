@@ -22,7 +22,8 @@
     position: sticky;
     top: 0; 
     z-index: 1000;
-    background-color: var(--header-bg, rgba(36, 36, 36, 0.9));
+    font-weight: 500;
+    /* background-color: var(--header-bg, rgba(36, 36, 36, 0.9)); */
 }
 
 .icon {
@@ -32,12 +33,9 @@
     object-fit: contain;
 }
 
-.iconTg {
-
-}
 .exit, .link, .settings {
     border-radius: 20px;
-    background-color: rgb(175, 175, 175);
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,8 +45,9 @@
     min-width: 36px;
     cursor: pointer;
     transition: background-color 0.2s;
+    color: var(--tc);
 }
 
-.exit:hover, .settings:hover {
-    background-color: rgb(150, 150, 150);
+.exit, .settings {
+    background-color: var(--bb);
 }
