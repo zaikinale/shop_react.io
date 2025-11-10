@@ -31,3 +31,9 @@
   color: white;
   font-weight: bold;
 }
+
+@media (max-width: 360px) {
+  #root {
+    padding: 5px;
+  }
+}

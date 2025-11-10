@@ -28,3 +28,19 @@ h3 {
     color: var(--tc);
 }
 
+@media (max-width: 360px) {
+    .cardType {
+        width: 70px;
+        height: 90px;
+        padding: 2px;
+
+    }
+    .card__img {
+        width: 66px;
+        height: 66px;
+    }
+
+    .card__title {
+        font-size: 11px;
+    }
+}

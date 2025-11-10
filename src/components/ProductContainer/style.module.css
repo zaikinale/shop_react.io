@@ -14,3 +14,10 @@
     font-size: 40px;
     color: white;
 }
+
+@media (max-width: 360px) {
+    .containerProducts {
+        grid-template-columns: repeat(2, 173px);
+        gap: 5px;
+    }
+}
