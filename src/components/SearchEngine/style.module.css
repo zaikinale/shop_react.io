@@ -19,7 +19,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
 }
 
 .search img {
@@ -36,7 +35,7 @@
     font-size: 16px;
     background-color: white;
     color: var(--tc);
-    padding: 10px 14px;
+    padding: 10px 10px;
 }
 
 .searchInput > input {
