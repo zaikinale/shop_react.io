@@ -1,32 +1,13 @@
-// import style from './style.module.css';
-// import SearchIcon from '../../assets/search.svg';
-
-// export default function SearchEngine({setIsSearchActive}) {
-//   const handleSearchClick = () => {
-//     setIsSearchActive(true);
-//   };
-
-
-//   return (
-//     <label htmlFor="searchInput" className={style.search}>
-//       <img src={SearchIcon} alt="Иконка для поля ввода" />
-//       <input
-//         className={style.searchInput}
-//         type="search"
-//         placeholder="Найти товары"
-//         id="searchInput"
-//         name="searchInput"
-//         onClick={handleSearchClick}
-//       />
-//     </label>
-//   );
-// }
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import style from './style.module.css';
 import SearchIcon from '../../assets/search.svg';
 
-export default function SearchEngine({ setIsSearchActive, setSearchQuery }) {
+export default function SearchEngine({ setIsSearchActive, setSearchQuery, searchQuery }) {
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    setQuery(searchQuery);
+  }, [searchQuery]);
 
   const handleSearchClick = () => {
     setIsSearchActive(true);
@@ -54,3 +35,4 @@ export default function SearchEngine({ setIsSearchActive, setSearchQuery }) {
     </label>
   );
 }
+

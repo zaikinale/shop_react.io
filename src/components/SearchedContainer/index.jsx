@@ -1,7 +1,7 @@
 import style from './style.module.css'
 import SearchedItem  from "./components/SearchedItem"
 
-export default function Searched() {
+export default function SearchedContainer({onSelect}) {
     const tags = [
         {id: 1, text: 'Футболка'},
         {id: 2, text: 'Женская кофта'},
@@ -17,7 +17,7 @@ export default function Searched() {
             <h2 className={style.searchTitle}>Часто ищут</h2>
             <div className={style.searchContainer}>
                 {tags.map(tag => (
-                    <SearchedItem key={tag.id} text={tag.text} />
+                    <SearchedItem key={tag.id} text={tag.text} onSelect={onSelect} />
                 ))}
             </div>
         </div>

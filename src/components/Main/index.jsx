@@ -6,15 +6,23 @@ import SearchedContainer from '../SearchedContainer'
 
 export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery}) {
 
+    const handleSelectSearch = (text) => {
+        setSearchQuery(text); 
+    };
+
     return (
         <>
             <div className={style.main}>
-                <SearchEngine setIsSearchActive={setIsSearchActive} setSearchQuery={setSearchQuery} />
+                <SearchEngine
+                    setIsSearchActive={setIsSearchActive}
+                    setSearchQuery={setSearchQuery}
+                    searchQuery={searchQuery} 
+                />
                 {isSearchActive ? (
                     searchQuery ? (
                         <div></div> 
                     ) : (
-                        <SearchedContainer />
+                        <SearchedContainer onSelect={handleSelectSearch} />
                     )
                 ) : (
                     <>
