@@ -1,14 +1,19 @@
+.searchWrapper {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
 
+}
 
 .search {
     box-sizing: border-box;
     border: none;
     text-decoration: none;
     align-items: center;
-    border-radius: 20px;
     width: 100%;
     max-width: 100%;
-    padding: 10px 20px;
+    border-radius: 20px;
+    padding: 5px;
     background-color: white;
     color: gray;
     display: flex;
@@ -31,6 +36,7 @@
     font-size: 16px;
     background-color: white;
     color: var(--tc);
+    padding: 10px 14px;
 }
 
 .searchInput > input {
@@ -40,3 +46,83 @@
 .searchInput::placeholder {
     color: var(--tc);
 }
+
+.goToProduct {
+    background-color: #292928;
+    color: white;
+    font-size: 11px;
+    border-radius: 20px;
+    padding: 10px 14px;
+}
+
+.foundProductContainer {
+}
+
+.miniContainerProduct {
+    margin-top: 10px;
+    display: flex;
+    gap: 30px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.miniProductImg {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    background-color: var(--bg);
+}
+
+.miniProductImgPlaceholder {
+    width: 50px;
+    height: 50px;
+    background-color: var(--bg);
+}
+
+.miniDescProductContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.miniDescProduct {
+    font-size: 13px;
+    color: var(--tc);
+    text-align: start;
+
+}
+
+.miniPriceContainer {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.miniSalaryContainer {
+    display: flex; 
+    gap: 5px;
+    align-items: center;
+}
+
+.miniFinalPrice {
+    text-align: left;
+    font-size: 16px;
+    color: #292928;
+    font-weight: 600;
+} 
+
+.miniOriginalPrice {
+    font-size: 10px;
+    color: #BFBFBF;
+    font-weight: 500;
+    text-decoration: line-through;
+}
+
+.miniSalary {
+    font-size: 10px;
+    color: #F24131;
+    font-weight: 700;
+} 

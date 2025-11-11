@@ -17,6 +17,7 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
                     setIsSearchActive={setIsSearchActive}
                     setSearchQuery={setSearchQuery}
                     searchQuery={searchQuery} 
+                    cards={cards}
                 />
                 {isSearchActive ? (
                     searchQuery ? (
