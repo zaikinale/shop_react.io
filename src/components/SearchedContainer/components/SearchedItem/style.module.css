@@ -1,0 +1,21 @@
+
+.searchItem {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.searchImg {
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+}
+
+.searchText {
+    text-align: left;
+    font-size: 11px;
+    width: 100%;
+    color: var(--tc);
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--tc);
+}

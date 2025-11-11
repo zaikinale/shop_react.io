@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <Header setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive}></Header>
-      <Main cards={cards} types={types} setIsSearchActive={setIsSearchActive} ></Main>
+      <Main cards={cards} types={types} setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive}></Main>
       <div className='author_block'>
         <img className='author_img' src={LogoIcon} alt="A&S" />
         <h4 className='author_text'>by A&S</h4>
