@@ -12,7 +12,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [types, setTypes] = useState([]);;
   const [isSearchActive, setIsSearchActive] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetch('https://noxer-test.ru/webapp/api/products/on_main')
@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <Header setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive}></Header>
-      <Main cards={cards} types={types} setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive}></Main>
+      <Main cards={cards} types={types} setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive} searchQuery={searchQuery} setSearchQuery={setSearchQuery}></Main>
       <div className='author_block'>
         <img className='author_img' src={LogoIcon} alt="A&S" />
         <h4 className='author_text'>by A&S</h4>

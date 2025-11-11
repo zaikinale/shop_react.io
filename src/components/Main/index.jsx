@@ -1,20 +1,21 @@
 import style from './style.module.css'
-// import { useState } from 'react'
-
 import SearchEngine from '../SearchEngine/index.jsx'
 import SliderProductTypes from '../SliderProductTypes/index.jsx'
 import ProductContainer from '../ProductContainer/index.jsx'
 import SearchedContainer from '../SearchedContainer'
 
-
-export default function Main ({cards, types, setIsSearchActive, isSearchActive}) {
+export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery}) {
 
     return (
         <>
             <div className={style.main}>
-                <SearchEngine setIsSearchActive={setIsSearchActive} />
+                <SearchEngine setIsSearchActive={setIsSearchActive} setSearchQuery={setSearchQuery} />
                 {isSearchActive ? (
-                    <SearchedContainer></SearchedContainer>
+                    searchQuery ? (
+                        <div></div> 
+                    ) : (
+                        <SearchedContainer />
+                    )
                 ) : (
                     <>
                         <SliderProductTypes typesList={types} />
@@ -24,5 +25,4 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive})
             </div>
         </>
     )
-
 }
