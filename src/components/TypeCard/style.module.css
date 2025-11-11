@@ -28,7 +28,7 @@ h3 {
     color: var(--tc);
 }
 
-@media (max-width: 360px) {
+@media (max-width: 425px) {
     .cardType {
         width: 70px;
         height: 90px;

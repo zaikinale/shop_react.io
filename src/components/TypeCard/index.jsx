@@ -1,10 +1,14 @@
 import style from './style.module.css';
 
-export default function TypesCard({ types }) {
+export default function TypeCard({ types }) {
     return (
         <div className={style.cardType}>
-            <img className={style.card__img} src={types.img} alt={types.name} />
-            <h3 className={style.card__title}>{types.name}</h3>
+            <img
+                className={style.card__img}
+                src={types.Category_Image || 'https://via.placeholder.com/150'}
+                alt={types.Category_Name}
+            />
+            <h3 className={style.card__title}>{types.Category_Name}</h3>
         </div>
     );
 }
