@@ -3,14 +3,13 @@
     max-width: 300px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
     gap: 10px;
     position: relative;
     border-radius: 25px;
-    /* background-color: rgb(66, 66, 66); */
     background-color: white;
     padding: 5px;
+
+    height: 370px;
 }
 
 .headerCard {
@@ -44,13 +43,26 @@
 }
 
 .imgProduct {
-    width: 240px;
-    height: 240px;
-    max-width: 100%;
+    min-width: 240px;
+    min-height: 240px;
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
+    background-color: var(--bg);
+    text-align: center;
+    
 }
+
+.imgProductPlaceholder {
+    min-width: 240px;
+    min-height: 240px;
+    border-radius: 20px;
+    display: block;
+    background-color: var(--bg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 
 .priceContainer {
     display: flex;
@@ -171,9 +183,16 @@
         font-size: 11px;
     }
 
+
     .imgProduct {
-        width: 169px;
-        height: 169px;
+        min-width: 169px;
+        min-height: 169px;
+        border-radius: 15px;
+    }
+
+    .imgProductPlaceholder {
+        min-width: 169px;
+        min-height: 169px;
         border-radius: 15px;
     }
 

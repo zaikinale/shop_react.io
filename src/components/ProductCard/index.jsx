@@ -149,11 +149,9 @@ export default function ProductCard({ card }) {
           />
         </button>
       </div>
-      <img
-        className={style.imgProduct}
-        src={card.images?.[0]?.Image_URL || 'https://via.placeholder.com/250'}
-        alt={card.name || 'Товар'}
-      />
+      {card.images?.[0]?.Image_URL ? <img className={style.imgProduct} src={card.images?.[0]?.Image_URL} alt={card.name}/> : <div className={style.imgProductPlaceholder}></div> }
+
+      
       <div className={style.descriptionContainer}>
         {generateActPrice()}
         <p className={style.description}>{card.name}</p>
