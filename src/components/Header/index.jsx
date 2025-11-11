@@ -5,13 +5,16 @@ import TelegramIcon from '../../assets/icon_tg.svg'
 import VectorImg from '../../assets/Vector.svg'
 import MoreImg from '../../assets/more.svg'
 
-export default function Header () {
+export default function Header ({ setIsSearchActive, isSearchActive }) {
+    const handleBackOrClose = () => {
+        setIsSearchActive(false); 
+    };
 
     return (
         <div className={style.header}>
-            <button className={style.exit}>
+            <button className={style.exit} onClick={handleBackOrClose}>
                 <img src={CloseImg} alt="close" className={style.icon} />
-                Закрыть 
+                {isSearchActive ? 'Назад' : 'Закрыть'}
             </button>
             <button className={style.link}>
                 <img src={TelegramIcon} alt="telegram" className={style.iconTg} />
