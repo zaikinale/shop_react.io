@@ -5,6 +5,7 @@ import heartActive from "../../assets/heart_active.svg";
 
 export default function ProductCard({ card }) {
   const [isOn, setIsOn] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   function generateTags() {
     const tags = [];
@@ -72,8 +73,17 @@ export default function ProductCard({ card }) {
         </button>
 
       </div>
-      {card.images?.[0]?.Image_URL ? <img className={style.imgProduct} src={card.images?.[0]?.Image_URL} alt={card.name}/> : <div className={style.imgProductPlaceholder}></div> }
-
+      {/* {card.images?.[0]?.Image_URL ? <img className={style.imgProduct} src={card.images?.[0]?.Image_URL} alt={card.name}/> : <div className={style.imgProductPlaceholder}></div> } */}
+      {card.images?.[0]?.Image_URL && !imgError ? (
+        <img
+          className={style.imgProduct}
+          src={card.images[0].Image_URL}
+          alt={card.name}
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        <div className={style.imgProductPlaceholder}></div>
+      )}
       
       <div className={style.descriptionContainer}>
         {generateActPrice()}
@@ -81,7 +91,7 @@ export default function ProductCard({ card }) {
       </div>
 
       <button className={style.btnChoose}>Выбрать</button>
-      
+
     </div>
   );
 }

@@ -10,7 +10,7 @@ import LogoIcon from './assets/logo_xp.jpeg'
 
 function App() {
   const [cards, setCards] = useState([]);
-  const [types, setTypes] = useState([]);;
+  const [types, setTypes] = useState([]);
   const [fastSearchStrings, setFastSearchStrings] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,7 +48,7 @@ function App() {
   }, []);
 
   return (
-    
+
     <>
 
       <Header 
