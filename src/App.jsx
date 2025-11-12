@@ -50,6 +50,7 @@ function App() {
           <img className='author_img' src={LogoIcon} alt="A&S" />
           <h4 className='author_text'>by A&S</h4>
         </div> */}
+        {/* <div></div> */}
         {!isSearchActive && <Navigation></Navigation>}  
       </div>
       

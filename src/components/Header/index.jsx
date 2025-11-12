@@ -46,7 +46,7 @@ export default function Header ({ setIsSearchActive, isSearchActive, isSettingsA
                         <p className={style.btnControlText}>Закрыть</p>
                     </button>
                     <button className={style.btnControl} onClick={handleTheme} >
-                        <img src={MoonIcon} alt="close" className={style.btnControlImg} />
+                        <img src={isDarkTheme ? SunIcon : MoonIcon } alt="close" className={style.btnControlImg} />
                         <p className={style.btnControlText}>Сменить тему</p>
                     </button>
                 </div>

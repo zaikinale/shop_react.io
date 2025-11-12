@@ -10,6 +10,7 @@ export default function SearchedContainer({onSelect}) {
         {id: 5, text: 'Детская футболка'},
         {id: 6, text: 'Подарочный сертификат'},
         {id: 7, text: 'Штаны спортивные'},
+        {id: 7, text: 'nike'},
     ]
 
     return (
