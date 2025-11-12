@@ -48,16 +48,37 @@ function App() {
   }, []);
 
   return (
+    
     <>
-      <Header setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive} isSettingsActive={isSettingsActive} setIsSettingsActive={setIsSettingsActive} setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme}></Header>
+
+      <Header 
+        setIsSearchActive={setIsSearchActive} 
+        isSearchActive={isSearchActive} 
+        isSettingsActive={isSettingsActive} 
+        setIsSettingsActive={setIsSettingsActive} 
+        setIsDarkTheme={setIsDarkTheme} 
+        isDarkTheme={isDarkTheme}>
+      </Header>
+      
       <div className={isSettingsActive ? 'contentBlur' : ''}>
-        <Main cards={cards} types={types} setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive} searchQuery={searchQuery} setSearchQuery={setSearchQuery} fastSearchStrings={fastSearchStrings}></Main>
+
+        <Main 
+          cards={cards} 
+          types={types} 
+          setIsSearchActive={setIsSearchActive} 
+          isSearchActive={isSearchActive} 
+          searchQuery={searchQuery} 
+          setSearchQuery={setSearchQuery} 
+          fastSearchStrings={fastSearchStrings}>
+        </Main>
+
         {/* <div className='author_block'>
           <img className='author_img' src={LogoIcon} alt="A&S" />
           <h4 className='author_text'>by A&S</h4>
         </div> */}
-        {/* <div></div> */}
+
         {!isSearchActive && <Navigation></Navigation>}  
+
       </div>
       
     </>

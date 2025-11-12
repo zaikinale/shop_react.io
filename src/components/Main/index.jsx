@@ -12,13 +12,16 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
 
     return (
         <>
+
             <div className={style.main}>
+
                 <SearchEngine
                     setIsSearchActive={setIsSearchActive}
                     setSearchQuery={setSearchQuery}
                     searchQuery={searchQuery} 
                     cards={cards}
                 />
+
                 {isSearchActive ? (
                     searchQuery ? (
                         <div></div> 
@@ -31,7 +34,9 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
                         <ProductContainer cardsList={cards} />
                     </>
                 )}
+
             </div>
         </>
+        
     )
 }

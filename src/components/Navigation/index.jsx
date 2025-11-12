@@ -12,20 +12,25 @@ export default function Navigathion () {
 
     return (
         <div className={style.nav}>
+
             <button className={style.navBtn}>
-                <img src={HomeIcon} alt="" />
+                <img src={HomeIcon} alt="Главная" />
             </button>
+            
             <button className={style.navBtn}>
-                <img src={CatalogIcon} alt="" />
+                <img src={CatalogIcon} alt="Каталог" />
             </button>
+            
             <button className={style.navBtn}>
-                <img src={FavoriteIcon} alt="" />
+                <img src={FavoriteIcon} alt="Избранное" />
             </button>
+            
             <button className={style.navBtn}>
-                <img src={CartIcon} alt="" />
+                <img src={CartIcon} alt="Корзина" />
             </button>
+            
             <button className={style.navBtn}>
-                <img src={AccountIcon} alt="" />
+                <img src={AccountIcon} alt="Профиль" />
             </button>
 
         </div>

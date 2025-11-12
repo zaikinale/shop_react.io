@@ -56,10 +56,13 @@ export default function ProductCard({ card }) {
 
   return (
     <div className={style.cardProduct}>
+
       <div className={style.headerCard}>
+
         <div className={style.tags}>
           {generateTags()}
         </div>
+
         <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
           <img
             className={style.save}
@@ -67,6 +70,7 @@ export default function ProductCard({ card }) {
             alt="Сохранить"
           />
         </button>
+
       </div>
       {card.images?.[0]?.Image_URL ? <img className={style.imgProduct} src={card.images?.[0]?.Image_URL} alt={card.name}/> : <div className={style.imgProductPlaceholder}></div> }
 
@@ -75,7 +79,9 @@ export default function ProductCard({ card }) {
         {generateActPrice()}
         <p className={style.description}>{card.name}</p>
       </div>
+
       <button className={style.btnChoose}>Выбрать</button>
+      
     </div>
   );
 }
