@@ -5,10 +5,25 @@ import TelegramIcon from '../../assets/icon_tg.svg'
 import VectorImg from '../../assets/Vector.svg'
 import MoreImg from '../../assets/more.svg'
 
-export default function Header ({ setIsSearchActive, isSearchActive }) {
+import SunIcon from '../../assets/sun.svg'
+import MoonIcon from '../../assets/moon.svg'
+
+export default function Header ({ setIsSearchActive, isSearchActive, isSettingsActive, setIsSettingsActive, setIsDarkTheme, isDarkTheme }) {
     const handleBackOrClose = () => {
         setIsSearchActive(false); 
     };
+
+    const handleOpenSettings = () => {
+        setIsSettingsActive(true);
+    }
+
+    const handleCloseSettings = () => {
+        setIsSettingsActive(false);
+    }
+
+    const handleTheme = () => {
+        setIsDarkTheme(!isDarkTheme)
+    }
 
     return (
         <div className={style.header}>
@@ -20,10 +35,24 @@ export default function Header ({ setIsSearchActive, isSearchActive }) {
                 <img src={TelegramIcon} alt="telegram" className={style.iconTg} />
                 наш tg-канал
             </button>
-            <button className={style.settings}>
+            <button className={style.settings} onClick={handleOpenSettings}>
                 <img src={VectorImg} alt="vector" className={style.icon} />
                 <img src={MoreImg} alt="more" className={style.icon} />
             </button>
+            { isSettingsActive ? (
+                <div className={style.btnControlContainer}>
+                    <button className={style.btnControl} onClick={handleCloseSettings}>
+                        <img src={VectorImg} alt="close" className={style.btnControlImgBack} />
+                        <p className={style.btnControlText}>Закрыть</p>
+                    </button>
+                    <button className={style.btnControl} onClick={handleTheme} >
+                        <img src={MoonIcon} alt="close" className={style.btnControlImg} />
+                        <p className={style.btnControlText}>Сменить тему</p>
+                    </button>
+                </div>
+            ) : ''}
+            
+
         </div>
     )
 }

@@ -1,13 +1,11 @@
 @import url('./assets/styles/fonts.css');
 
 :root {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: #ffffffde;
-  /* background-color: #F1F1F1; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,14 +16,21 @@
   --bc: #F0F0F0;
   --bb: #C6C6C6;
   --tc: #666666;
+}
 
+body.dark-theme {
+  --bg: black;
+  --bc: #000000
+  --bb: #666666;
+  --tc: #666666;
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scrollbar-width: none
+  scrollbar-width: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a {

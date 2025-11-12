@@ -13,6 +13,20 @@ function App() {
   const [types, setTypes] = useState([]);;
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSettingsActive, setIsSettingsActive] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    if (isDarkTheme) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  }, [isDarkTheme]);
+
+  if (isDarkTheme) {
+    console.log(isDarkTheme)
+  } 
 
   useEffect(() => {
     fetch('https://noxer-test.ru/webapp/api/products/on_main')
@@ -29,13 +43,16 @@ function App() {
 
   return (
     <>
-      <Header setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive}></Header>
-      <Main cards={cards} types={types} setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive} searchQuery={searchQuery} setSearchQuery={setSearchQuery}></Main>
-      <div className='author_block'>
-        <img className='author_img' src={LogoIcon} alt="A&S" />
-        <h4 className='author_text'>by A&S</h4>
+      <Header setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive} isSettingsActive={isSettingsActive} setIsSettingsActive={setIsSettingsActive} setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme}></Header>
+      <div className={isSettingsActive ? 'contentBlur' : ''}>
+        <Main cards={cards} types={types} setIsSearchActive={setIsSearchActive} isSearchActive={isSearchActive} searchQuery={searchQuery} setSearchQuery={setSearchQuery}></Main>
+        {/* <div className='author_block'>
+          <img className='author_img' src={LogoIcon} alt="A&S" />
+          <h4 className='author_text'>by A&S</h4>
+        </div> */}
+        {!isSearchActive && <Navigation></Navigation>}  
       </div>
-      {!isSearchActive && <Navigation></Navigation>}  
+      
     </>
   )
 

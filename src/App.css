@@ -9,6 +9,10 @@
   /* gap: 10px; */
 }
 
+.contentBlur {
+  opacity: 0.5;
+}
+
 .author_block {
   padding: clamp(12px, 3vw, 20px);
   display: flex;

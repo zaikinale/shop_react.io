@@ -38,6 +38,52 @@
     background-color: var(--bb);
 }
 
+.settings {
+    position: relative;
+}
+
+.btnControlContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: var(--bb);
+}
+
+.btnControl {
+    width: 100%;
+    padding: 4px 7px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background-color: white;
+}
+
+.btnControlImg {
+    width: 13px;
+    height: 13px;
+    object-fit: cover;
+}
+
+.btnControlImgBack {
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+    transform: rotate(90deg);
+}
+
+.btnControlText {
+    font-size: 13px;
+    color: var(--tc);
+}
+
+
 
 
 @media (max-width: 425px) {
