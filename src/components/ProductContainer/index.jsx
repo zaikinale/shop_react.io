@@ -8,9 +8,9 @@ export default function ProductContainer({ cardsList = [] }) {
         {cardsList.length > 0 ? (
           cardsList.map(card => <ProductCard key={card.id} card={card} />)
         ) : (
-          <p className={style.empty}>Товары не найдены</p>
+          <p className={style.empty}>Загружаются...</p>
         )}
-        
+
       </div>
     );
   }  

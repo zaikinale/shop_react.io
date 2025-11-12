@@ -15,6 +15,5 @@ export default function TypeCard({ types }) {
             <h3 className={style.card__title}>{types.Category_Name}</h3>
         
         </div>
-    
     );
 }

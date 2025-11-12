@@ -16,9 +16,15 @@
     color: white;
 }
 
+@media (max-width: 600px) {
+    .containerProducts {
+        grid-template-columns: repeat(auto-fit, 173px);
+        gap: 5px;
+    }
+} 
+
 @media (max-width: 425px) {
     .containerProducts {
         grid-template-columns: repeat(2, 173px);
-        gap: 5px;
     }
 }

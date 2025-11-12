@@ -162,8 +162,87 @@
     background-color: #292928;
 }
 
+@media (max-width: 600px) {
+    .cardProduct {
+        width: 173px;
+        height: 272px;
+        padding: 2px;
+        border-radius: 18px;
+        gap: 1px;
+    }
+
+    .headerCard {
+        top: 5px;
+        left: 5px;
+        width: 160px;
+    }
+
+    .headerCard > * {
+        font-size: 11px;
+    }
 
 
+    .imgProduct {
+        min-width: 169px;
+        min-height: 169px;
+        border-radius: 15px;
+    }
+
+    .imgProductPlaceholder {
+        min-width: 169px;
+        min-height: 169px;
+        border-radius: 15px;
+    }
+
+    .saveButton {
+        width: 17px;
+        height: 17px;
+    }
+
+    .finalPrice {
+        font-size: 16px;
+    }
+
+    .salaryContainer {
+        font-size: 10px;
+    }
+
+    .salary {
+        font-size: 10px;
+    }
+
+    .descriptionContainer {
+        gap: 1px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .statusCardNew {
+        padding:4px 8px;
+        border-radius: 10px;
+    }
+
+    .statusCardHit{
+        padding:4px 8px;
+        border-radius: 10px;
+    }
+
+    .statusCardSalary {
+        padding:4px 8px;
+        border-radius: 10px;
+    }
+
+    .statusCardPremium {
+        padding:4px 8px;
+        border-radius: 10px;
+    }
+
+
+} 
+
+/* 
 @media (max-width: 425px) {
     .cardProduct {
         width: 173px;
@@ -243,3 +322,4 @@
 
 
 }
+ */
