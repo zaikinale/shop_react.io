@@ -27,7 +27,7 @@ export default function SearchEngine({ setIsSearchActive, setSearchQuery, search
 
   return (
     <div className={style.searchWrapper}>
-      <label htmlFor="searchInput" className={style.search}>
+      <label htmlFor="searchInput" className={`${style.search} ${hasMatch ? style.searchActive : ''}`}>
         <img src={SearchIcon} alt="Искать:" />
         <input
           className={style.searchInput}
