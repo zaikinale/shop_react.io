@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import style from './style.module.css';
-import SearchIcon from '../../assets/search.svg';
+import SearchIcon from '../../../../assets/search.svg';
 
 export default function SearchEngine({ setIsSearchActive, setSearchQuery, searchQuery, cards }) {
   const [query, setQuery] = useState('');

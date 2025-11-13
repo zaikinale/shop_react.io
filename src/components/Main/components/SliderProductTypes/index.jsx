@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import TypeCard from '../TypeCard/index.jsx'
+import TypeCard from './components/TypeCard/index.jsx'
 
 export default function SliderProductTypes({ typesList }) {
   return (

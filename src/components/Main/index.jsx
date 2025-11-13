@@ -1,8 +1,8 @@
 import style from './style.module.css'
-import SearchEngine from '../SearchEngine/index.jsx'
-import SliderProductTypes from '../SliderProductTypes/index.jsx'
-import ProductContainer from '../ProductContainer/index.jsx'
-import SearchedContainer from '../SearchedContainer'
+import SearchEngine from './components/SearchEngine/index.jsx'
+import SliderProductTypes from './components/SliderProductTypes/index.jsx'
+import ProductContainer from './components/ProductContainer/index.jsx'
+import SearchedContainer from './components/SearchedContainer/index.jsx'
 
 export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery, fastSearchStrings}) {
 
@@ -37,6 +37,6 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
 
             </div>
         </>
-        
+
     )
 }

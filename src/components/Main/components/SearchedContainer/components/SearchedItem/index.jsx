@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import SearchIcon from '../../../../assets/search.svg'
+import SearchIcon from '../../../../../../assets/search.svg'
 
 export default function SearchedItem ({text, onSelect}) {
     const handleClick = () => {

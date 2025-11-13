@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import ProductCard from '../ProductCard'
+import ProductCard from './components/ProductCard'
 
 export default function ProductContainer({ cardsList = [] }) {
     return (

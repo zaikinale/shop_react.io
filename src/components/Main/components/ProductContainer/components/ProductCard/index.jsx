@@ -1,7 +1,7 @@
 import style from './style.module.css';
 import { useState } from 'react';
-import heartUnactive from "../../assets/heart_unactive.svg";
-import heartActive from "../../assets/heart_active.svg";
+import heartUnactive from "../../../../../../assets/heart_unactive.svg";
+import heartActive from "../../../../../../assets/heart_active.svg";
 
 export default function ProductCard({ card }) {
   const [isOn, setIsOn] = useState(false);

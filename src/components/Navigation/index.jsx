@@ -1,4 +1,5 @@
 import style from './style.module.css'
+import { NavLink } from 'react-router'
 
 import HomeIcon from '../../assets/home.svg'
 import CatalogIcon from '../../assets/catalog.svg'
@@ -12,26 +13,25 @@ export default function Navigathion () {
 
     return (
         <div className={style.nav}>
-
-            <button className={style.navBtn}>
+            <NavLink to={'/'} className={style.navBtn}>
                 <img src={HomeIcon} alt="Главная" />
-            </button>
+            </NavLink>
             
-            <button className={style.navBtn}>
+            <addEventListener className={style.navBtn}>
                 <img src={CatalogIcon} alt="Каталог" />
-            </button>
+            </addEventListener>
             
-            <button className={style.navBtn}>
+            <a className={style.navBtn}>
                 <img src={FavoriteIcon} alt="Избранное" />
-            </button>
+            </a>
             
-            <button className={style.navBtn}>
+            <a className={style.navBtn}>
                 <img src={CartIcon} alt="Корзина" />
-            </button>
+            </a>
             
-            <button className={style.navBtn}>
+            <NavLink to={'/profile'} className={style.navBtn}>
                 <img src={AccountIcon} alt="Профиль" />
-            </button>
+            </NavLink>
 
         </div>
     )

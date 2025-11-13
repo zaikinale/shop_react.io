@@ -4,6 +4,9 @@ import './App.css'
 import Main from './components/Main/index.jsx'
 import Header from './components/Header/index.jsx'
 import Navigation from './components/Navigation/index.jsx'
+import Profile from './components/Profile/ProfileContainer/index.jsx'
+
+import {BrowserRouter, Route, Routes } from 'react-router'
 
 import LogoIcon from './assets/logo_xp.jpeg'
 
@@ -47,10 +50,48 @@ function App() {
       });
   }, []);
 
+  // return (
+
+  //   <>
+
+  //     <Header 
+  //       setIsSearchActive={setIsSearchActive} 
+  //       isSearchActive={isSearchActive} 
+  //       isSettingsActive={isSettingsActive} 
+  //       setIsSettingsActive={setIsSettingsActive} 
+  //       setIsDarkTheme={setIsDarkTheme} 
+  //       isDarkTheme={isDarkTheme}>
+  //     </Header>
+      
+  //     <div className={isSettingsActive ? 'contentBlur' : ''}>
+
+  //       <Main 
+  //         cards={cards} 
+  //         types={types} 
+  //         setIsSearchActive={setIsSearchActive} 
+  //         isSearchActive={isSearchActive} 
+  //         searchQuery={searchQuery} 
+  //         setSearchQuery={setSearchQuery} 
+  //         fastSearchStrings={fastSearchStrings}>
+  //       </Main>
+
+  //       {/* <div className='author_block'>
+  //         <img className='author_img' src={LogoIcon} alt="A&S" />
+  //         <h4 className='author_text'>by A&S</h4>
+  //       </div> */}
+
+  //       {!isSearchActive && <Navigation></Navigation>}  
+
+  //     </div>
+      
+  //   </>
+  // )
+
+
+
   return (
-
     <>
-
+    <BrowserRouter>
       <Header 
         setIsSearchActive={setIsSearchActive} 
         isSearchActive={isSearchActive} 
@@ -59,27 +100,40 @@ function App() {
         setIsDarkTheme={setIsDarkTheme} 
         isDarkTheme={isDarkTheme}>
       </Header>
+
+      <Routes>
+        <Route index element={(
+        <div className={isSettingsActive ? 'contentBlur' : ''}>
+
+          <Main 
+            cards={cards} 
+            types={types} 
+            setIsSearchActive={setIsSearchActive} 
+            isSearchActive={isSearchActive} 
+            searchQuery={searchQuery} 
+            setSearchQuery={setSearchQuery} 
+            fastSearchStrings={fastSearchStrings}>
+          </Main>
+
+          {/* <div className='author_block'>
+            <img className='author_img' src={LogoIcon} alt="A&S" />
+            <h4 className='author_text'>by A&S</h4>
+          </div> */}
+
+        </div>
+          )}>
+        </Route>
+        <Route path='profile' element={<Profile></Profile>}>
+
+        </Route>
+        
+      </Routes>
+      {!isSearchActive && <Navigation></Navigation>}  
+    </BrowserRouter>
+
       
-      <div className={isSettingsActive ? 'contentBlur' : ''}>
-
-        <Main 
-          cards={cards} 
-          types={types} 
-          setIsSearchActive={setIsSearchActive} 
-          isSearchActive={isSearchActive} 
-          searchQuery={searchQuery} 
-          setSearchQuery={setSearchQuery} 
-          fastSearchStrings={fastSearchStrings}>
-        </Main>
-
-        {/* <div className='author_block'>
-          <img className='author_img' src={LogoIcon} alt="A&S" />
-          <h4 className='author_text'>by A&S</h4>
-        </div> */}
-
-        {!isSearchActive && <Navigation></Navigation>}  
-
-      </div>
+      
+      
       
     </>
   )
