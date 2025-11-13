@@ -34,7 +34,7 @@ h3 {
     text-overflow: ellipsis;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 600px) {
     .cardType {
         width: 70px;
         height: 90px;

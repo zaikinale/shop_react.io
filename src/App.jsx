@@ -5,6 +5,7 @@ import Main from './components/Main/index.jsx'
 import Header from './components/Header/index.jsx'
 import Navigation from './components/Navigation/index.jsx'
 import Profile from './components/Profile/ProfileContainer/index.jsx'
+import Login from './components/Login/index.jsx'
 
 import {BrowserRouter, Route, Routes } from 'react-router'
 
@@ -19,6 +20,41 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+
+
+  const [person, setPerson] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const savedPerson = localStorage.getItem('person');
+    if (savedPerson) {
+      try {
+        const parsedPerson = JSON.parse(savedPerson);
+        setPerson(parsedPerson);
+        if (parsedPerson.length > 0) {
+          setIsLogin(true);
+        }
+      } catch (e) {
+        console.error('Ошибка при загрузке данных из localStorage:', e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (person.length > 0) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [person]);
+
+  const handleSaveUser = (email, password) => {
+    const updatedPerson = [{ email, password }];
+    setPerson(updatedPerson);
+    localStorage.setItem('person', JSON.stringify(updatedPerson));
+  };
+
 
   useEffect(() => {
     if (isDarkTheme) {
@@ -123,9 +159,7 @@ function App() {
         </div>
           )}>
         </Route>
-        <Route path='profile' element={<Profile></Profile>}>
-
-        </Route>
+        <Route path='profile' element={ isLogin ? <Profile person={person} setPerson={setPerson}></Profile> : <Login onSaveUser={handleSaveUser} ></Login>}></Route>
         
       </Routes>
       {!isSearchActive && <Navigation></Navigation>}  
