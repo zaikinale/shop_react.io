@@ -5,11 +5,13 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-color: var(--bc);
+    background-color: var(--bg);
 }
 
 .container__title {
-    color: var(--title);
+    margin-top: 30px;
+    color: var(--tc);
+    font-size: 18px;
 }
 
 .from {
@@ -17,25 +19,43 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    background-color: var(--bc);
+    background-color: white;
     width: 100%;
     max-width: 200px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.inputName {
-    padding: 8px;
+.inputName, .inputPass {
+    width: 100%;
+    padding: 4px;
     background-color: var(--bg);
+    border-radius: 10px;
+    font-size: 13px;
 }
 
-.inputPass {
-    padding: 8px;
+.inputName::placeholder, .inputPass::placeholder {
+    text-align: center;
+    color: var(--tc);
+    opacity: 0.5;
+}
+
+.inputName > input, .inputPass > input {
+    outline: none;
     background-color: var(--bg);
+    border: none;
+    color: var(--tc);
 }
 
 .loginBtn {
-    padding: 8px;
+    width: 100%;
+    padding: 4px;
     background-color: var(--bg);
+    color: var(--tc);
+    font-size: 13px;
 }
+
 .forgotLink {
     color: var(--tc);
+    font-size: 11px;
 }

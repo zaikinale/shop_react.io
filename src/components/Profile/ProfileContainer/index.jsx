@@ -1,4 +1,4 @@
-
+import style from './style.module.css'
 
 export default function ProfileContainer ({ person, setPerson }) {
     const handleLogout = () => {
@@ -7,16 +7,16 @@ export default function ProfileContainer ({ person, setPerson }) {
     };
 
     return (
-        <section>
-            <h1>Профиль</h1>
-            <div className=''>
+        <section className={style.container}>
+            <h1 className={style.container__title}>Профиль</h1>
+            <div className={style.data}>
                 Данные пользователя
-                <ul>
+                <ul className={style.data__items}>
                     {person.map((user, index) => (
-                        <li key={index}>{user.email}</li>
+                        <li className={style.data__item} key={index}>{user.email}</li>
                     ))}
                 </ul>
-                <button className="" onClick={handleLogout}>Выйти из профиля</button>
+                <button className={style.resetData} onClick={handleLogout}>Выйти из профиля</button>
             </div>
         </section>
     )

@@ -32,6 +32,7 @@ body.dark-theme {
   padding: 0;
   scrollbar-width: none;
   transition: background-color 0.2s ease, color 0.2s ease;
+  list-style: none;
 }
 
 a {
