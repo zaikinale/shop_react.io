@@ -5,6 +5,8 @@ import Header from './components/Header/index.jsx';
 import Navigation from './components/Navigation/index.jsx';
 import Profile from './components/Profile/ProfileContainer/index.jsx';
 import Login from './components/Login/index.jsx';
+import Saved from './components/Saved/index.jsx';
+import Basket from './components/Basket/index.jsx';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 
@@ -127,6 +129,31 @@ function App() {
             </div>
           )}>
           </Route>
+
+          <Route path='saved' element={
+            isLogin ? 
+              <Saved 
+                cards={cards} 
+                setBasket={setBasket}
+                basket={basket}
+                setSavedProduct={setSavedProduct}
+                savedProduct={savedProduct}
+              /> : 
+              <Login onSaveUser={handleSaveUser} />
+          }></Route>
+
+          <Route path='basket' element={
+            isLogin ? 
+              <Basket 
+                cards={cards} 
+                setBasket={setBasket}
+                basket={basket}
+                setSavedProduct={setSavedProduct}
+                savedProduct={savedProduct}
+              /> : 
+              <Login onSaveUser={handleSaveUser} />
+          }></Route>
+
           <Route path='profile' element={
             isLogin ? 
               <Profile 

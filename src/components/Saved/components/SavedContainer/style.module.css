@@ -1,0 +1,30 @@
+
+.containerProducts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center; 
+    gap: 16px;
+    width: 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.empty {
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .containerProducts {
+        grid-template-columns: repeat(auto-fit, 173px);
+        gap: 5px;
+    }
+} 
+
+@media (max-width: 425px) {
+    .containerProducts {
+        grid-template-columns: repeat(2, 173px);
+    }
+}

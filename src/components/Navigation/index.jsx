@@ -17,17 +17,17 @@ export default function Navigathion () {
                 <img src={HomeIcon} alt="Главная" />
             </NavLink>
             
-            <addEventListener className={style.navBtn}>
+            <a className={style.navBtn}>
                 <img src={CatalogIcon} alt="Каталог" />
-            </addEventListener>
+            </a>
             
-            <a className={style.navBtn}>
+            <NavLink to={'/saved'}  className={style.navBtn}>
                 <img src={FavoriteIcon} alt="Избранное" />
-            </a>
+            </NavLink>
             
-            <a className={style.navBtn}>
+            <NavLink to={'/basket'}  className={style.navBtn}>
                 <img src={CartIcon} alt="Корзина" />
-            </a>
+            </NavLink>
             
             <NavLink to={'/profile'} className={style.navBtn}>
                 <img src={AccountIcon} alt="Профиль" />
