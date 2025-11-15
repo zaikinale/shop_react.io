@@ -3,7 +3,7 @@ import { useState } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";
 import heartActive from "../../../../../../assets/heart_active.svg";
 
-export default function ProductCard({ card }) {
+export default function ProductCard({ card, setBasket }) {
   const [isOn, setIsOn] = useState(false);
   const [imgError, setImgError] = useState(false);
 
@@ -55,6 +55,11 @@ export default function ProductCard({ card }) {
     setIsOn(state => !state);
   }
 
+  function handleBasket(id) {
+    setBasket(prevBasket => [...prevBasket, id])
+    console.log(`added_product ${id}`)
+  }
+
   return (
     <div className={style.cardProduct}>
 
@@ -90,7 +95,7 @@ export default function ProductCard({ card }) {
         <p className={style.description}>{card.name}</p>
       </div>
 
-      <button className={style.btnChoose}>Выбрать</button>
+      <button className={style.btnChoose} onClick={()=>handleBasket(card.id)}>Выбрать</button>
 
     </div>
   );

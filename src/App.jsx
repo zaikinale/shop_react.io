@@ -20,6 +20,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [basket, setBasket] = useState([]);
 
 
 
@@ -148,7 +149,9 @@ function App() {
             isSearchActive={isSearchActive} 
             searchQuery={searchQuery} 
             setSearchQuery={setSearchQuery} 
-            fastSearchStrings={fastSearchStrings}>
+            fastSearchStrings={fastSearchStrings}
+            setBasket={setBasket}
+            >
           </Main>
 
           {/* <div className='author_block'>

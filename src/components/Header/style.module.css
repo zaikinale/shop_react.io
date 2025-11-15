@@ -1,9 +1,12 @@
 .header {
     width: 100%;
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; */
+
+    display: grid;
+    grid-template-columns: 110px 1fr 80px;
+
     margin-bottom: clamp(12px, 3vw, 20px);
     padding: clamp(8px, 2vw, 12px) clamp(0, 4vw, 24px);
     position: sticky;
@@ -13,9 +16,12 @@
 }
 
 .icon {
-    width: clamp(14px, 3.5vw, 20px);
-    height: clamp(14px, 3.5vw, 20px);
+    /* width: clamp(14px, 3.5vw, 15px);
+    height: clamp(14px, 3.5vw, 15px); */
+    width: 10px;
+    height: 10px;
     flex-shrink: 0;
+    margin: 5px;
     object-fit: contain;
 }
 
@@ -84,6 +90,11 @@
     color: var(--tc);
 }
 
+
+.link {
+    width: 150px;
+    margin: 0 auto;
+}
 
 
 

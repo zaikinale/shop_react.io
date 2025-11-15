@@ -4,7 +4,7 @@ import SliderProductTypes from './components/SliderProductTypes/index.jsx'
 import ProductContainer from './components/ProductContainer/index.jsx'
 import SearchedContainer from './components/SearchedContainer/index.jsx'
 
-export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery, fastSearchStrings}) {
+export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery, fastSearchStrings, setBasket}) {
 
     const handleSelectSearch = (text) => {
         setSearchQuery(text); 
@@ -31,7 +31,7 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
                 ) : (
                     <>
                         <SliderProductTypes typesList={types} />
-                        <ProductContainer cardsList={cards} />
+                        <ProductContainer cardsList={cards} setBasket={setBasket}/>
                     </>
                 )}
 

@@ -32,7 +32,7 @@ export default function Header ({ setIsSearchActive, isSearchActive, isSettingsA
                 <img src={CloseImg} alt="close" className={style.icon} />
                 {isSearchActive ? 'Назад' : 'Закрыть'}
             </button>
-
+            
             <button className={style.link}>
                 <img src={TelegramIcon} alt="telegram" className={style.iconTg} />
                 наш tg-канал
