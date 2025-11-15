@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import style from './style.module.css';
 
 export default function TypeCard({ types }) {
+    const [imgError, setImgError] = useState(false);
     return (
         <div className={style.cardType}>
 
-            {types.Category_Image ? <img className={style.card__img} src={types.Category_Image} alt={types.Category_Name} /> : <div className={style.card__img}></div> }
+            {types.Category_Image && !imgError ? <img className={style.card__img} src={types.Category_Image} alt={types.Category_Name} onError={() => setImgError(true)} /> : <div className={style.card__img}></div> }
             
             {/* <img
                 className={style.card__img}
