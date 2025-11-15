@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";
 import heartActive from "../../../../../../assets/heart_active.svg";
 
-export default function SavedItem({ card, setBasket, setSavedProduct, basket, savedProduct }) {
+export default function BasketItem({ card, setBasket, setSavedProduct, basket, savedProduct }) {
   const [isOn, setIsOn] = useState(false);
   const [imgError, setImgError] = useState(false);
 
