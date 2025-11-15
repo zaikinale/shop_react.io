@@ -1,16 +1,14 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
-import './App.css'
-import Main from './components/Main/index.jsx'
-import Header from './components/Header/index.jsx'
-import Navigation from './components/Navigation/index.jsx'
-import Profile from './components/Profile/ProfileContainer/index.jsx'
-import Login from './components/Login/index.jsx'
+import { useState, useEffect } from 'react';
+import './App.css';
+import Main from './components/Main/index.jsx';
+import Header from './components/Header/index.jsx';
+import Navigation from './components/Navigation/index.jsx';
+import Profile from './components/Profile/ProfileContainer/index.jsx';
+import Login from './components/Login/index.jsx';
 
-import {BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Route, Routes } from 'react-router';
 
-import LogoIcon from './assets/logo_xp.jpeg'
-
+import LogoIcon from './assets/logo_xp.jpeg';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -20,12 +18,28 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [basket, setBasket] = useState([]);
 
+  const [basket, setBasket] = useState(() => {
+    const saved = localStorage.getItem('basket');
+    return saved ? JSON.parse(saved) : [];
+  });
 
+  const [savedProduct, setSavedProduct] = useState(() => {
+    const savedProd = localStorage.getItem('saved');
+    return savedProd ? JSON.parse(savedProd) : [];
+  });
 
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify(basket));
+  }, [basket]);
+
+  useEffect(() => {
+    localStorage.setItem('saved', JSON.stringify(savedProduct));
+  }, [savedProduct]);
+
 
   useEffect(() => {
     const savedPerson = localStorage.getItem('person');
@@ -56,7 +70,6 @@ function App() {
     localStorage.setItem('person', JSON.stringify(updatedPerson));
   };
 
-
   useEffect(() => {
     if (isDarkTheme) {
       document.body.classList.add('dark-theme');
@@ -64,10 +77,6 @@ function App() {
       document.body.classList.remove('dark-theme');
     }
   }, [isDarkTheme]);
-
-  if (isDarkTheme) {
-    console.log(isDarkTheme)
-  } 
 
   useEffect(() => {
     fetch('https://noxer-test.ru/webapp/api/products/on_main')
@@ -87,95 +96,52 @@ function App() {
       });
   }, []);
 
-  // return (
-
-  //   <>
-
-  //     <Header 
-  //       setIsSearchActive={setIsSearchActive} 
-  //       isSearchActive={isSearchActive} 
-  //       isSettingsActive={isSettingsActive} 
-  //       setIsSettingsActive={setIsSettingsActive} 
-  //       setIsDarkTheme={setIsDarkTheme} 
-  //       isDarkTheme={isDarkTheme}>
-  //     </Header>
-      
-  //     <div className={isSettingsActive ? 'contentBlur' : ''}>
-
-  //       <Main 
-  //         cards={cards} 
-  //         types={types} 
-  //         setIsSearchActive={setIsSearchActive} 
-  //         isSearchActive={isSearchActive} 
-  //         searchQuery={searchQuery} 
-  //         setSearchQuery={setSearchQuery} 
-  //         fastSearchStrings={fastSearchStrings}>
-  //       </Main>
-
-  //       {/* <div className='author_block'>
-  //         <img className='author_img' src={LogoIcon} alt="A&S" />
-  //         <h4 className='author_text'>by A&S</h4>
-  //       </div> */}
-
-  //       {!isSearchActive && <Navigation></Navigation>}  
-
-  //     </div>
-      
-  //   </>
-  // )
-
-
-
   return (
     <>
-    <BrowserRouter>
-      <Header 
-        setIsSearchActive={setIsSearchActive} 
-        isSearchActive={isSearchActive} 
-        isSettingsActive={isSettingsActive} 
-        setIsSettingsActive={setIsSettingsActive} 
-        setIsDarkTheme={setIsDarkTheme} 
-        isDarkTheme={isDarkTheme}>
-      </Header>
+      <BrowserRouter>
+        <Header 
+          setIsSearchActive={setIsSearchActive} 
+          isSearchActive={isSearchActive} 
+          isSettingsActive={isSettingsActive} 
+          setIsSettingsActive={setIsSettingsActive} 
+          setIsDarkTheme={setIsDarkTheme} 
+          isDarkTheme={isDarkTheme}>
+        </Header>
 
-      <Routes>
-        <Route index element={(
-        <div className={isSettingsActive ? 'contentBlur' : ''}>
-
-          <Main 
-            cards={cards} 
-            types={types} 
-            setIsSearchActive={setIsSearchActive} 
-            isSearchActive={isSearchActive} 
-            searchQuery={searchQuery} 
-            setSearchQuery={setSearchQuery} 
-            fastSearchStrings={fastSearchStrings}
-            setBasket={setBasket}
-            >
-          </Main>
-
-          {/* <div className='author_block'>
-            <img className='author_img' src={LogoIcon} alt="A&S" />
-            <h4 className='author_text'>by A&S</h4>
-          </div> */}
-
-        </div>
+        <Routes>
+          <Route index element={(
+            <div className={isSettingsActive ? 'contentBlur' : ''}>
+              <Main 
+                cards={cards} 
+                types={types} 
+                setIsSearchActive={setIsSearchActive} 
+                isSearchActive={isSearchActive} 
+                searchQuery={searchQuery} 
+                setSearchQuery={setSearchQuery} 
+                fastSearchStrings={fastSearchStrings}
+                setBasket={setBasket}
+                basket={basket}
+                setSavedProduct={setSavedProduct}
+                savedProduct={savedProduct}
+              />
+            </div>
           )}>
-        </Route>
-        <Route path='profile' element={ isLogin ? <Profile person={person} setPerson={setPerson}></Profile> : <Login onSaveUser={handleSaveUser} ></Login>}></Route>
-        
-      </Routes>
-      {!isSearchActive && <Navigation></Navigation>}  
-    </BrowserRouter>
-
-      
-      
-      
-      
+          </Route>
+          <Route path='profile' element={
+            isLogin ? 
+              <Profile 
+                person={person} 
+                setPerson={setPerson}
+                setBasket={setBasket}
+              /> : 
+              <Login onSaveUser={handleSaveUser} />
+          }>
+          </Route>
+        </Routes>
+        {!isSearchActive && <Navigation></Navigation>}  
+      </BrowserRouter>
     </>
-  )
-
-
+  );
 }
 
-export default App
+export default App;

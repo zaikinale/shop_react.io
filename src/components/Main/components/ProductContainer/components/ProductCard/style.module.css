@@ -127,6 +127,16 @@
     font-size: clamp(14px, 3.5vw, 16px);
 }
 
+.btnChooseActive {
+    width: 240px;
+    max-width: 100%;
+    border-radius: 20px;
+    background-color: rgb(255, 217, 0);
+    color: var(--tc);
+    padding: 8px;
+    font-size: clamp(14px, 3.5vw, 16px);
+}
+
 
 .statusCardNew {
     width: fit-content;

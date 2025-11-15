@@ -1,11 +1,17 @@
 import style from './style.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";
 import heartActive from "../../../../../../assets/heart_active.svg";
 
-export default function ProductCard({ card, setBasket }) {
+export default function ProductCard({ card, setBasket, setSavedProduct, basket, savedProduct }) {
   const [isOn, setIsOn] = useState(false);
   const [imgError, setImgError] = useState(false);
+
+  useEffect(() => {
+    setIsOn(savedProduct.includes(card.id));
+  }, [savedProduct, card.id]);
+
+
 
   function generateTags() {
     const tags = [];
@@ -52,12 +58,34 @@ export default function ProductCard({ card, setBasket }) {
   }
 
   function toggleBtnSave() {
-    setIsOn(state => !state);
+    const newIsOn = !isOn;
+    setIsOn(newIsOn);
+
+    setSavedProduct(prevSaved => {
+      if (newIsOn) {
+        console.log(`Сохранен товар ${card.id}`);
+        return [...new Set([...prevSaved, card.id])];
+      } else {
+        console.log(`Удален товар ${card.id}`);
+        return prevSaved.filter(id => id !== card.id);
+      }
+    });
   }
 
   function handleBasket(id) {
-    setBasket(prevBasket => [...prevBasket, id])
-    console.log(`added_product ${id}`)
+    setBasket(prevBasket => {
+      if (prevBasket.includes(id)) {
+        console.log(`Удалён товар из корзины: ${id}`);
+        return prevBasket.filter(basketId => basketId !== id);
+      } else {
+        console.log(`Добавлен товар в корзину: ${id}`);
+        return [...prevBasket, id];
+      }
+    });
+  }
+
+  function isBasket(id) {
+    return basket.includes(id)
   }
 
   return (
@@ -69,7 +97,7 @@ export default function ProductCard({ card, setBasket }) {
           {generateTags()}
         </div>
 
-        <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
+        <button className={style.saveButton} aria-label="Сохранить" onClick={() => toggleBtnSave(card.id)}>
           <img
             className={style.save}
             src={isOn ? heartActive : heartUnactive}
@@ -95,7 +123,7 @@ export default function ProductCard({ card, setBasket }) {
         <p className={style.description}>{card.name}</p>
       </div>
 
-      <button className={style.btnChoose} onClick={()=>handleBasket(card.id)}>Выбрать</button>
+      <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={()=>handleBasket(card.id)}>{isBasket(card.id) ? 'Убрать' : 'Выбрать'}</button>
 
     </div>
   );
