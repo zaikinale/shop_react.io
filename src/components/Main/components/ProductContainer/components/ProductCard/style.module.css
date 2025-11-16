@@ -10,6 +10,7 @@
     padding: 5px;
 
     height: 370px;
+    transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 .headerCard {
@@ -132,7 +133,7 @@
     max-width: 100%;
     border-radius: 20px;
     background-color: rgb(255, 217, 0);
-    color: var(--tc);
+    color: white;
     padding: 8px;
     font-size: clamp(14px, 3.5vw, 16px);
 }

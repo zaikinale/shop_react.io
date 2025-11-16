@@ -7,11 +7,49 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
   const [isOn, setIsOn] = useState(false);
   const [imgError, setImgError] = useState(false);
 
+  const [isPending, setIsPending] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
+
   useEffect(() => {
     setIsOn(savedProduct.includes(card.id));
   }, [savedProduct, card.id]);
 
+  const cancelRemoval = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      setTimeoutId(null);
+    }
+    setIsPending(false);
+  };
 
+  const scheduleRemoval = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    setIsPending(true);
+
+    const timerId = setTimeout(() => {
+      setSavedProduct(prevSaved => prevSaved.filter(id => id !== card.id));
+      setIsPending(false);
+      setTimeoutId(null);
+    }, 3000);
+
+    setTimeoutId(timerId);
+  };
+
+  function toggleBtnSave() {
+    if (isPending) {
+      cancelRemoval();
+      setIsOn(true);
+    } else if (isOn) {
+      scheduleRemoval();
+      setIsOn(false);
+    } else {
+      setSavedProduct(prevSaved => [...new Set([...prevSaved, card.id])]);
+      setIsOn(true);
+    }
+  }
 
   function generateTags() {
     const tags = [];
@@ -57,21 +95,6 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
     }
   }
 
-  function toggleBtnSave() {
-    const newIsOn = !isOn;
-    setIsOn(newIsOn);
-
-    setSavedProduct(prevSaved => {
-      if (newIsOn) {
-        console.log(`Сохранен товар ${card.id}`);
-        return [...new Set([...prevSaved, card.id])];
-      } else {
-        console.log(`Удален товар ${card.id}`);
-        return prevSaved.filter(id => id !== card.id);
-      }
-    });
-  }
-
   function handleBasket(id) {
     setBasket(prevBasket => {
       if (prevBasket.includes(id)) {
@@ -85,11 +108,11 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
   }
 
   function isBasket(id) {
-    return basket.includes(id)
+    return basket.includes(id);
   }
 
   return (
-    <div className={style.cardProduct}>
+    <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
 
       <div className={style.headerCard}>
 
@@ -97,16 +120,20 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
           {generateTags()}
         </div>
 
-        <button className={style.saveButton} aria-label="Сохранить" onClick={() => toggleBtnSave(card.id)}>
+        <button
+          className={style.saveButton}
+          aria-label={isPending ? "Отменить удаление" : (isOn ? "Удалить из сохранённых" : "Сохранить")}
+          onClick={toggleBtnSave}
+        >
           <img
             className={style.save}
-            src={isOn ? heartActive : heartUnactive}
-            alt="Сохранить"
+            src={isPending ? heartUnactive : (isOn ? heartActive : heartUnactive)}
+            alt={isPending ? "Отменить удаление" : (isOn ? "Удалить из сохранённых" : "Сохранить")}
           />
         </button>
 
       </div>
-      {/* {card.images?.[0]?.Image_URL ? <img className={style.imgProduct} src={card.images?.[0]?.Image_URL} alt={card.name}/> : <div className={style.imgProductPlaceholder}></div> } */}
+
       {card.images?.[0]?.Image_URL && !imgError ? (
         <img
           className={style.imgProduct}
@@ -117,13 +144,15 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
       ) : (
         <div className={style.imgProductPlaceholder}></div>
       )}
-      
+
       <div className={style.descriptionContainer}>
         {generateActPrice()}
         <p className={style.description}>{card.name}</p>
       </div>
 
-      <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={()=>handleBasket(card.id)}>{isBasket(card.id) ? 'Убрать' : 'Выбрать'}</button>
+      <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={() => handleBasket(card.id)}>
+        {isBasket(card.id) ? 'Убрать' : 'Выбрать'}
+      </button>
 
     </div>
   );
