@@ -7,6 +7,7 @@ import Profile from './components/Profile/ProfileContainer/index.jsx';
 import Login from './components/Login/index.jsx';
 import Saved from './components/Saved/index.jsx';
 import Basket from './components/Basket/index.jsx';
+import Catalog from './components/Catalog/index.jsx';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 
@@ -128,6 +129,13 @@ function App() {
               />
             </div>
           )}>
+          </Route>
+
+          <Route path='catalog' element={
+              <Catalog 
+                types={types}
+              />
+            }>
           </Route>
 
           <Route path='saved' element={

@@ -17,9 +17,9 @@ export default function Navigathion () {
                 <img src={HomeIcon} alt="Главная" />
             </NavLink>
             
-            <a className={style.navBtn}>
+            <NavLink to={'/catalog'} className={style.navBtn}>
                 <img src={CatalogIcon} alt="Каталог" />
-            </a>
+            </NavLink>
             
             <NavLink to={'/saved'}  className={style.navBtn}>
                 <img src={FavoriteIcon} alt="Избранное" />
