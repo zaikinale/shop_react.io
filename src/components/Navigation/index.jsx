@@ -1,36 +1,40 @@
 import style from './style.module.css'
 import { NavLink } from 'react-router'
 
-import HomeIcon from '../../assets/home.svg'
-import CatalogIcon from '../../assets/catalog.svg'
-import FavoriteIcon from '../../assets/favorite.svg'
-import CartIcon from '../../assets/cart.svg'
-import AccountIcon from '../../assets/account.svg'
+import HomeUnActiveIcon from '../../assets/homeUnActive.svg'
+import CatalogUnActiveIcon from '../../assets/catalogUnActive.svg'
+import FavoriteUnActiveIcon from '../../assets/favoriteUnActive.svg'
+import CartUnActiveIcon from '../../assets/cartUnActive.svg'
+import AccountUnActiveIcon from '../../assets/accountUnActive.svg'
 
+import HomeActiveIcon from '../../assets/homeActive.svg'
+import CatalogActiveIcon from '../../assets/catalogActive.svg'
+import FavoriteActiveIcon from '../../assets/favoriteActive.svg'
+import CartActiveIcon from '../../assets/cartActive.svg'
+import AccountActiveIcon from '../../assets/accountActive.svg'
 
 export default function Navigathion () {
-
 
     return (
         <div className={style.nav}>
             <NavLink to={'/'} className={style.navBtn}>
-                <img src={HomeIcon} alt="Главная" />
+                <img src={HomeUnActiveIcon} alt="Главная" />
             </NavLink>
             
             <NavLink to={'/catalog'} className={style.navBtn}>
-                <img src={CatalogIcon} alt="Каталог" />
+                <img src={CatalogUnActiveIcon} alt="Каталог" />
             </NavLink>
             
             <NavLink to={'/saved'}  className={style.navBtn}>
-                <img src={FavoriteIcon} alt="Избранное" />
+                <img src={FavoriteUnActiveIcon} alt="Избранное" />
             </NavLink>
             
             <NavLink to={'/basket'}  className={style.navBtn}>
-                <img src={CartIcon} alt="Корзина" />
+                <img src={CartUnActiveIcon} alt="Корзина" />
             </NavLink>
             
             <NavLink to={'/profile'} className={style.navBtn}>
-                <img src={AccountIcon} alt="Профиль" />
+                <img src={AccountUnActiveIcon} alt="Профиль" />
             </NavLink>
 
         </div>

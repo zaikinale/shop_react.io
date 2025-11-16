@@ -1,9 +1,10 @@
 
 .containerProducts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 250px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center; 
-    gap: 16px;
+    gap: 10px;
     width: 100%;
     padding: 0 8px;
     box-sizing: border-box;
@@ -18,13 +19,13 @@
 
 @media (max-width: 600px) {
     .containerProducts {
-        grid-template-columns: repeat(auto-fit, 173px);
+        /* grid-template-columns: repeat(auto-fit, 173px); */
         gap: 5px;
     }
 } 
 
 @media (max-width: 425px) {
     .containerProducts {
-        grid-template-columns: repeat(2, 173px);
+        /* grid-template-columns: repeat(2, 173px); */
     }
 }

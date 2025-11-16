@@ -1,14 +1,14 @@
 .cardProduct {
-    width: 100%;
-    max-width: 300px;
+    /* width: 100%;
+    max-width: 400px; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
     position: relative;
     border-radius: 25px;
     background-color: white;
     padding: 5px;
-    height: 370px;
+    /* height: 370px; */
 }
 
 .pendingOpacity {
@@ -49,8 +49,8 @@
 }
 
 .imgProduct {
-    min-width: 240px;
-    min-height: 240px;
+    max-width: 240px;
+    max-height: 240px;
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
@@ -101,29 +101,38 @@
     color: #FF6723;
 }
 
+.containerDescControl {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-between;
+    max-width: 100%;
+}
+
 .descriptionContainer {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* height: 100%; */
     padding-left: 5px;
     gap: 5px;
 }
 
 .description {
+    width: 140px;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1; 
+    -webkit-line-clamp: 5;
+    line-clamp: 5; 
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: start;
     line-height: 1.4;
-    max-height: 2.8em; 
+    /* max-height: 2.8em;  */
     color: var(--tc);
 }
 
 .btnChoose {
-    width: 240px;
+    width: 140px;
     max-width: 100%;
     border-radius: 20px;
     background-color: var(--bg);
@@ -133,7 +142,7 @@
 }
 
 .btnChooseActive {
-    width: 240px;
+    width: 140px;
     max-width: 100%;
     border-radius: 20px;
     background-color: rgb(255, 217, 0);

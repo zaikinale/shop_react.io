@@ -148,17 +148,20 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
         <div className={style.imgProductPlaceholder}></div>
       )}
       
-      <div className={style.descriptionContainer}>
-        {generateActPrice()}
-        <p className={style.description}>{card.name}</p>
+      <div className={style.containerDescControl}>
+        <div className={style.descriptionContainer}>
+          {generateActPrice()}
+          <p className={style.description}>{card.name}</p>
+        </div>
+
+        <button
+          className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}
+          onClick={() => handleBasket(card.id)}
+        >
+          {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')}
+        </button>
       </div>
 
-      <button
-        className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}
-        onClick={() => handleBasket(card.id)}
-      >
-        {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')}
-      </button>
     </div>
   );
 }
