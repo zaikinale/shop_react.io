@@ -7,11 +7,12 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
   const [isOn, setIsOn] = useState(false);
   const [imgError, setImgError] = useState(false);
 
+  const [isPending, setIsPending] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
+
   useEffect(() => {
     setIsOn(savedProduct.includes(card.id));
   }, [savedProduct, card.id]);
-
-
 
   function generateTags() {
     const tags = [];
@@ -57,31 +58,60 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
     }
   }
 
+
+
+  const cancelRemoval = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      setTimeoutId(null);
+    }
+    setIsPending(false);
+  };
+
+  const scheduleRemoval = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+  
+    setIsPending(true);
+  
+    const timerId = setTimeout(() => {
+      setBasket(prevBasket => {
+        // console.log(`Удалён товар из корзины: ${card.id}`);
+        return prevBasket.filter(basketId => basketId !== card.id);
+      });
+      setIsPending(false);
+      setTimeoutId(null);
+    }, 3000);
+  
+    setTimeoutId(timerId);
+  };
+
   function toggleBtnSave() {
     const newIsOn = !isOn;
     setIsOn(newIsOn);
 
     setSavedProduct(prevSaved => {
       if (newIsOn) {
-        console.log(`Сохранен товар ${card.id}`);
         return [...new Set([...prevSaved, card.id])];
       } else {
-        console.log(`Удален товар ${card.id}`);
         return prevSaved.filter(id => id !== card.id);
       }
     });
   }
 
+
   function handleBasket(id) {
-    setBasket(prevBasket => {
-      if (prevBasket.includes(id)) {
-        console.log(`Удалён товар из корзины: ${id}`);
-        return prevBasket.filter(basketId => basketId !== id);
-      } else {
-        console.log(`Добавлен товар в корзину: ${id}`);
+    if (isPending) {
+      cancelRemoval();
+    } else if (isBasket(id)) {
+      scheduleRemoval();
+    } else {
+      setBasket(prevBasket => {
+        // console.log(`Добавлен товар в корзину: ${id}`);
         return [...prevBasket, id];
-      }
-    });
+      });
+    }
   }
 
   function isBasket(id) {
@@ -89,7 +119,7 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
   }
 
   return (
-    <div className={style.cardProduct}>
+    <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
 
       <div className={style.headerCard}>
 
@@ -123,8 +153,12 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
         <p className={style.description}>{card.name}</p>
       </div>
 
-      <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={()=>handleBasket(card.id)}>{isBasket(card.id) ? 'Убрать' : 'Выбрать'}</button>
-
+      <button
+        className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}
+        onClick={() => handleBasket(card.id)}
+      >
+        {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')}
+      </button>
     </div>
   );
 }

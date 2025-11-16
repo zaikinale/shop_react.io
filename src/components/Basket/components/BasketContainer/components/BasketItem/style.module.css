@@ -11,6 +11,12 @@
     height: 370px;
 }
 
+.pendingOpacity {
+    opacity: 0.5;
+    transition: opacity 0.3s ease; 
+    /* pointer-events: none; */
+}
+
 .headerCard {
     top: 10px;
     left: 10px;
