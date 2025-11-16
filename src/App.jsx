@@ -132,43 +132,51 @@ function App() {
           </Route>
 
           <Route path='catalog' element={
+            <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Catalog 
                 types={types}
               />
+            </div>
             }>
           </Route>
 
           <Route path='saved' element={
             isLogin ? 
+            <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Saved 
                 cards={cards} 
                 setBasket={setBasket}
                 basket={basket}
                 setSavedProduct={setSavedProduct}
                 savedProduct={savedProduct}
-              /> : 
+              />
+            </div> : 
               <Login onSaveUser={handleSaveUser} />
           }></Route>
 
           <Route path='basket' element={
             isLogin ? 
+            <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Basket 
                 cards={cards} 
                 setBasket={setBasket}
                 basket={basket}
                 setSavedProduct={setSavedProduct}
                 savedProduct={savedProduct}
-              /> : 
+              />
+            </div> : 
               <Login onSaveUser={handleSaveUser} />
           }></Route>
 
           <Route path='profile' element={
             isLogin ? 
+            <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Profile 
                 person={person} 
                 setPerson={setPerson}
                 setBasket={setBasket}
-              /> : 
+              />
+            </div> : 
               <Login onSaveUser={handleSaveUser} />
           }>
           </Route>
