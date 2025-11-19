@@ -2,17 +2,33 @@ import style from './style.module.css';
 import { useState, useEffect } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";
 import heartActive from "../../../../../../assets/heart_active.svg";
+import useLikes from '../../../../../../hooks/useLikes';
 
-export default function SavedItem({ card, setBasket, setSavedProduct, basket, savedProduct }) {
-  const [isOn, setIsOn] = useState(false);
+export default function SavedItem({ card, setBasket, basket, onRemove }) {
+  const { toggleLike, likedItems } = useLikes(); // Получаем likedItems из хука
   const [imgError, setImgError] = useState(false);
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
+  // Проверяем, избран ли товар
+  const isOn = likedItems.includes(card.id);
+
+  // Если товар больше не в избранном, вызываем onRemove
   useEffect(() => {
-    setIsOn(savedProduct.includes(card.id));
-  }, [savedProduct, card.id]);
+    if (!isOn && !isPending) {
+      onRemove && onRemove(card.id);
+    }
+  }, [isOn, isPending, card.id, onRemove]);
+
+  // Очищаем таймер при размонтировании компонента
+  useEffect(() => {
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [timeoutId]);
 
   const cancelRemoval = () => {
     if (timeoutId) {
@@ -30,7 +46,7 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
     setIsPending(true);
 
     const timerId = setTimeout(() => {
-      setSavedProduct(prevSaved => prevSaved.filter(id => id !== card.id));
+      toggleLike(card.id);
       setIsPending(false);
       setTimeoutId(null);
     }, 3000);
@@ -40,14 +56,11 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
 
   function toggleBtnSave() {
     if (isPending) {
+      // Если таймер активен, отменяем удаление
       cancelRemoval();
-      setIsOn(true);
-    } else if (isOn) {
-      scheduleRemoval();
-      setIsOn(false);
     } else {
-      setSavedProduct(prevSaved => [...new Set([...prevSaved, card.id])]);
-      setIsOn(true);
+      // Всегда запускаем удаление, так как карточка в Saved только если в избранном
+      scheduleRemoval();
     }
   }
 
@@ -113,25 +126,22 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
 
   return (
     <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
-
       <div className={style.headerCard}>
-
         <div className={style.tags}>
           {generateTags()}
         </div>
 
         <button
           className={style.saveButton}
-          aria-label={isPending ? "Отменить удаление" : (isOn ? "Удалить из сохранённых" : "Сохранить")}
+          aria-label={isPending ? "Отменить удаление" : "Удалить из избранного"}
           onClick={toggleBtnSave}
         >
           <img
             className={style.save}
-            src={isPending ? heartUnactive : (isOn ? heartActive : heartUnactive)}
-            alt={isPending ? "Отменить удаление" : (isOn ? "Удалить из сохранённых" : "Сохранить")}
+            src={isPending ? heartUnactive : heartActive}
+            alt={isPending ? "Отменить удаление" : "Удалить из избранного"}
           />
         </button>
-
       </div>
 
       {card.images?.[0]?.Image_URL && !imgError ? (
@@ -150,10 +160,12 @@ export default function SavedItem({ card, setBasket, setSavedProduct, basket, sa
         <p className={style.description}>{card.name}</p>
       </div>
 
-      <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={() => handleBasket(card.id)}>
+      <button 
+        className={isBasket(card.id) ? style.btnChooseActive : style.btnChoose} 
+        onClick={() => handleBasket(card.id)}
+      >
         {isBasket(card.id) ? 'Убрать' : 'Выбрать'}
       </button>
-
     </div>
   );
 }

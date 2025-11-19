@@ -8,12 +8,15 @@ import Login from './components/Login/index.jsx';
 import Saved from './components/Saved/index.jsx';
 import Basket from './components/Basket/index.jsx';
 import Catalog from './components/Catalog/index.jsx';
+import useLikes from './hooks/useLikes.js';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 
 import LogoIcon from './assets/logo_xp.jpeg';
 
 function App() {
+  
+  const { likedItems } = useLikes() 
   const [cards, setCards] = useState([]);
   const [types, setTypes] = useState([]);
   const [fastSearchStrings, setFastSearchStrings] = useState([]);
@@ -27,10 +30,10 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
-  const [savedProduct, setSavedProduct] = useState(() => {
-    const savedProd = localStorage.getItem('saved');
-    return savedProd ? JSON.parse(savedProd) : [];
-  });
+  // const [savedProduct, setSavedProduct] = useState(() => {
+  //   const savedProd = localStorage.getItem('saved');
+  //   return savedProd ? JSON.parse(savedProd) : [];
+  // });
 
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
@@ -39,9 +42,9 @@ function App() {
     localStorage.setItem('basket', JSON.stringify(basket));
   }, [basket]);
 
-  useEffect(() => {
-    localStorage.setItem('saved', JSON.stringify(savedProduct));
-  }, [savedProduct]);
+  // useEffect(() => {
+  //   localStorage.setItem('saved', JSON.stringify(savedProduct));
+  // }, [savedProduct]);
 
 
   useEffect(() => {
@@ -124,8 +127,8 @@ function App() {
                 fastSearchStrings={fastSearchStrings}
                 setBasket={setBasket}
                 basket={basket}
-                setSavedProduct={setSavedProduct}
-                savedProduct={savedProduct}
+                // setSavedProduct={setSavedProduct}
+                // savedProduct={savedProduct}
               />
             </div>
           )}>
@@ -144,11 +147,10 @@ function App() {
             isLogin ? 
             <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Saved 
+                key={JSON.stringify(likedItems)} 
                 cards={cards} 
                 setBasket={setBasket}
                 basket={basket}
-                setSavedProduct={setSavedProduct}
-                savedProduct={savedProduct}
               />
             </div> : 
               <Login onSaveUser={handleSaveUser} />
@@ -161,8 +163,8 @@ function App() {
                 cards={cards} 
                 setBasket={setBasket}
                 basket={basket}
-                setSavedProduct={setSavedProduct}
-                savedProduct={savedProduct}
+                // setSavedProduct={setSavedProduct}
+                // savedProduct={savedProduct}
               />
             </div> : 
               <Login onSaveUser={handleSaveUser} />

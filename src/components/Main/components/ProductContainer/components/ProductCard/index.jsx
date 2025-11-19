@@ -1,17 +1,14 @@
 import style from './style.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";
 import heartActive from "../../../../../../assets/heart_active.svg";
+import useLikes from '../../../../../../hooks/useLikes.js'
 
-export default function ProductCard({ card, setBasket, setSavedProduct, basket, savedProduct }) {
-  const [isOn, setIsOn] = useState(false);
+export default function ProductCard({ card, setBasket, basket }) {
+  const {toggleLike, isLiked} = useLikes();
   const [imgError, setImgError] = useState(false);
 
-  useEffect(() => {
-    setIsOn(savedProduct.includes(card.id));
-  }, [savedProduct, card.id]);
-
-
+  const isOn = isLiked(card.id)
 
   function generateTags() {
     const tags = [];
@@ -58,18 +55,7 @@ export default function ProductCard({ card, setBasket, setSavedProduct, basket, 
   }
 
   function toggleBtnSave() {
-    const newIsOn = !isOn;
-    setIsOn(newIsOn);
-
-    setSavedProduct(prevSaved => {
-      if (newIsOn) {
-        console.log(`Сохранен товар ${card.id}`);
-        return [...new Set([...prevSaved, card.id])];
-      } else {
-        console.log(`Удален товар ${card.id}`);
-        return prevSaved.filter(id => id !== card.id);
-      }
-    });
+    toggleLike(card.id);
   }
 
   function handleBasket(id) {
@@ -90,23 +76,20 @@ export default function ProductCard({ card, setBasket, setSavedProduct, basket, 
 
   return (
     <div className={style.cardProduct}>
-
       <div className={style.headerCard}>
-
         <div className={style.tags}>
           {generateTags()}
         </div>
 
-        <button className={style.saveButton} aria-label="Сохранить" onClick={() => toggleBtnSave(card.id)}>
+        <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
           <img
             className={style.save}
             src={isOn ? heartActive : heartUnactive}
             alt="Сохранить"
           />
         </button>
-
       </div>
-      {/* {card.images?.[0]?.Image_URL ? <img className={style.imgProduct} src={card.images?.[0]?.Image_URL} alt={card.name}/> : <div className={style.imgProductPlaceholder}></div> } */}
+
       {card.images?.[0]?.Image_URL && !imgError ? (
         <img
           className={style.imgProduct}
@@ -124,7 +107,6 @@ export default function ProductCard({ card, setBasket, setSavedProduct, basket, 
       </div>
 
       <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={()=>handleBasket(card.id)}>{isBasket(card.id) ? 'Убрать' : 'Выбрать'}</button>
-
     </div>
   );
 }
