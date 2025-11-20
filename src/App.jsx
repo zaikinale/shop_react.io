@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Main from './components/Main/index.jsx';
+import Main from './pages/Main/index.jsx';
 import Header from './components/Header/index.jsx';
 import Navigation from './components/Navigation/index.jsx';
-import Profile from './components/Profile/ProfileContainer/index.jsx';
+import Profile from './components/ProfileContainer/index.jsx';
 import Login from './components/Login/index.jsx';
-import Saved from './components/Saved/index.jsx';
-import Basket from './components/Basket/index.jsx';
-import Catalog from './components/Catalog/index.jsx';
+import Saved from './pages/Saved/index.jsx';
+import Basket from './pages/Basket/index.jsx';
+import Catalog from './pages/Catalog/index.jsx';
 import useLikes from './hooks/useLikes.js';
+// import useBasket from './hooks/useBasket.js';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
- 
 
 import LogoIcon from './assets/logo_xp.jpeg';
 
@@ -23,6 +23,8 @@ function App() {
   useEffect(() => {
     setVersion(prev => prev + 1);
   }, [likedItems]); 
+
+  // const {basketItems, toggleBasket, isBasket} = useBasket
   
   const [cards, setCards] = useState([]);
   const [types, setTypes] = useState([]);
