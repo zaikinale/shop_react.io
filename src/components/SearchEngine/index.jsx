@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import style from './style.module.css';
 import SearchIcon from '../../assets/search.svg'
+import { useSelector } from 'react-redux';
 
-export default function SearchEngine({ setIsSearchActive, setSearchQuery, searchQuery, cards }) {
+
+export default function SearchEngine({ setIsSearchActive, setSearchQuery, searchQuery }) {
+  const cards = useSelector(state => state.cards);
   const [query, setQuery] = useState('');
 
   useEffect(() => {

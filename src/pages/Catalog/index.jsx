@@ -2,11 +2,11 @@ import style from './style.module.css';
 import CatalogContainer from '../../components/CatalogContainer/index.jsx'
 
 
-export default function Catalog ({types}) {
+export default function Catalog () {
     return (
         <>
         <div className={style.main}>
-            <CatalogContainer typesList={types} />
+            <CatalogContainer />
         </div>
         </>
 

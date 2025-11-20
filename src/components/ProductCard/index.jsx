@@ -1,17 +1,26 @@
 // components/Main/ProductCard/ProductCard.jsx
 import style from './style.module.css';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
-import useLikes from '../../hooks/useLikes';
-import useBasket from '../../hooks/useBasket';
+// import useLikes from '../../hooks/useLikes';
+// import useBasket from '../../hooks/useBasket';
 
 export default function ProductCard({ card }) {
-  const {toggleLike, isLiked} = useLikes();
-  const {toggleBasket, isBasket} = useBasket();
+  const dispatch = useDispatch(); 
+  // const {toggleLike, isLiked} = useLikes();
+  // const {toggleBasket, isBasket} = useBasket();
+  const basketItems = useSelector(state => state.basketItems);
+  const likedItems = useSelector(state => state.likedItems);
+
+
   const [imgError, setImgError] = useState(false);
 
-  const isOn = isLiked(card.id)
+  const isLiked = (id) => likedItems.includes(id);
+  const isBasket = (id) => basketItems.includes(id);
+
+  const isOn = isLiked(card.id);
 
   function generateTags() {
     const tags = [];
@@ -58,16 +67,12 @@ export default function ProductCard({ card }) {
   }
 
   function toggleBtnSave() {
-    toggleLike(card.id);
+    dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
   }
 
-  function handleBasket(id) {
-    toggleBasket(id)
+  function handleBasket() {
+    dispatch({ type: 'ADD_TO_BASKET', payload: { id: card.id } });
   }
-
-  // function isBasket(id) {
-  //   return basket.includes(id)
-  // }
 
   return (
     <div className={style.cardProduct}>

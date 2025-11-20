@@ -25,7 +25,7 @@
 } 
 
 @media (max-width: 425px) {
-    .containerProducts {
+    /* .containerProducts { */
         /* grid-template-columns: repeat(2, 173px); */
-    }
+    /* } */
 }

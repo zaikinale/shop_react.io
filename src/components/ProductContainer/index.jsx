@@ -1,8 +1,10 @@
 // components/Main/ProductContainer/index.jsx
 import style from './style.module.css'
 import ProductCard from '../ProductCard'
+import { useSelector } from 'react-redux';
 
-export default function ProductContainer({ cardsList = [], setBasket, basket, likedItems, toggleLike, isLiked }) { // Принимаем пропсы для лайков
+export default function ProductContainer() {
+  const cardsList = useSelector(state => state.cards);
     return (
       <div className={style.containerProducts}>
 
@@ -10,11 +12,6 @@ export default function ProductContainer({ cardsList = [], setBasket, basket, li
           cardsList.map(card => <ProductCard 
             key={card.id}
             card={card} 
-            setBasket={setBasket} 
-            basket={basket}
-            likedItems={likedItems} // Передаем пропсы для лайков
-            toggleLike={toggleLike}
-            isLiked={isLiked}
               />)
         ) : (
           <p className={style.empty}>Загружаются...</p>

@@ -8,53 +8,55 @@ import Login from './components/Login/index.jsx';
 import Saved from './pages/Saved/index.jsx';
 import Basket from './pages/Basket/index.jsx';
 import Catalog from './pages/Catalog/index.jsx';
-import useLikes from './hooks/useLikes.js';
-import useBasket from './hooks/useBasket.js';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 import LogoIcon from './assets/logo_xp.jpeg';
 
 function App() {
-  
-  const { likedItems, toggleLike, isLiked   } = useLikes() 
-  // const [version, setVersion] = useState(0);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   setVersion(prev => prev + 1);
-  // }, [likedItems]); 
+  // const likedItems = useSelector(state => state.likedItems);
+  // const basketItems = useSelector(state => state.basketItems);
 
-  const {basketItems, toggleBasket, isBasket} = useBasket
-  
-  const [cards, setCards] = useState([]);
-  const [types, setTypes] = useState([]);
   const [fastSearchStrings, setFastSearchStrings] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-
-  // const [basket, setBasket] = useState(() => {
-  //   const saved = localStorage.getItem('basket');
-  //   return saved ? JSON.parse(saved) : [];
-  // });
-
-  // const [savedProduct, setSavedProduct] = useState(() => {
-  //   const savedProd = localStorage.getItem('saved');
-  //   return savedProd ? JSON.parse(savedProd) : [];
-  // });
-
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
 
-  // useEffect(() => {
-  //   localStorage.setItem('basket', JSON.stringify(basket));
-  // }, [basket]);
+  // const toggleLike = (id) => {
+  //   dispatch({ type: 'LIKE_ITEM', payload: { id } });
+  // };
 
-  // useEffect(() => {
-  //   localStorage.setItem('saved', JSON.stringify(savedProduct));
-  // }, [savedProduct]);
+  // const toggleBasket = (id) => {
+  //   dispatch({ type: 'ADD_TO_BASKET', payload: { id } });
+  // };
 
+  // const isLiked = (id) => likedItems.includes(id);
+  // const isBasket = (id) => basketItems.includes(id);
+
+  useEffect(() => {
+    fetch('https://noxer-test.ru/webapp/api/products/on_main')
+      .then(res => res.json())
+      .then(data => {
+        dispatch({ type: 'SET_CARDS', payload: data.products || [] });
+        dispatch({ type: 'SET_TYPES', payload: data.categories || [] });
+
+        if (data.special_project_parameters_json && data.special_project_parameters_json.fast_search_strings) {
+          setFastSearchStrings(data.special_project_parameters_json.fast_search_strings.parameters_list || []);
+        } else {
+          setFastSearchStrings([]);
+        }
+      })
+      .catch(() => {
+        dispatch({ type: 'SET_CARDS', payload: [] });
+        dispatch({ type: 'SET_TYPES', payload: [] });
+      });
+  }, [dispatch]);
 
   useEffect(() => {
     const savedPerson = localStorage.getItem('person');
@@ -93,24 +95,6 @@ function App() {
     }
   }, [isDarkTheme]);
 
-  useEffect(() => {
-    fetch('https://noxer-test.ru/webapp/api/products/on_main')
-      .then(res => res.json())
-      .then(data => {
-        setCards(data.products || []);
-        setTypes(data.categories || []);
-        if (data.special_project_parameters_json && data.special_project_parameters_json.fast_search_strings) {
-          setFastSearchStrings(data.special_project_parameters_json.fast_search_strings.parameters_list || []);
-        } else {
-          setFastSearchStrings([]);
-        }
-      })
-      .catch(() => {
-        setCards([]); 
-        setTypes([]);
-      });
-  }, []);
-
   return (
     <>
       <BrowserRouter>
@@ -127,25 +111,17 @@ function App() {
           <Route index element={(
             <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Main 
-                cards={cards} 
-                types={types} 
                 setIsSearchActive={setIsSearchActive} 
                 isSearchActive={isSearchActive} 
                 searchQuery={searchQuery} 
                 setSearchQuery={setSearchQuery} 
                 fastSearchStrings={fastSearchStrings}
 
-                basketItems={basketItems}
-                toggleBasket={toggleBasket}
-                isBasket={isBasket}
-                // setBasket={setBasket}
-                // basket={basket}
+                // toggleBasket={toggleBasket}
+                // isBasket={isBasket}
 
-                likedItems={likedItems}
-                toggleLike={toggleLike}
-                isLiked={isLiked}
-                // setSavedProduct={setSavedProduct}
-                // savedProduct={savedProduct}
+                // toggleLike={toggleLike}
+                // isLiked={isLiked}
               />
             </div>
           )}>
@@ -153,20 +129,17 @@ function App() {
 
           <Route path='catalog' element={
             <div className={isSettingsActive ? 'contentBlur' : ''}>
-              <Catalog 
-                types={types}
-              />
+              <Catalog />
             </div>
-            }>
+          }>
           </Route>
 
           <Route path='saved' element={
             isLogin ? 
               <div className={isSettingsActive ? 'contentBlur' : ''}>
                 <Saved 
-                  cards={cards} 
-                  toggleBasket={toggleBasket}
-                  toggleLike={toggleLike}
+                  // toggleBasket={toggleBasket}
+                  // toggleLike={toggleLike}
                 />
               </div> :
                 <Login onSaveUser={handleSaveUser} />
@@ -176,20 +149,10 @@ function App() {
             isLogin ? 
             <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Basket 
-                cards={cards} 
-
-
-                basketItems={basketItems}
-                toggleBasket={toggleBasket}
-                isBasket={isBasket}
-                // setBasket={setBasket}
-                // basket={basket}
-
-                likedItems={likedItems}
-                toggleLike={toggleLike}
-                isLiked={isLiked}
-                // setSavedProduct={setSavedProduct}
-                // savedProduct={savedProduct}
+                // toggleBasket={toggleBasket}
+                // isBasket={isBasket}
+                // toggleLike={toggleLike}
+                // isLiked={isLiked}
               />
             </div> : 
               <Login onSaveUser={handleSaveUser} />
@@ -202,16 +165,11 @@ function App() {
                 person={person} 
                 setPerson={setPerson}
 
-                // setBasket={setBasket}
+                // toggleBasket={toggleBasket}
+                // isBasket={isBasket}
 
-
-                basketItems={basketItems}
-                toggleBasket={toggleBasket}
-                isBasket={isBasket}
-
-                likedItems={likedItems}
-                toggleLike={toggleLike}
-                isLiked={isLiked}
+                // toggleLike={toggleLike}
+                // isLiked={isLiked}
               />
             </div> : 
               <Login onSaveUser={handleSaveUser} />

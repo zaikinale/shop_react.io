@@ -5,7 +5,7 @@ import SliderProductTypes from '../../components/SliderProductTypes/index.jsx'
 import ProductContainer from '../../components/ProductContainer/index.jsx'
 import SearchedContainer from '../../components/SearchedContainer/index.jsx'
 
-export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery, fastSearchStrings, setBasket, basket, likedItems, toggleLike, isLiked}) { // Добавлены пропсы для лайков
+export default function Main ({ setIsSearchActive, isSearchActive, searchQuery, setSearchQuery, fastSearchStrings}) { 
 
     const handleSelectSearch = (text) => {
         setSearchQuery(text); 
@@ -20,7 +20,6 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
                     setIsSearchActive={setIsSearchActive}
                     setSearchQuery={setSearchQuery}
                     searchQuery={searchQuery} 
-                    cards={cards}
                 />
 
                 {isSearchActive ? (
@@ -31,14 +30,15 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
                     )
                 ) : (
                     <>
-                        <SliderProductTypes typesList={types} />
+                        <SliderProductTypes 
+                        />
                         <ProductContainer 
-                            cardsList={cards} 
-                            setBasket={setBasket} 
-                            basket={basket}
-                            likedItems={likedItems} // Передаем пропсы для лайков
-                            toggleLike={toggleLike}
-                            isLiked={isLiked}
+                            // cardsList={cards} 
+                            // setBasket={setBasket} 
+                            // basket={basket}
+                            // likedItems={likedItems} // Передаем пропсы для лайков
+                            // toggleLike={toggleLike}
+                            // isLiked={isLiked}
                         />
                     </>
                 )}
