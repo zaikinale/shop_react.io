@@ -1,17 +1,25 @@
 import style from './style.module.css';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
 
-export default function BasketItem({ card, toggleBasket, toggleLike, isLiked, isBasket}) {
+export default function BasketItem({ card }) {
+  const dispatch = useDispatch();
+
+  const likedItems = useSelector(state => state.likedItems);
+  const basketItems = useSelector(state => state.basketItems);
+
   const [imgError, setImgError] = useState(false);
+
+  const isLiked = (id) => likedItems.includes(id);
+  const isBasket = (id) => basketItems.includes(id);
+
+  const isOn = isLiked(card.id);
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
-  const isOn = isLiked(card.id);
-
-  // Очищаем таймер при размонтировании компонента
   useEffect(() => {
     return () => {
       if (timeoutId) {
@@ -80,7 +88,7 @@ export default function BasketItem({ card, toggleBasket, toggleLike, isLiked, is
     setIsPending(true);
   
     const timerId = setTimeout(() => {
-      toggleBasket(card.id); // Используем переданную функцию
+      dispatch({ type: 'ADD_TO_BASKET', payload: { id: card.id } });
       setIsPending(false);
       setTimeoutId(null);
     }, 3000);
@@ -89,19 +97,16 @@ export default function BasketItem({ card, toggleBasket, toggleLike, isLiked, is
   };
 
   function toggleBtnSave() {
-    toggleLike(card.id);
+    dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
   }
 
   function handleBasket(id) {
     if (isPending) {
-      // Если таймер активен, отменяем удаление
       cancelRemoval();
     } else if (isBasket(id)) {
-      // Если в корзине, запускаем таймер на удаление
       scheduleRemoval();
     } else {
-      // Если не в корзине, добавляем
-      toggleBasket(id);
+      dispatch({ type: 'ADD_TO_BASKET', payload: { id: card.id } });
     }
   }
 

@@ -2,19 +2,12 @@
 import style from './style.module.css';
 import BasketContainer from '../../components/BasketContainer/index.jsx';
 
-export default function Basket({ cards, toggleLike, isLiked }) {
+export default function Basket() {
     return (
     <div className={style.main}>
         <h1 className="">Корзина</h1>
         <>
-        <BasketContainer 
-            cardsList={cards} 
-            // setBasket={setBasket} 
-            // basket={basket}
-            // likedItems={likedItems}
-            toggleLike={toggleLike}
-            isLiked={isLiked}
-            />
+        <BasketContainer />
         </>
     </div>
     )
