@@ -1,18 +1,24 @@
-// components/Basket/components/BasketItem/index.jsx
 import style from './style.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
-import useLikes from '../../hooks/useLikes';
 
-export default function BasketItem({ card, setBasket, basket }) {
-  const { toggleLike, isLiked } = useLikes();
+export default function BasketItem({ card, toggleBasket, toggleLike, isLiked, isBasket}) {
   const [imgError, setImgError] = useState(false);
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
-  const isOn = isLiked(card.id); // Используем хук
+  const isOn = isLiked(card.id);
+
+  // Очищаем таймер при размонтировании компонента
+  useEffect(() => {
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [timeoutId]);
 
   function generateTags() {
     const tags = [];
@@ -74,10 +80,7 @@ export default function BasketItem({ card, setBasket, basket }) {
     setIsPending(true);
   
     const timerId = setTimeout(() => {
-      setBasket(prevBasket => {
-        // console.log(`Удалён товар из корзины: ${card.id}`);
-        return prevBasket.filter(basketId => basketId !== card.id);
-      });
+      toggleBasket(card.id); // Используем переданную функцию
       setIsPending(false);
       setTimeoutId(null);
     }, 3000);
@@ -86,24 +89,20 @@ export default function BasketItem({ card, setBasket, basket }) {
   };
 
   function toggleBtnSave() {
-    toggleLike(card.id); // Используем хук
+    toggleLike(card.id);
   }
 
   function handleBasket(id) {
     if (isPending) {
+      // Если таймер активен, отменяем удаление
       cancelRemoval();
     } else if (isBasket(id)) {
+      // Если в корзине, запускаем таймер на удаление
       scheduleRemoval();
     } else {
-      setBasket(prevBasket => {
-        // console.log(`Добавлен товар в корзину: ${id}`);
-        return [...prevBasket, id];
-      });
+      // Если не в корзине, добавляем
+      toggleBasket(id);
     }
-  }
-
-  function isBasket(id) {
-    return basket.includes(id)
   }
 
   return (

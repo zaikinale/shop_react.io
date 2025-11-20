@@ -9,7 +9,7 @@ import Saved from './pages/Saved/index.jsx';
 import Basket from './pages/Basket/index.jsx';
 import Catalog from './pages/Catalog/index.jsx';
 import useLikes from './hooks/useLikes.js';
-// import useBasket from './hooks/useBasket.js';
+import useBasket from './hooks/useBasket.js';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 
@@ -18,13 +18,13 @@ import LogoIcon from './assets/logo_xp.jpeg';
 function App() {
   
   const { likedItems, toggleLike, isLiked   } = useLikes() 
-  const [version, setVersion] = useState(0);
+  // const [version, setVersion] = useState(0);
 
-  useEffect(() => {
-    setVersion(prev => prev + 1);
-  }, [likedItems]); 
+  // useEffect(() => {
+  //   setVersion(prev => prev + 1);
+  // }, [likedItems]); 
 
-  // const {basketItems, toggleBasket, isBasket} = useBasket
+  const {basketItems, toggleBasket, isBasket} = useBasket
   
   const [cards, setCards] = useState([]);
   const [types, setTypes] = useState([]);
@@ -34,10 +34,10 @@ function App() {
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  const [basket, setBasket] = useState(() => {
-    const saved = localStorage.getItem('basket');
-    return saved ? JSON.parse(saved) : [];
-  });
+  // const [basket, setBasket] = useState(() => {
+  //   const saved = localStorage.getItem('basket');
+  //   return saved ? JSON.parse(saved) : [];
+  // });
 
   // const [savedProduct, setSavedProduct] = useState(() => {
   //   const savedProd = localStorage.getItem('saved');
@@ -47,9 +47,9 @@ function App() {
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem('basket', JSON.stringify(basket));
-  }, [basket]);
+  // useEffect(() => {
+  //   localStorage.setItem('basket', JSON.stringify(basket));
+  // }, [basket]);
 
   // useEffect(() => {
   //   localStorage.setItem('saved', JSON.stringify(savedProduct));
@@ -134,8 +134,12 @@ function App() {
                 searchQuery={searchQuery} 
                 setSearchQuery={setSearchQuery} 
                 fastSearchStrings={fastSearchStrings}
-                setBasket={setBasket}
-                basket={basket}
+
+                basketItems={basketItems}
+                toggleBasket={toggleBasket}
+                isBasket={isBasket}
+                // setBasket={setBasket}
+                // basket={basket}
 
                 likedItems={likedItems}
                 toggleLike={toggleLike}
@@ -160,11 +164,8 @@ function App() {
             isLogin ? 
               <div className={isSettingsActive ? 'contentBlur' : ''}>
                 <Saved 
-                  key={version}
                   cards={cards} 
-                  setBasket={setBasket}
-                  basket={basket}
-                  likedItems={likedItems}
+                  toggleBasket={toggleBasket}
                   toggleLike={toggleLike}
                 />
               </div> :
@@ -176,8 +177,13 @@ function App() {
             <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Basket 
                 cards={cards} 
-                setBasket={setBasket}
-                basket={basket}
+
+
+                basketItems={basketItems}
+                toggleBasket={toggleBasket}
+                isBasket={isBasket}
+                // setBasket={setBasket}
+                // basket={basket}
 
                 likedItems={likedItems}
                 toggleLike={toggleLike}
@@ -195,7 +201,13 @@ function App() {
               <Profile 
                 person={person} 
                 setPerson={setPerson}
-                setBasket={setBasket}
+
+                // setBasket={setBasket}
+
+
+                basketItems={basketItems}
+                toggleBasket={toggleBasket}
+                isBasket={isBasket}
 
                 likedItems={likedItems}
                 toggleLike={toggleLike}

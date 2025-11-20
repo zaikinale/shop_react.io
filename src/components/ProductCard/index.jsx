@@ -4,9 +4,11 @@ import { useState } from 'react';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
 import useLikes from '../../hooks/useLikes';
+import useBasket from '../../hooks/useBasket';
 
-export default function ProductCard({ card, setBasket, basket }) {
+export default function ProductCard({ card }) {
   const {toggleLike, isLiked} = useLikes();
+  const {toggleBasket, isBasket} = useBasket();
   const [imgError, setImgError] = useState(false);
 
   const isOn = isLiked(card.id)
@@ -60,20 +62,12 @@ export default function ProductCard({ card, setBasket, basket }) {
   }
 
   function handleBasket(id) {
-    setBasket(prevBasket => {
-      if (prevBasket.includes(id)) {
-        console.log(`Удалён товар из корзины: ${id}`);
-        return prevBasket.filter(basketId => basketId !== id);
-      } else {
-        console.log(`Добавлен товар в корзину: ${id}`);
-        return [...prevBasket, id];
-      }
-    });
+    toggleBasket(id)
   }
 
-  function isBasket(id) {
-    return basket.includes(id)
-  }
+  // function isBasket(id) {
+  //   return basket.includes(id)
+  // }
 
   return (
     <div className={style.cardProduct}>

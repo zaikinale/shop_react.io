@@ -2,8 +2,10 @@ import style from './style.module.css';
 import { useState, useEffect } from 'react';
 import heartActive from "../../assets/heart_active.svg";
 import heartUnactive from '../../assets/heart_unactive.svg' 
+import useBasket from '../../hooks/useBasket.js'
 
-export default function SavedItem({ card, setBasket, basket, toggleLike }) {
+export default function SavedItem({ card, toggleLike }) {
+  const {toggleBasket, isBasket } = useBasket()
   const [imgError, setImgError] = useState(false);
 
   const [isPending, setIsPending] = useState(false);
@@ -96,20 +98,9 @@ export default function SavedItem({ card, setBasket, basket, toggleLike }) {
     }
   }
 
-  function handleBasket(id) {
-    setBasket(prevBasket => {
-      if (prevBasket.includes(id)) {
-        console.log(`Удалён товар из корзины: ${id}`);
-        return prevBasket.filter(basketId => basketId !== id);
-      } else {
-        console.log(`Добавлен товар в корзину: ${id}`);
-        return [...prevBasket, id];
-      }
-    });
-  }
 
-  function isBasket(id) {
-    return basket.includes(id);
+  function handleBasket(id) {
+    toggleBasket(id)
   }
 
   return (
