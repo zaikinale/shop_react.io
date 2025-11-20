@@ -11,12 +11,19 @@ import Catalog from './components/Catalog/index.jsx';
 import useLikes from './hooks/useLikes.js';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
+ 
 
 import LogoIcon from './assets/logo_xp.jpeg';
 
 function App() {
   
-  const { likedItems } = useLikes() 
+  const { likedItems, toggleLike, isLiked   } = useLikes() 
+  const [version, setVersion] = useState(0);
+
+  useEffect(() => {
+    setVersion(prev => prev + 1);
+  }, [likedItems]); 
+  
   const [cards, setCards] = useState([]);
   const [types, setTypes] = useState([]);
   const [fastSearchStrings, setFastSearchStrings] = useState([]);
@@ -127,6 +134,10 @@ function App() {
                 fastSearchStrings={fastSearchStrings}
                 setBasket={setBasket}
                 basket={basket}
+
+                likedItems={likedItems}
+                toggleLike={toggleLike}
+                isLiked={isLiked}
                 // setSavedProduct={setSavedProduct}
                 // savedProduct={savedProduct}
               />
@@ -145,15 +156,17 @@ function App() {
 
           <Route path='saved' element={
             isLogin ? 
-            <div className={isSettingsActive ? 'contentBlur' : ''}>
-              <Saved 
-                key={JSON.stringify(likedItems)} 
-                cards={cards} 
-                setBasket={setBasket}
-                basket={basket}
-              />
-            </div> : 
-              <Login onSaveUser={handleSaveUser} />
+              <div className={isSettingsActive ? 'contentBlur' : ''}>
+                <Saved 
+                  key={version}
+                  cards={cards} 
+                  setBasket={setBasket}
+                  basket={basket}
+                  likedItems={likedItems}
+                  toggleLike={toggleLike}
+                />
+              </div> :
+                <Login onSaveUser={handleSaveUser} />
           }></Route>
 
           <Route path='basket' element={
@@ -163,6 +176,10 @@ function App() {
                 cards={cards} 
                 setBasket={setBasket}
                 basket={basket}
+
+                likedItems={likedItems}
+                toggleLike={toggleLike}
+                isLiked={isLiked}
                 // setSavedProduct={setSavedProduct}
                 // savedProduct={savedProduct}
               />
@@ -177,6 +194,10 @@ function App() {
                 person={person} 
                 setPerson={setPerson}
                 setBasket={setBasket}
+
+                likedItems={likedItems}
+                toggleLike={toggleLike}
+                isLiked={isLiked}
               />
             </div> : 
               <Login onSaveUser={handleSaveUser} />

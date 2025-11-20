@@ -1,7 +1,8 @@
+// components/Basket/index.jsx
 import style from './style.module.css';
 import BasketContainer from './components/BasketContainer/index.jsx';
 
-export default function Basket({ cards, setBasket, basket, setSavedProduct, savedProduct }) {
+export default function Basket({ cards, setBasket, basket, likedItems, toggleLike, isLiked }) {
     return (
     <div className={style.main}>
         <h1 className="">Корзина</h1>
@@ -9,9 +10,11 @@ export default function Basket({ cards, setBasket, basket, setSavedProduct, save
         <BasketContainer 
             cardsList={cards} 
             setBasket={setBasket} 
-            setSavedProduct={setSavedProduct} 
-            savedProduct={savedProduct} 
-            basket={basket} />
+            basket={basket}
+            likedItems={likedItems}
+            toggleLike={toggleLike}
+            isLiked={isLiked}
+            />
         </>
     </div>
     )

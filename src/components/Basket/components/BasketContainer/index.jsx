@@ -1,8 +1,8 @@
+// components/Basket/BasketContainer/index.jsx
 import style from './style.module.css'
 import BasketItem from './components/BasketItem/index.jsx'
 
-
-export default function BasketContainer({ cardsList = [], setBasket, setSavedProduct, basket, savedProduct }) {
+export default function BasketContainer({ cardsList = [], setBasket, basket, likedItems, toggleLike, isLiked }) {
   const BasketCards = cardsList.filter(card => basket.includes(card.id));
 
   return (
@@ -13,9 +13,10 @@ export default function BasketContainer({ cardsList = [], setBasket, setSavedPro
             key={card.id}
             card={card}
             setBasket={setBasket}
-            setSavedProduct={setSavedProduct}
             basket={basket}
-            savedProduct={savedProduct}
+            likedItems={likedItems}
+            toggleLike={toggleLike}
+            isLiked={isLiked}
           />
         ))
       ) : (

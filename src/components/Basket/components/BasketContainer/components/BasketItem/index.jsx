@@ -1,18 +1,18 @@
+// components/Basket/components/BasketItem/index.jsx
 import style from './style.module.css';
 import { useState, useEffect } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";
 import heartActive from "../../../../../../assets/heart_active.svg";
+import useLikes from '../../../../../../hooks/useLikes';
 
-export default function BasketItem({ card, setBasket, setSavedProduct, basket, savedProduct }) {
-  const [isOn, setIsOn] = useState(false);
+export default function BasketItem({ card, setBasket, basket }) {
+  const { toggleLike, isLiked } = useLikes();
   const [imgError, setImgError] = useState(false);
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
-  useEffect(() => {
-    setIsOn(savedProduct.includes(card.id));
-  }, [savedProduct, card.id]);
+  const isOn = isLiked(card.id); // Используем хук
 
   function generateTags() {
     const tags = [];
@@ -58,8 +58,6 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
     }
   }
 
-
-
   const cancelRemoval = () => {
     if (timeoutId) {
       clearTimeout(timeoutId);
@@ -88,18 +86,8 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
   };
 
   function toggleBtnSave() {
-    const newIsOn = !isOn;
-    setIsOn(newIsOn);
-
-    setSavedProduct(prevSaved => {
-      if (newIsOn) {
-        return [...new Set([...prevSaved, card.id])];
-      } else {
-        return prevSaved.filter(id => id !== card.id);
-      }
-    });
+    toggleLike(card.id); // Используем хук
   }
-
 
   function handleBasket(id) {
     if (isPending) {
@@ -120,23 +108,20 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
 
   return (
     <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
-
       <div className={style.headerCard}>
-
         <div className={style.tags}>
           {generateTags()}
         </div>
 
-        <button className={style.saveButton} aria-label="Сохранить" onClick={() => toggleBtnSave(card.id)}>
+        <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
           <img
             className={style.save}
             src={isOn ? heartActive : heartUnactive}
             alt="Сохранить"
           />
         </button>
-
       </div>
-      {/* {card.images?.[0]?.Image_URL ? <img className={style.imgProduct} src={card.images?.[0]?.Image_URL} alt={card.name}/> : <div className={style.imgProductPlaceholder}></div> } */}
+
       {card.images?.[0]?.Image_URL && !imgError ? (
         <img
           className={style.imgProduct}
@@ -161,7 +146,6 @@ export default function BasketItem({ card, setBasket, setSavedProduct, basket, s
           {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')}
         </button>
       </div>
-
     </div>
   );
 }

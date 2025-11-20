@@ -1,10 +1,11 @@
+// components/Main/index.jsx
 import style from './style.module.css'
 import SearchEngine from './components/SearchEngine/index.jsx'
 import SliderProductTypes from './components/SliderProductTypes/index.jsx'
 import ProductContainer from './components/ProductContainer/index.jsx'
 import SearchedContainer from './components/SearchedContainer/index.jsx'
 
-export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery, fastSearchStrings, setBasket, setSavedProduct, savedProduct, basket}) {
+export default function Main ({cards, types, setIsSearchActive, isSearchActive, searchQuery, setSearchQuery, fastSearchStrings, setBasket, basket, likedItems, toggleLike, isLiked}) { // Добавлены пропсы для лайков
 
     const handleSelectSearch = (text) => {
         setSearchQuery(text); 
@@ -31,7 +32,14 @@ export default function Main ({cards, types, setIsSearchActive, isSearchActive, 
                 ) : (
                     <>
                         <SliderProductTypes typesList={types} />
-                        <ProductContainer cardsList={cards} setBasket={setBasket} setSavedProduct={setSavedProduct} savedProduct={savedProduct} basket={basket} />
+                        <ProductContainer 
+                            cardsList={cards} 
+                            setBasket={setBasket} 
+                            basket={basket}
+                            likedItems={likedItems} // Передаем пропсы для лайков
+                            toggleLike={toggleLike}
+                            isLiked={isLiked}
+                        />
                     </>
                 )}
 

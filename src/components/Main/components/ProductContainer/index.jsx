@@ -1,7 +1,8 @@
+// components/Main/ProductContainer/index.jsx
 import style from './style.module.css'
 import ProductCard from './components/ProductCard'
 
-export default function ProductContainer({ cardsList = [], setBasket, basket }) {
+export default function ProductContainer({ cardsList = [], setBasket, basket, likedItems, toggleLike, isLiked }) { // Принимаем пропсы для лайков
     return (
       <div className={style.containerProducts}>
 
@@ -10,7 +11,10 @@ export default function ProductContainer({ cardsList = [], setBasket, basket }) 
             key={card.id}
             card={card} 
             setBasket={setBasket} 
-            basket={basket} 
+            basket={basket}
+            likedItems={likedItems} // Передаем пропсы для лайков
+            toggleLike={toggleLike}
+            isLiked={isLiked}
               />)
         ) : (
           <p className={style.empty}>Загружаются...</p>
@@ -18,4 +22,4 @@ export default function ProductContainer({ cardsList = [], setBasket, basket }) 
 
       </div>
     );
-  }  
+  }

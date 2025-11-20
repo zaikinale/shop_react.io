@@ -1,17 +1,15 @@
+// components/Saved/components/SavedContainer/index.jsx
 import style from './style.module.css'
 import SavedItem from './components/SavedItem/index.jsx'
-import useLikes from '../../../../hooks/useLikes.js'
 import { useState, useEffect } from 'react'
 
-export default function SavedContainer({ cardsList = [], setBasket, basket }) {
-  const { likedItems } = useLikes();
+export default function SavedContainer({ cardsList = [], setBasket, basket, toggleLike }) {
   const [filteredCards, setFilteredCards] = useState([]);
 
   useEffect(() => {
-    // Обновляем список карточек при изменении likedItems
-    const newFilteredCards = cardsList.filter(card => likedItems.includes(card.id));
-    setFilteredCards(newFilteredCards);
-  }, [likedItems, cardsList]);
+    // Обновляем список карточек при изменении cardsList
+    setFilteredCards(cardsList);
+  }, [cardsList]);
 
   const handleRemove = (removedCardId) => {
     // Обновляем список карточек, чтобы удалить карточку из DOM
@@ -28,6 +26,7 @@ export default function SavedContainer({ cardsList = [], setBasket, basket }) {
             setBasket={setBasket}
             basket={basket}
             onRemove={handleRemove}
+            toggleLike={toggleLike}
           />
         ))
       ) : (

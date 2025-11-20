@@ -1,3 +1,4 @@
+// components/Main/ProductCard/ProductCard.jsx
 import style from './style.module.css';
 import { useState } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";

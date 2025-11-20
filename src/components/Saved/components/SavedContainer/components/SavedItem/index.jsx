@@ -2,24 +2,12 @@ import style from './style.module.css';
 import { useState, useEffect } from 'react';
 import heartUnactive from "../../../../../../assets/heart_unactive.svg";
 import heartActive from "../../../../../../assets/heart_active.svg";
-import useLikes from '../../../../../../hooks/useLikes';
 
-export default function SavedItem({ card, setBasket, basket, onRemove }) {
-  const { toggleLike, likedItems } = useLikes(); // Получаем likedItems из хука
+export default function SavedItem({ card, setBasket, basket, onRemove, toggleLike }) {
   const [imgError, setImgError] = useState(false);
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
-
-  // Проверяем, избран ли товар
-  const isOn = likedItems.includes(card.id);
-
-  // Если товар больше не в избранном, вызываем onRemove
-  useEffect(() => {
-    if (!isOn && !isPending) {
-      onRemove && onRemove(card.id);
-    }
-  }, [isOn, isPending, card.id, onRemove]);
 
   // Очищаем таймер при размонтировании компонента
   useEffect(() => {
