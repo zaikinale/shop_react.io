@@ -25,7 +25,7 @@ body.dark-theme {
   --tc: #666666;
 }
 
-*, *::before, *::after, *:hover, *:focus  {
+* {
   box-sizing: border-box;
   outline: none;
   margin: 0;
