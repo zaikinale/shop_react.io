@@ -1,12 +1,14 @@
+// components/Saved/SavedContainer/index.jsx
 import style from './style.module.css'
 import SavedItem from '../SavedItem/index.jsx'
-import useLikes from '../../hooks/useLikes.js';
-// import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux' 
 
-export default function SavedContainer({ cardsList = [], toggleLike }) {
-    const{likedItems} = useLikes()
+export default function SavedContainer() {
 
-    const filteredCards = cardsList.filter((item) => likedItems.includes(item.id));
+    const cardsList = useSelector(state => state.cards)
+    const likedItems = useSelector(state => state.likedItems) 
+
+    const filteredCards = (cardsList || []).filter((item) => likedItems.includes(item.id));
 
     return (
         <div className={style.containerProducts}>
@@ -15,7 +17,6 @@ export default function SavedContainer({ cardsList = [], toggleLike }) {
                     <SavedItem
                         key={card.id}
                         card={card}
-                        toggleLike={toggleLike}
                     />
                 ))
             ) : (

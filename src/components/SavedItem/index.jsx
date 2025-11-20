@@ -1,17 +1,22 @@
+// components/Saved/SavedItem/index.jsx
 import style from './style.module.css';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import heartActive from "../../assets/heart_active.svg";
 import heartUnactive from '../../assets/heart_unactive.svg' 
-import useBasket from '../../hooks/useBasket.js'
 
-export default function SavedItem({ card, toggleLike }) {
-  const {toggleBasket, isBasket } = useBasket()
+export default function SavedItem({ card }) { 
+  const dispatch = useDispatch();
+
+  const basketItems = useSelector(state => state.basketItems);
+
   const [imgError, setImgError] = useState(false);
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
-  // Очищаем таймер при размонтировании компонента
+  const isBasket = (id) => basketItems.includes(id);
+
   useEffect(() => {
     return () => {
       if (timeoutId) {
@@ -36,7 +41,7 @@ export default function SavedItem({ card, toggleLike }) {
     setIsPending(true);
 
     const timerId = setTimeout(() => {
-      toggleLike(card.id);
+      dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
       setIsPending(false);
       setTimeoutId(null);
     }, 3000);
@@ -46,10 +51,8 @@ export default function SavedItem({ card, toggleLike }) {
 
   function toggleBtnSave() {
     if (isPending) {
-      // Если таймер активен, отменяем удаление
       cancelRemoval();
     } else {
-      // Всегда запускаем удаление, так как карточка в Saved только если в избранном
       scheduleRemoval();
     }
   }
@@ -98,9 +101,8 @@ export default function SavedItem({ card, toggleLike }) {
     }
   }
 
-
-  function handleBasket(id) {
-    toggleBasket(id)
+  function handleBasket() {
+    dispatch({ type: 'ADD_TO_BASKET', payload: { id: card.id } });
   }
 
   return (
