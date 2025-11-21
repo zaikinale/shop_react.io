@@ -1,4 +1,3 @@
-// components/Basket/index.jsx
 import style from './style.module.css';
 import BasketContainer from '../../components/BasketContainer/index.jsx';
 
@@ -7,7 +6,7 @@ export default function Basket() {
     <div className={style.main}>
         <h1 className="">Корзина</h1>
         <>
-        <BasketContainer />
+            <BasketContainer />
         </>
     </div>
     )

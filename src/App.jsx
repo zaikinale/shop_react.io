@@ -16,10 +16,7 @@ import LogoIcon from './assets/logo_xp.jpeg';
 
 function App() {
   const dispatch = useDispatch();
-
-  // const likedItems = useSelector(state => state.likedItems);
-  // const basketItems = useSelector(state => state.basketItems);
-
+  
   const [fastSearchStrings, setFastSearchStrings] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,17 +24,6 @@ function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
-
-  // const toggleLike = (id) => {
-  //   dispatch({ type: 'LIKE_ITEM', payload: { id } });
-  // };
-
-  // const toggleBasket = (id) => {
-  //   dispatch({ type: 'ADD_TO_BASKET', payload: { id } });
-  // };
-
-  // const isLiked = (id) => likedItems.includes(id);
-  // const isBasket = (id) => basketItems.includes(id);
 
   useEffect(() => {
     fetch('https://noxer-test.ru/webapp/api/products/on_main')
@@ -116,12 +102,6 @@ function App() {
                 searchQuery={searchQuery} 
                 setSearchQuery={setSearchQuery} 
                 fastSearchStrings={fastSearchStrings}
-
-                // toggleBasket={toggleBasket}
-                // isBasket={isBasket}
-
-                // toggleLike={toggleLike}
-                // isLiked={isLiked}
               />
             </div>
           )}>
@@ -137,10 +117,7 @@ function App() {
           <Route path='saved' element={
             isLogin ? 
               <div className={isSettingsActive ? 'contentBlur' : ''}>
-                <Saved 
-                  // toggleBasket={toggleBasket}
-                  // toggleLike={toggleLike}
-                />
+                <Saved />
               </div> :
                 <Login onSaveUser={handleSaveUser} />
           }></Route>
@@ -148,30 +125,19 @@ function App() {
           <Route path='basket' element={
             isLogin ? 
             <div className={isSettingsActive ? 'contentBlur' : ''}>
-              <Basket 
-                // toggleBasket={toggleBasket}
-                // isBasket={isBasket}
-                // toggleLike={toggleLike}
-                // isLiked={isLiked}
-              />
+              <Basket />
             </div> : 
               <Login onSaveUser={handleSaveUser} />
           }></Route>
 
           <Route path='profile' element={
             isLogin ? 
-            <div className={isSettingsActive ? 'contentBlur' : ''}>
-              <Profile 
-                person={person} 
-                setPerson={setPerson}
-
-                // toggleBasket={toggleBasket}
-                // isBasket={isBasket}
-
-                // toggleLike={toggleLike}
-                // isLiked={isLiked}
-              />
-            </div> : 
+              <div className={isSettingsActive ? 'contentBlur' : ''}>
+                <Profile 
+                  person={person} 
+                  setPerson={setPerson} 
+                />
+              </div> : 
               <Login onSaveUser={handleSaveUser} />
           }>
           </Route>

@@ -1,4 +1,3 @@
-// components/Saved/index.jsx
 import style from './style.module.css';
 import SavedContainer from '../../components/SavedContainer'
 

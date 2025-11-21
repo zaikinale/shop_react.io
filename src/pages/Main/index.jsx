@@ -30,16 +30,8 @@ export default function Main ({ setIsSearchActive, isSearchActive, searchQuery, 
                     )
                 ) : (
                     <>
-                        <SliderProductTypes 
-                        />
-                        <ProductContainer 
-                            // cardsList={cards} 
-                            // setBasket={setBasket} 
-                            // basket={basket}
-                            // likedItems={likedItems} // Передаем пропсы для лайков
-                            // toggleLike={toggleLike}
-                            // isLiked={isLiked}
-                        />
+                        <SliderProductTypes />
+                        <ProductContainer />
                     </>
                 )}
 

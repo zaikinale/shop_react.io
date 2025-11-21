@@ -1,16 +1,11 @@
-// components/Main/ProductCard/ProductCard.jsx
 import style from './style.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
-// import useLikes from '../../hooks/useLikes';
-// import useBasket from '../../hooks/useBasket';
 
 export default function ProductCard({ card }) {
   const dispatch = useDispatch(); 
-  // const {toggleLike, isLiked} = useLikes();
-  // const {toggleBasket, isBasket} = useBasket();
   const basketItems = useSelector(state => state.basketItems);
   const likedItems = useSelector(state => state.likedItems);
 

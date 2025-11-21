@@ -4,7 +4,7 @@ import ProductCard from '../ProductCard'
 import { useSelector } from 'react-redux';
 
 export default function ProductContainer() {
-  const cardsList = useSelector(state => state.cards);
+  const cardsList = useSelector(state => state.cards) || [];
     return (
       <div className={style.containerProducts}>
 
