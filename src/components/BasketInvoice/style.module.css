@@ -1,0 +1,42 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--tc);
+    padding: 20px;
+    width: 500px;
+    border-radius: 15px;
+}
+
+.container >* {
+    color: black;
+}
+
+.totalCountAndOldPrice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.discounts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.totalDiscount {
+    color: red;
+
+}
+
+.bottomLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total {
+    font-weight: bolder;
+}

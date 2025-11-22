@@ -1,6 +1,7 @@
 import style from './style.module.css';
 import BasketContainer from '../../components/BasketContainer/index.jsx';
 import BasketLid from '../../components/BasketLid/index.jsx';
+import BasketInvoice from '../../components/BasketInvoice/index.jsx';
 
 export default function Basket() {
     return (
@@ -9,6 +10,7 @@ export default function Basket() {
         <>
             <BasketLid />
             <BasketContainer />
+            <BasketInvoice />
         </>
     </div>
     )
