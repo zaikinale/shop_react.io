@@ -28,7 +28,6 @@ export default function BasketItem({ card }) {
       }
     };
   }, [timeoutId]);
-  
 
   function generateTags() {
     const tags = [];
@@ -149,7 +148,10 @@ export default function BasketItem({ card }) {
           className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}
           onClick={() => handleBasket(card.id)}
         >
-          {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')}
+          {/* {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')} */}
+          <button className={style.addOrDeleteBtn}>-</button>
+          <span className={style.counterProduct}></span>
+          <button className={style.addOrDeleteBtn}>+</button>
         </button>
       </div>
     </div>

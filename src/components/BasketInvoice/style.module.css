@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: var(--tc);
+    background-color: white;
     padding: 20px;
     width: 500px;
     border-radius: 15px;
@@ -32,11 +32,28 @@
 }
 
 .bottomLine {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.total {
+.totalText {
+    font-size: 20px;
     font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.btnSubmit {
+    width: 100%;
+    border-radius: 20px;
+    background-color: rgb(255, 217, 0);
+    color:white;
+    padding: 8px;
+    font-size: clamp(14px, 3.5vw, 16px);
 }

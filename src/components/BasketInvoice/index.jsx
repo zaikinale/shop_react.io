@@ -29,16 +29,17 @@ export default function BasketInvoice() {
         <section className={style.container}>
             <div className={style.totalCountAndOldPrice}>
                 <p>{getItemsText(count)}</p>
-                <p>{getOldTotalPrice(filteredCards)}</p>
+                <p>{getOldTotalPrice(filteredCards)}₽</p>
             </div>
             <div className={style.discounts}>
                 <p>Скидки:</p>
-                <p className={style.totalDiscount}>{`-${getActualTotalPrice(filteredCards) }`}</p>
+                <p className={style.totalDiscount}>{`- ${getActualTotalPrice(filteredCards)}₽`}</p>
             </div>
             <div className={style.bottomLine}>
-                <p>Итого:</p>
-                <p className={style.total}>{` ${getOldTotalPrice(filteredCards) - getActualTotalPrice(filteredCards)} `}</p>
+                <p className={style.totalText}>Итого:</p>
+                <p className={style.total}>{`${getOldTotalPrice(filteredCards) - getActualTotalPrice(filteredCards)}₽`}</p>
             </div>
+            <button className={style.btnSubmit}>Заказать</button>
         </section>
     )
 }

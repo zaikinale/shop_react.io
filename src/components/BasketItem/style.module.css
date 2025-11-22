@@ -49,8 +49,8 @@
 }
 
 .imgProduct {
-    max-width: 140px;
-    max-height: 140px;
+    width: 140px;
+    height: 140px;
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
@@ -132,23 +132,37 @@
 }
 
 .btnChoose {
-    width: 140px;
+    /* width: 140px; */
     max-width: 100%;
     border-radius: 20px;
     background-color: var(--bg);
     color: var(--tc);
-    padding: 8px;
+    padding: 3px;
     font-size: clamp(14px, 3.5vw, 16px);
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .btnChooseActive {
-    width: 140px;
+    /* width: 140px; */
     max-width: 100%;
     border-radius: 20px;
-    background-color: rgb(255, 217, 0);
+    background-color: var(--bg);
+    /* background-color: rgb(255, 217, 0); */
     color: var(--tc);
-    padding: 8px;
+    padding: 3px;
     font-size: clamp(14px, 3.5vw, 16px);
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.addOrDeleteBtn {
+    padding: 5px;
+    margin: 0 10px;
+    background: none;
+    color: var(--tc);
 }
 
 
