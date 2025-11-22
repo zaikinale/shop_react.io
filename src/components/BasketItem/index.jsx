@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
+import trashIcon from '../../assets/trash.svg'
 
 export default function BasketItem({ card }) {
 
@@ -111,6 +112,19 @@ export default function BasketItem({ card }) {
     }
   }
 
+  const [counter, setCounter] = useState(1);
+
+  function handleCounter(type) {
+    if (type === 'delete' && counter > 1) {
+      setCounter(counter - 1)
+    } 
+    if (type === 'add') {
+      setCounter(counter + 1)
+    } 
+    return
+  }
+
+
   return (
     <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
       <div className={style.headerCard}>
@@ -118,13 +132,18 @@ export default function BasketItem({ card }) {
           {generateTags()}
         </div>
 
-        <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
-          <img
-            className={style.save}
-            src={isOn ? heartActive : heartUnactive}
-            alt="Сохранить"
-          />
-        </button>
+        <div className={style.controlBtns}>
+          <button className={style.saveButton} onClick={() => handleBasket(card.id)}>
+            <img className={style.save} src={trashIcon} alt="delete" />
+          </button>
+          <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
+            <img
+              className={style.save}
+              src={isOn ? heartActive : heartUnactive}
+              alt="Сохранить"
+            />
+          </button>
+        </div>
       </div>
 
       {card.images?.[0]?.Image_URL && !imgError ? (
@@ -144,15 +163,15 @@ export default function BasketItem({ card }) {
           <p className={style.description}>{card.name}</p>
         </div>
 
-        <button
+        <div
           className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}
-          onClick={() => handleBasket(card.id)}
+          // onClick={() => handleBasket(card.id)}
         >
           {/* {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')} */}
-          <button className={style.addOrDeleteBtn}>-</button>
-          <span className={style.counterProduct}></span>
-          <button className={style.addOrDeleteBtn}>+</button>
-        </button>
+          <button className={style.addOrDeleteBtn} onClick={() => handleCounter('delete')}>-</button>
+          <span className={style.counterProduct}>{counter}</span>
+          <button className={style.addOrDeleteBtn} onClick={() => handleCounter('add')}>+</button>
+        </div>
       </div>
     </div>
   );

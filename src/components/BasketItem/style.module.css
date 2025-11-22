@@ -144,6 +144,12 @@
     box-sizing: border-box;
 }
 
+.controlBtns {
+    display: flex;
+    gap: 5px;
+    /* align-items: center; */
+}
+
 .btnChooseActive {
     /* width: 140px; */
     max-width: 100%;
