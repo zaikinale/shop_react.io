@@ -1,0 +1,18 @@
+.container {
+    margin: 0 auto;
+    width: 360px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sectionTitle {
+    color: black;
+    /* font-size:; */
+}
+
+.quantity {
+    color: black;
+}
+
+

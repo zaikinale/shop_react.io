@@ -1,4 +1,3 @@
-// components/Main/ProductContainer/index.jsx
 import style from './style.module.css'
 import ProductCard from '../ProductCard'
 import { useSelector } from 'react-redux';

@@ -5,6 +5,7 @@ import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
 
 export default function BasketItem({ card }) {
+
   const dispatch = useDispatch();
 
   const likedItems = useSelector(state => state.likedItems);
@@ -27,6 +28,7 @@ export default function BasketItem({ card }) {
       }
     };
   }, [timeoutId]);
+  
 
   function generateTags() {
     const tags = [];

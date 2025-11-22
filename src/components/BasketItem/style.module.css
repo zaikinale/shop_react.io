@@ -20,7 +20,7 @@
 .headerCard {
     top: 10px;
     left: 10px;
-    width: 230px;
+    width: calc(100% - 20px);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -49,8 +49,8 @@
 }
 
 .imgProduct {
-    max-width: 240px;
-    max-height: 240px;
+    max-width: 140px;
+    max-height: 140px;
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
@@ -60,8 +60,8 @@
 }
 
 .imgProductPlaceholder {
-    min-width: 240px;
-    min-height: 240px;
+    min-width: 140px;
+    min-height: 140px;
     border-radius: 20px;
     display: block;
     background-color: var(--bg);
@@ -118,7 +118,7 @@
 }
 
 .description {
-    width: 140px;
+    width: 340px;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     line-clamp: 5; 
