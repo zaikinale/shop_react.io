@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
 import trashIcon from '../../assets/trash.svg'
+import CloseImg from '../../assets/close.svg'
 
 export default function BasketItem({ card }) {
 
@@ -129,12 +130,12 @@ export default function BasketItem({ card }) {
     <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
       <div className={style.headerCard}>
         <div className={style.tags}>
-          {generateTags()}
+          {/* {generateTags()} */}
         </div>
 
         <div className={style.controlBtns}>
           <button className={style.saveButton} onClick={() => handleBasket(card.id)}>
-            <img className={style.save} src={trashIcon} alt="delete" />
+            <img className={style.deleteBrn} src={CloseImg} alt="delete" />
           </button>
           <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
             <img
