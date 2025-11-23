@@ -1,5 +1,5 @@
 import style from './style.module.css'
-
+import { useNavigate, useLocation } from 'react-router'
 import CloseImg from '../../assets/close.svg'
 import TelegramIcon from '../../assets/icon_tg.svg'
 import VectorImg from '../../assets/Vector.svg'
@@ -9,8 +9,18 @@ import SunIcon from '../../assets/sun.svg'
 import MoonIcon from '../../assets/moon.svg'
 
 export default function Header ({ setIsSearchActive, isSearchActive, isSettingsActive, setIsSettingsActive, setIsDarkTheme, isDarkTheme }) {
+    const navigate = useNavigate();
+    const location = useLocation();
+    
     const handleBackOrClose = () => {
-        setIsSearchActive(false); 
+        if (isSearchActive) {
+            setIsSearchActive(false);
+            return;
+        }
+        if (location.pathname.startsWith('/product/')) {
+            navigate(-1);
+            return;
+        }
     };
 
     const handleOpenSettings = () => {
