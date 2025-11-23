@@ -4,6 +4,7 @@ import { useState } from 'react';
 import style from './style.module.css';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
+import RecommendContainer from '../../components/RecommendContainer';
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -73,6 +74,7 @@ export default function ProductDetail() {
     }
 
     return (
+    <>
         <div className={style.productDetail}>
             <div className={style.headerCard}>
                 <div className={style.tags}>
@@ -110,5 +112,8 @@ export default function ProductDetail() {
                 </button>
             </div>
         </div>
+
+        <RecommendContainer></RecommendContainer>
+    </>
     );
 }
