@@ -4,19 +4,15 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import heartActive from "../../assets/heart_active.svg";
 import heartUnactive from '../../assets/heart_unactive.svg' 
+import { Link } from 'react-router';
 
 export default function SavedItem({ card }) { 
   const dispatch = useDispatch();
-
   const basketItems = useSelector(state => state.basketItems);
-
-  const [imgError, setImgError] = useState(false);
-
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
-
-  // const isBasket = (id) => basketItems.includes(id);
   const isBasket = (id) => basketItems.hasOwnProperty(String(id));
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -125,22 +121,23 @@ export default function SavedItem({ card }) {
           />
         </button>
       </div>
-
-      {card.images?.[0]?.Image_URL && !imgError ? (
-        <img
-          className={style.imgProduct}
-          src={card.images[0].Image_URL}
-          alt={card.name}
-          onError={() => setImgError(true)}
-        />
-      ) : (
-        <div className={style.imgProductPlaceholder}></div>
-      )}
-
-      <div className={style.descriptionContainer}>
-        {generateActPrice()}
-        <p className={style.description}>{card.name}</p>
-      </div>
+      <Link to={`/product/${card.id}`} className={style.linkContainer}>
+        {card.images?.[0]?.Image_URL && !imgError ? (
+          <img
+            className={style.imgProduct}
+            src={card.images[0].Image_URL}
+            alt={card.name}
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className={style.imgProductPlaceholder}></div>
+        )}
+      
+        <div className={style.descriptionContainer}>
+          {generateActPrice()}
+          <p className={style.description}>{card.name}</p>
+        </div>
+      </Link>
 
       <button 
         className={isBasket(card.id) ? style.btnChooseActive : style.btnChoose} 

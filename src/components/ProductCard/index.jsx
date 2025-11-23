@@ -87,22 +87,21 @@ export default function ProductCard({ card }) {
       </div>
 
       <Link to={`/product/${card.id}`} className={style.linkContainer}>
-
-      {card.images?.[0]?.Image_URL && !imgError ? (
-        <img
-          className={style.imgProduct}
-          src={card.images[0].Image_URL}
-          alt={card.name}
-          onError={() => setImgError(true)}
-        />
-      ) : (
-        <div className={style.imgProductPlaceholder}></div>
-      )}
+        {card.images?.[0]?.Image_URL && !imgError ? (
+          <img
+            className={style.imgProduct}
+            src={card.images[0].Image_URL}
+            alt={card.name}
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className={style.imgProductPlaceholder}></div>
+        )}
       
-      <div className={style.descriptionContainer}>
-        {generateActPrice()}
-        <p className={style.description}>{card.name}</p>
-      </div>
+        <div className={style.descriptionContainer}>
+          {generateActPrice()}
+          <p className={style.description}>{card.name}</p>
+        </div>
       </Link>
 
       <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={()=>handleBasket(card.id)}>{isBasket(card.id) ? 'Убрать' : 'Выбрать'}</button>
