@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import style from './style.module.css';
 import SearchIcon from '../../assets/search.svg'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router'
 
 
 export default function SearchEngine({ setIsSearchActive, setSearchQuery, searchQuery }) {
@@ -46,7 +47,7 @@ export default function SearchEngine({ setIsSearchActive, setSearchQuery, search
           onChange={handleChange}
         />
         
-        {hasMatch && <button type="button" className={style.goToProduct}>Перейти</button>}
+        {hasMatch && <Link to={`/product/${foundCard.id}`} className={style.goToProduct} >Перейти</Link>}
       
       </label>
 
