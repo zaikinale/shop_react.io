@@ -1,4 +1,4 @@
-import style from './style.module.css'
+// import style from './style.module.css'
 import ProfileContainer from '../../components/ProfileContainer'
 import RecommendContainer from '../../components/RecommendContainer'
 import SliderCardsContainer from '../../components/SliderCardsConteiner'

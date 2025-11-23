@@ -12,7 +12,7 @@ export default function SavedItem({ card }) {
   const basketItems = useSelector(state => state.basketItems);
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
-  const isBasket = (id) => basketItems.hasOwnProperty(String(id));
+  const isBasket = (id) => Object.prototype.hasOwnProperty.call(basketItems, String(id));
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
