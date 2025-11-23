@@ -14,7 +14,7 @@ export default function ProductCard({ card }) {
   const [imgError, setImgError] = useState(false);
 
   const isLiked = (id) => likedItems.includes(id);
-  const isBasket = (id) => basketItems.includes(id);
+  const isBasket = (id) => basketItems.hasOwnProperty(String(id));
 
   const isOn = isLiked(card.id);
 

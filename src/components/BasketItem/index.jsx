@@ -16,7 +16,7 @@ export default function BasketItem({ card }) {
   const [imgError, setImgError] = useState(false);
 
   const isLiked = (id) => likedItems.includes(id);
-  const isBasket = (id) => basketItems.includes(id);
+  const isBasket = (id) => basketItems.hasOwnProperty(String(id));
 
   const isOn = isLiked(card.id);
 
@@ -113,16 +113,24 @@ export default function BasketItem({ card }) {
     }
   }
 
-  const [counter, setCounter] = useState(1);
+  const currentCount = basketItems[card.id] || 0;
 
   function handleCounter(type) {
-    if (type === 'delete' && counter > 1) {
-      setCounter(counter - 1)
-    } 
-    if (type === 'add') {
-      setCounter(counter + 1)
-    } 
-    return
+    const currentCount = basketItems[String(card.id)] || 0;
+  
+    if (type === 'delete') {
+      if (currentCount > 1) {
+        dispatch({
+          type: 'SET_BASKET_ITEM_COUNT',
+          payload: { id: card.id, count: currentCount - 1 }
+        });
+      }
+    } else if (type === 'add') {
+      dispatch({
+        type: 'SET_BASKET_ITEM_COUNT',
+        payload: { id: card.id, count: currentCount + 1 }
+      });
+    }
   }
 
 
@@ -170,7 +178,7 @@ export default function BasketItem({ card }) {
         >
           {/* {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')} */}
           <button className={style.addOrDeleteBtn} onClick={() => handleCounter('delete')}>-</button>
-          <span className={style.counterProduct}>{counter}</span>
+          <span className={style.counterProduct}>{currentCount}</span>
           <button className={style.addOrDeleteBtn} onClick={() => handleCounter('add')}>+</button>
         </div>
       </div>

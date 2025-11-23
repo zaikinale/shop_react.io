@@ -1,6 +1,6 @@
 const initialState = {
     likedItems: [],
-    basketItems: [],
+    basketItems: {},
     cards: [],
     types: []
 };
@@ -11,36 +11,66 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 types: action.payload
-            }
+            };
+
         case 'SET_CARDS':
             return {
                 ...state,
                 cards: action.payload
-            }
-        case 'LIKE_ITEM':
-            if (state.likedItems.includes(action.payload.id)) {
-                return {
-                    ...state,
-                    likedItems: state.likedItems.filter(id => id !== action.payload.id)
-                };
-            } else {
-                return {
-                    ...state,
-                    likedItems: [...state.likedItems, action.payload.id]
+            };
+
+        case 'LIKE_ITEM': {
+            const id = action.payload.id;
+            const isLiked = state.likedItems.includes(id);
+            return {
+                ...state,
+                likedItems: isLiked
+                    ? state.likedItems.filter(item => item !== id)
+                    : [...state.likedItems, id]
             };
         }
-        case 'ADD_TO_BASKET':
-            if (state.basketItems.includes(action.payload.id)) {
+
+        case 'SET_BASKET_ITEM_COUNT': {
+            const { id, count } = action.payload;
+
+            if (count <= 0) {
+                const newBasket = { ...state.basketItems };
+                delete newBasket[id];
                 return {
                     ...state,
-                    basketItems: state.basketItems.filter(id => id !== action.payload.id)
-                };
-            } else {
-                return {
-                    ...state,
-                    basketItems: [...state.basketItems, action.payload.id]
+                    basketItems: newBasket
                 };
             }
+
+            return {
+                ...state,
+                basketItems: {
+                    ...state.basketItems,
+                    [id]: count
+                }
+            };
+        }
+
+        case 'ADD_TO_BASKET': {
+            const id = action.payload.id;
+            const currentCount = state.basketItems[id] || 0;
+            const newCount = currentCount > 0 ? 0 : 1; 
+
+            if (newCount === 0) {
+                const newBasket = { ...state.basketItems };
+                delete newBasket[id];
+                return { ...state, basketItems: newBasket };
+            }
+
+            return {
+                ...state,
+                basketItems: {
+                    ...state.basketItems,
+                    [id]: newCount
+                }
+            };
+        }
+
         default:
             return state;
     }

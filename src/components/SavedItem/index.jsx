@@ -15,7 +15,8 @@ export default function SavedItem({ card }) {
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
-  const isBasket = (id) => basketItems.includes(id);
+  // const isBasket = (id) => basketItems.includes(id);
+  const isBasket = (id) => basketItems.hasOwnProperty(String(id));
 
   useEffect(() => {
     return () => {

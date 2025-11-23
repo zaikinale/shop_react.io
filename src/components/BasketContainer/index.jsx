@@ -1,12 +1,13 @@
 // components/Basket/BasketContainer/index.jsx
-import style from './style.module.css'
-import BasketItem from '../BasketItem/index.jsx'
-import { useSelector } from 'react-redux' 
+import style from './style.module.css';
+import BasketItem from '../BasketItem/index.jsx';
+import { useSelector } from 'react-redux';
 
 export default function BasketContainer() {
-  const cardsList = useSelector(state => state.cards)
-  const basketItems = useSelector(state => state.basketItems)
-  const filteredCards = (cardsList || []).filter((item) => basketItems.includes(item.id));
+  const cardsList = useSelector(state => state.cards);
+  const basketItems = useSelector(state => state.basketItems); 
+
+  const filteredCards = (cardsList || []).filter(item => !!basketItems[String(item.id)]);
 
   return (
     <div className={style.containerProducts}>
