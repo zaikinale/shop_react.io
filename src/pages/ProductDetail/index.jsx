@@ -1,7 +1,6 @@
-// src/pages/ProductDetail/index.jsx
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react'
+import { useState } from 'react';
 import style from './style.module.css';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
@@ -12,7 +11,7 @@ export default function ProductDetail() {
     const basketItems = useSelector(state => state.basketItems);
     const likedItems = useSelector(state => state.likedItems);
     const isLiked = (id) => likedItems.includes(id);
-    const isBasket = (id) => basketItems.includes(id);
+    const isBasket = (id) => !!basketItems[String(id)];
     const [imgError, setImgError] = useState(false);
     const cards = useSelector(state => state.cards);
     const product = cards.find(card => String(card.id) === String(id));
@@ -20,7 +19,7 @@ export default function ProductDetail() {
         return <div className={style.empty}>Товар не найден</div>;
     }
     const isOn = isLiked(product.id);
-
+    const inBasket = isBasket(product.id);
 
     function generateTags() {
         const tags = [];
@@ -44,7 +43,6 @@ export default function ProductDetail() {
     function generateActPrice() {
         const marks = product.marks || [];
         const hasSale = marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount');
-        
 
         if (hasSale && product.old_price) {
           return (
@@ -73,7 +71,6 @@ export default function ProductDetail() {
     function handleBasket() {
         dispatch({ type: 'ADD_TO_BASKET', payload: { id: product.id } });
     }
-    
 
     return (
         <div className={style.productDetail}>
@@ -108,7 +105,9 @@ export default function ProductDetail() {
                     {generateActPrice()}
                     <p className={style.description}>{product.name}</p>
                 </div>
-                <button className={isBasket(product.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={()=>handleBasket(product.id)}>{isBasket(product.id) ? 'Убрать' : 'Выбрать'}</button>
+                <button className={inBasket ? style.btnChooseActive : style.btnChoose} onClick={handleBasket}>
+                    {inBasket ? 'Убрать' : 'Выбрать'}
+                </button>
             </div>
         </div>
     );
