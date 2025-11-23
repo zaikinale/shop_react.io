@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
-import trashIcon from '../../assets/trash.svg'
+// import trashIcon from '../../assets/trash.svg'
 import CloseImg from '../../assets/close.svg'
 
 export default function BasketItem({ card }) {
@@ -31,25 +31,25 @@ export default function BasketItem({ card }) {
     };
   }, [timeoutId]);
 
-  function generateTags() {
-    const tags = [];
-    const marks = card.marks || [];
+  // function generateTags() {
+  //   const tags = [];
+  //   const marks = card.marks || [];
 
-    if (marks.some(m => m.Mark_Name === 'hit')) {
-      tags.push(<p key="hit" className={style.statusCardHit}>ХИТ</p>);
-    }
-    if (marks.some(m => m.Mark_Name === 'premium')) {
-      tags.push(<p key="premium" className={style.statusCardPremium}>ПРЕМИУМ</p>);
-    }
-    if (marks.some(m => m.Mark_Name === 'new')) {
-      tags.push(<p key="new" className={style.statusCardNew}>NEW</p>);
-    }
-    if (marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount')) {
-      tags.push(<p key="sale" className={style.statusCardSalary}>SALE</p>);
-    }
+  //   if (marks.some(m => m.Mark_Name === 'hit')) {
+  //     tags.push(<p key="hit" className={style.statusCardHit}>ХИТ</p>);
+  //   }
+  //   if (marks.some(m => m.Mark_Name === 'premium')) {
+  //     tags.push(<p key="premium" className={style.statusCardPremium}>ПРЕМИУМ</p>);
+  //   }
+  //   if (marks.some(m => m.Mark_Name === 'new')) {
+  //     tags.push(<p key="new" className={style.statusCardNew}>NEW</p>);
+  //   }
+  //   if (marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount')) {
+  //     tags.push(<p key="sale" className={style.statusCardSalary}>SALE</p>);
+  //   }
 
-    return tags;
-  }
+  //   return tags;
+  // }
 
   function generateActPrice() {
     const marks = card.marks || [];

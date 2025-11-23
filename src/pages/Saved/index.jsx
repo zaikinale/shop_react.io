@@ -5,7 +5,7 @@ export default function Saved () {
     
     return (
     <div className={style.main}>
-        <h1 className="">Сохраненые</h1>
+        <h1 className={style.sectionTitle}>Избранное:</h1>
         <>
             <SavedContainer />
         </>

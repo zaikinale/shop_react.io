@@ -1,10 +1,18 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 100%;
-    padding: clamp(1rem, 4vw, 2rem) 0;
-    box-sizing: border-box;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: clamp(1rem, 4vw, 2rem) 0;
+  box-sizing: border-box;
+}
+
+.sectionTitle {
+  color: var(--tc);
+  width: 500px;
+  margin: 10px auto;
+  font-size: 32px;
+  text-align: start;
+}

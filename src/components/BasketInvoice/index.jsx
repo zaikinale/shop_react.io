@@ -24,6 +24,9 @@ export default function BasketInvoice() {
     const count = basketItems.length;
     const filteredCards = (cardsList || []).filter((item) => basketItems.includes(item.id));
 
+    if (count === 0) {
+        return null; 
+    }
 
     return (
         <section className={style.container}>
