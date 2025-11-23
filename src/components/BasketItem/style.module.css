@@ -18,7 +18,7 @@
 }
 
 .headerCard {
-    top: 10px;
+    top: 5px;
     left: 10px;
     width: calc(100% - 20px);
     display: flex;

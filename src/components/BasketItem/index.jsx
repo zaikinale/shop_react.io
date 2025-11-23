@@ -1,8 +1,9 @@
 import style from './style.module.css';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router';;
 import heartUnactive from "../../assets/heart_unactive.svg";
-import heartActive from "../../assets/heart_active.svg";
+import heartActive from "../../assets/heart_active.svg"; 
 // import trashIcon from '../../assets/trash.svg'
 import CloseImg from '../../assets/close.svg'
 
@@ -155,16 +156,18 @@ export default function BasketItem({ card }) {
         </div>
       </div>
 
-      {card.images?.[0]?.Image_URL && !imgError ? (
-        <img
-          className={style.imgProduct}
-          src={card.images[0].Image_URL}
-          alt={card.name}
-          onError={() => setImgError(true)}
-        />
-      ) : (
-        <div className={style.imgProductPlaceholder}></div>
-      )}
+      <Link to={`/product/${card.id}`} className={style.linkContainer}>
+        {card.images?.[0]?.Image_URL && !imgError ? (
+          <img
+            className={style.imgProduct}
+            src={card.images[0].Image_URL}
+            alt={card.name}
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className={style.imgProductPlaceholder}></div>
+        )}
+      </ Link>
       
       <div className={style.containerDescControl}>
         <div className={style.descriptionContainer}>
@@ -173,10 +176,7 @@ export default function BasketItem({ card }) {
         </div>
 
         <div
-          className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}
-          // onClick={() => handleBasket(card.id)}
-        >
-          {/* {isPending ? 'Отменить' : (isBasket(card.id) ? 'Убрать' : 'Выбрать')} */}
+          className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}>
           <button className={style.addOrDeleteBtn} onClick={() => handleCounter('delete')}>-</button>
           <span className={style.counterProduct}>{currentCount}</span>
           <button className={style.addOrDeleteBtn} onClick={() => handleCounter('add')}>+</button>
