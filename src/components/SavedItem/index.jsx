@@ -1,10 +1,11 @@
-// components/Saved/SavedItem/index.jsx
 import style from './style.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import heartActive from "../../assets/heart_active.svg";
 import heartUnactive from '../../assets/heart_unactive.svg' 
 import { Link } from 'react-router';
+
+// Исправить opaciti при удалении товара
 
 export default function SavedItem({ card }) { 
   const dispatch = useDispatch();
