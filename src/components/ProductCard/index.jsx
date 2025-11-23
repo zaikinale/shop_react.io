@@ -1,6 +1,7 @@
 import style from './style.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router';
 import heartUnactive from "../../assets/heart_unactive.svg";
 import heartActive from "../../assets/heart_active.svg";
 
@@ -85,6 +86,8 @@ export default function ProductCard({ card }) {
         </button>
       </div>
 
+      <Link to={`/product/${card.id}`} className={style.linkContainer}>
+
       {card.images?.[0]?.Image_URL && !imgError ? (
         <img
           className={style.imgProduct}
@@ -100,6 +103,7 @@ export default function ProductCard({ card }) {
         {generateActPrice()}
         <p className={style.description}>{card.name}</p>
       </div>
+      </Link>
 
       <button className={isBasket(card.id) ? (style.btnChooseActive) : (style.btnChoose)} onClick={()=>handleBasket(card.id)}>{isBasket(card.id) ? 'Убрать' : 'Выбрать'}</button>
     </div>

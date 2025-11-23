@@ -8,6 +8,7 @@ import Login from './components/Login/index.jsx';
 import Saved from './pages/Saved/index.jsx';
 import Basket from './pages/Basket/index.jsx';
 import Catalog from './pages/Catalog/index.jsx';
+import ProductDetail from './pages/ProductDetail/index.jsx';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { useDispatch } from 'react-redux';
@@ -94,6 +95,7 @@ function App() {
         </Header>
 
         <Routes>
+
           <Route index element={(
             <div className={isSettingsActive ? 'contentBlur' : ''}>
               <Main 
@@ -106,6 +108,12 @@ function App() {
             </div>
           )}>
           </Route>
+
+          <Route path="product/:id" element={
+            <div className={isSettingsActive ? 'contentBlur' : ''}>
+              <ProductDetail />
+            </div>
+          } />
 
           <Route path='catalog' element={
             <div className={isSettingsActive ? 'contentBlur' : ''}>
