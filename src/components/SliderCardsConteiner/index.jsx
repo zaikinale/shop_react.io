@@ -9,15 +9,19 @@ export default function SliderCardsContainer({ type, cards }) {
     <section className={style.container}>
         <h2 className={style.subtitle}>{subtitle}</h2>
         <div className={style.sliderTypes}>
-            {cards.map(card => (
-                <Link
-                    key={card.id}
-                    to={`/product/${card.id}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                >
-                    <SliderCard card={card} />
-                </Link>
-            ))}
+            {cards.length > 0 ? (
+                cards.map(card => (
+                    <Link
+                        key={card.id}
+                        to={`/product/${card.id}`}
+                        style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                        <SliderCard card={card} />
+                    </Link>
+                ))
+                ) : (
+                <p className={style.empty}>Пока что пусто</p>
+            )}
         </div>
     </section>
     );
