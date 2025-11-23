@@ -17,6 +17,10 @@ export default function SearchEngine({ setIsSearchActive, setSearchQuery, search
     setIsSearchActive(true);
   };
 
+  const handleSearchClickUnactive = () => {
+    setIsSearchActive(false);
+  }
+
   const handleChange = (e) => {
     const value = e.target.value;
     setQuery(value);
@@ -47,7 +51,7 @@ export default function SearchEngine({ setIsSearchActive, setSearchQuery, search
           onChange={handleChange}
         />
         
-        {hasMatch && <Link to={`/product/${foundCard.id}`} className={style.goToProduct} >Перейти</Link>}
+        {hasMatch && <Link to={`/product/${foundCard.id}`} className={style.goToProduct} onClick={handleSearchClickUnactive}>Перейти</Link>}
       
       </label>
 
