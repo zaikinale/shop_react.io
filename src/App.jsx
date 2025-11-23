@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Main from './pages/Main/index.jsx';
-import Header from './components/Header/index.jsx';
-import Navigation from './components/Navigation/index.jsx';
-import Profile from './components/ProfileContainer/index.jsx';
-import Login from './components/Login/index.jsx';
+import Profile from './pages/Profile/index.jsx';
 import Saved from './pages/Saved/index.jsx';
 import Basket from './pages/Basket/index.jsx';
 import Catalog from './pages/Catalog/index.jsx';
 import ProductDetail from './pages/ProductDetail/index.jsx';
+
+import Header from './components/Header/index.jsx';
+import Navigation from './components/Navigation/index.jsx';
+import Login from './components/Login/index.jsx';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { useDispatch } from 'react-redux';
