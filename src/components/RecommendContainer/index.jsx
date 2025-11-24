@@ -1,5 +1,6 @@
 import style from './style.module.css'
-import ProductCard from '../ProductCard'
+// import ProductCard from '../ProductCard'
+import Card from '../Card';
 import { useSelector } from 'react-redux'
 
 export default function RecommendContainer() {
@@ -10,9 +11,10 @@ export default function RecommendContainer() {
             <div className={style.containerCards}>
                 {cardsList.length > 0 ? (
                     cardsList.map(card => 
-                        <ProductCard 
+                        <Card 
                             key={card.id}
                             card={card} 
+                            type='default'
                         />)
                     ) : (
                         <p className={style.empty}>Ошибка загрузки</p>

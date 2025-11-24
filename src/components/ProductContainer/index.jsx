@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import ProductCard from '../ProductCard'
+import Card from '../Card';
 import { useSelector } from 'react-redux';
 
 export default function ProductContainer() {
@@ -8,9 +8,10 @@ export default function ProductContainer() {
       <div className={style.containerProducts}>
 
         {cardsList.length > 0 ? (
-          cardsList.map(card => <ProductCard 
+          cardsList.map(card => <Card 
             key={card.id}
-            card={card} 
+            card={card}
+            type='default' 
               />)
         ) : (
           <p className={style.empty}>Загружаются...</p>

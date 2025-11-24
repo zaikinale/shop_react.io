@@ -1,6 +1,6 @@
 // components/Saved/SavedContainer/index.jsx
 import style from './style.module.css'
-import SavedItem from '../SavedItem/index.jsx'
+import Card from '../Card/index.jsx'
 import { useSelector } from 'react-redux' 
 
 export default function SavedContainer() {
@@ -14,9 +14,10 @@ export default function SavedContainer() {
         <div className={style.containerProducts}>
             {filteredCards.length > 0 ? (
                 filteredCards.map(card => (
-                    <SavedItem
+                    <Card
                         key={card.id}
                         card={card}
+                        type='saved'
                     />
                 ))
             ) : (
