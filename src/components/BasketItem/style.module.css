@@ -118,7 +118,8 @@
 }
 
 .description {
-    width: 340px;
+    max-width: 100%;
+    /* width: 340px; */
     display: -webkit-box;
     -webkit-line-clamp: 5;
     line-clamp: 5; 
