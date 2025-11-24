@@ -17,7 +17,7 @@ export default function SavedContainer() {
                     <Card
                         key={card.id}
                         card={card}
-                        type='saved'
+                        mode='saved'
                     />
                 ))
             ) : (
