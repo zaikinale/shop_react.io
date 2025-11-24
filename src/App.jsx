@@ -49,7 +49,6 @@ function App() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // 1. Пытаемся загрузить с сервера
         const res = await fetch('https://noxer-test.ru/webapp/api/products/on_main');
         if (!res.ok) throw new Error('Server error');
   
@@ -68,8 +67,7 @@ function App() {
         console.warn('⚠️ Не удалось загрузить данные с сервера. Используем локальные...');
   
         try {
-          // 2. Загружаем из public/data.json
-          const localRes = await fetch('/data.json'); // ← файл в public/
+          const localRes = await fetch('/data.json');
           const localData = await localRes.json();
   
           dispatch({ type: 'SET_CARDS', payload: localData.products || [] });
@@ -82,8 +80,7 @@ function App() {
           }
   
         } catch (localError) {
-          console.error('❌ Не удалось загрузить локальные данные:', localError);
-          // Оставляем пустые массивы
+          console.error('Не удалось загрузить локальные данные:', localError);
           dispatch({ type: 'SET_CARDS', payload: [] });
           dispatch({ type: 'SET_TYPES', payload: [] });
           setFastSearchStrings([]);

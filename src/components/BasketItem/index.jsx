@@ -176,7 +176,8 @@ export default function BasketItem({ card }) {
         </div>
 
         <div
-          className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}>
+          // className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}>
+          className={style.btnChooseActive}>
           <button className={style.addOrDeleteBtn} onClick={() => handleCounter('delete')}>-</button>
           <span className={style.counterProduct}>{currentCount}</span>
           <button className={style.addOrDeleteBtn} onClick={() => handleCounter('add')}>+</button>
