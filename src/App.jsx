@@ -14,7 +14,7 @@ import Login from './components/Login/index.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { useDispatch } from 'react-redux';
 
-import LogoIcon from './assets/logo_xp.jpeg';
+import LogoIcon from './assets/media/logo_xp.jpeg';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,23 +27,71 @@ function App() {
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
 
+  // useEffect(() => {
+  //   fetch('https://noxer-test.ru/webapp/api/products/on_main')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       dispatch({ type: 'SET_CARDS', payload: data.products || [] });
+  //       dispatch({ type: 'SET_TYPES', payload: data.categories || [] });
+
+  //       if (data.special_project_parameters_json && data.special_project_parameters_json.fast_search_strings) {
+  //         setFastSearchStrings(data.special_project_parameters_json.fast_search_strings.parameters_list || []);
+  //       } else {
+  //         setFastSearchStrings([]);
+  //       }
+  //     })
+  //     .catch(() => {
+  //       dispatch({ type: 'SET_CARDS', payload: [] });
+  //       dispatch({ type: 'SET_TYPES', payload: [] });
+  //     });
+  // }, [dispatch]);
+
   useEffect(() => {
-    fetch('https://noxer-test.ru/webapp/api/products/on_main')
-      .then(res => res.json())
-      .then(data => {
+    const loadData = async () => {
+      try {
+        // 1. Пытаемся загрузить с сервера
+        const res = await fetch('https://noxer-test.ru/webapp/api/products/on_main');
+        if (!res.ok) throw new Error('Server error');
+  
+        const data = await res.json();
+  
         dispatch({ type: 'SET_CARDS', payload: data.products || [] });
         dispatch({ type: 'SET_TYPES', payload: data.categories || [] });
-
-        if (data.special_project_parameters_json && data.special_project_parameters_json.fast_search_strings) {
-          setFastSearchStrings(data.special_project_parameters_json.fast_search_strings.parameters_list || []);
+  
+        if (data.special_project_parameters_json?.fast_search_strings?.parameters_list) {
+          setFastSearchStrings(data.special_project_parameters_json.fast_search_strings.parameters_list);
         } else {
           setFastSearchStrings([]);
         }
-      })
-      .catch(() => {
-        dispatch({ type: 'SET_CARDS', payload: [] });
-        dispatch({ type: 'SET_TYPES', payload: [] });
-      });
+  
+      } catch (error) {
+        console.warn('⚠️ Не удалось загрузить данные с сервера. Используем локальные...');
+  
+        try {
+          // 2. Загружаем из public/data.json
+          const localRes = await fetch('/data.json'); // ← файл в public/
+          const localData = await localRes.json();
+  
+          dispatch({ type: 'SET_CARDS', payload: localData.products || [] });
+          dispatch({ type: 'SET_TYPES', payload: localData.categories || [] });
+  
+          if (localData.special_project_parameters_json?.fast_search_strings?.parameters_list) {
+            setFastSearchStrings(localData.special_project_parameters_json.fast_search_strings.parameters_list);
+          } else {
+            setFastSearchStrings([]);
+          }
+  
+        } catch (localError) {
+          console.error('❌ Не удалось загрузить локальные данные:', localError);
+          // Оставляем пустые массивы
+          dispatch({ type: 'SET_CARDS', payload: [] });
+          dispatch({ type: 'SET_TYPES', payload: [] });
+          setFastSearchStrings([]);
+        }
+      }
+    };
+  
+    loadData();
   }, [dispatch]);
 
   useEffect(() => {
@@ -111,7 +159,7 @@ function App() {
           </Route>
 
           <Route path="product/:id" element={
-            <div className={isSettingsActive ? 'contentBlur' : ''}>
+            <div className={isSettingsActive && 'contentBlur'}>
               <ProductDetail />
             </div>
           } />

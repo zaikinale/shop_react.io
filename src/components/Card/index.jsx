@@ -1,24 +1,21 @@
-// components/Card/Card.jsx
 import style from './style.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
-import heartUnactive from "../../assets/heart_unactive.svg";
-import heartActive from "../../assets/heart_active.svg";
-import CloseImg from '../../assets/close.svg'; 
+import heartUnactive from "../../assets/media/heart_unactive.svg";
+import heartActive from "../../assets/media/heart_active.svg";
+import CloseImg from '../../assets/media/close.svg';
 
-export default function Card({
-        card,
-        mode = 'default', 
-        onCountChange, 
-    }) {
+export default function Card({ card, mode = 'default' }) {
     const dispatch = useDispatch();
     const basketItems = useSelector(state => state.basketItems);
     const likedItems = useSelector(state => state.likedItems);
 
     const [imgError, setImgError] = useState(false);
-    const [isPending, setIsPending] = useState(false);
-    const [timeoutId, setTimeoutId] = useState(null);
+    const [isLikePending, setIsLikePending] = useState(false);
+    const [isBasketPending, setIsBasketPending] = useState(false);
+    const likeTimeoutRef = useRef(null);
+    const basketTimeoutRef = useRef(null);
 
     const isLiked = likedItems.includes(card.id);
     const isBasket = Object.prototype.hasOwnProperty.call(basketItems, String(card.id));
@@ -26,111 +23,63 @@ export default function Card({
 
     useEffect(() => {
         return () => {
-            if (timeoutId) clearTimeout(timeoutId);
+            if (likeTimeoutRef.current) clearTimeout(likeTimeoutRef.current);
+            if (basketTimeoutRef.current) clearTimeout(basketTimeoutRef.current);
         };
-    }, [timeoutId]);
-
-    function generateTags() {
-        const tags = [];
-        const marks = card.marks || [];
-        if (marks.some(m => m.Mark_Name === 'hit')) tags.push(<p key="hit" className={style.statusCardHit}>ХИТ</p>);
-        if (marks.some(m => m.Mark_Name === 'premium')) tags.push(<p key="premium" className={style.statusCardPremium}>ПРЕМИУМ</p>);
-        if (marks.some(m => m.Mark_Name === 'new')) tags.push(<p key="new" className={style.statusCardNew}>NEW</p>);
-        if (marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount')) tags.push(<p key="sale" className={style.statusCardSalary}>SALE</p>);
-        return tags;
-    }
-
-    function generateActPrice() {
-        const marks = card.marks || [];
-        const hasSale = marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount');
-        if (hasSale && card.old_price) {
-            return (
-                <div className={style.priceContainer}>
-                    <h4 className={style.finalPrice}>{card.price}₽</h4>
-                    <div className={style.salaryContainer}>
-                        <span className={style.originalPrice}>{card.old_price}₽</span>
-                        <span className={style.salary}>-{Math.round(100 - (card.price / card.old_price) * 100)}%</span>
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <div className={style.priceContainer}>
-                    <h4 className={style.finalPrice}>{card.price}₽</h4>
-                    {card.old_price && <s style={{ color: '#999' }}>{card.old_price}₽</s>}
-                </div>
-            );
-        }
-    }
-
-    const handleLike = () => {
-        if (mode === 'saved' && !isPending) {
-            scheduleRemovalLike();
-        } else {
-            dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
-        }
-    };
-
-    const scheduleRemovalLike = () => {
-        setIsPending(true);
-        const id = setTimeout(() => {
-            dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
-            setIsPending(false);
-            setTimeoutId(null);
-        }, 3000);
-        setTimeoutId(id);
-    };
-
-    const cancelRemovalLike = () => {
-        if (timeoutId) clearTimeout(timeoutId);
-        setIsPending(false);
-        setTimeoutId(null);
-    };
-
-    const handleBasket = () => {
-        if (mode === 'basket' && isBasket && !isPending) {
-            scheduleRemovalBasket();
-        } else {
-            dispatch({ type: 'ADD_TO_BASKET', payload: { id: card.id } });
-        }
-    };
-
-    const scheduleRemovalBasket = () => {
-        setIsPending(true);
-        const id = setTimeout(() => {
-            dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: 0 } });
-            setIsPending(false);
-            setTimeoutId(null);
-        }, 3000);
-        setTimeoutId(id);
-    };
-
-    const cancelRemovalBasket = () => {
-        if (timeoutId) clearTimeout(timeoutId);
-        setIsPending(false);
-        setTimeoutId(null);
-    };
-
-    const handleCounter = (type) => {
-        if (mode !== 'basket') return;
-        if (type === 'delete' && currentCount <= 1) return;
-        const newCount = type === 'delete' ? currentCount - 1 : currentCount + 1;
-        dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: newCount } });
-    };
+    }, []);
 
     const handleClickLike = () => {
-        if (mode === 'saved' && isPending) {
-            cancelRemovalLike();
+        if (mode === 'saved') {
+            if (isLikePending) {
+                clearTimeout(likeTimeoutRef.current);
+                setIsLikePending(false);
+                likeTimeoutRef.current = null;
+            } else {
+                setIsLikePending(true);
+                likeTimeoutRef.current = setTimeout(() => {
+                    dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
+                    setIsLikePending(false);
+                }, 3000);
+            }
         } else {
-            handleLike();
+            dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
         }
     };
 
     const handleClickBasket = () => {
-        if (mode === 'basket' && isPending) {
-            cancelRemovalBasket();
+        if (mode === 'basket') {
+            if (isBasketPending) {
+                // Отмена удаления
+                clearTimeout(basketTimeoutRef.current);
+                setIsBasketPending(false);
+                basketTimeoutRef.current = null;
+            } else {
+                // Запуск таймера удаления
+                setIsBasketPending(true);
+                basketTimeoutRef.current = setTimeout(() => {
+                    dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: 0 } });
+                    setIsBasketPending(false);
+                }, 3000);
+            }
         } else {
-            handleBasket();
+            // В обычном режиме
+            if (isBasket) {
+                dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: 0 } });
+            } else {
+                dispatch({ type: 'ADD_TO_BASKET', payload: { id: card.id } });
+            }
+        }
+    };
+
+    const handleCounter = (type) => {
+        if (mode !== 'basket') return;
+        
+        if (type === 'delete' && currentCount <= 1) {
+            // При удалении последнего товара - таймер
+            handleClickBasket();
+        } else {
+            const newCount = type === 'delete' ? currentCount - 1 : currentCount + 1;
+            dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: newCount } });
         }
     };
 
@@ -139,23 +88,23 @@ export default function Card({
             return (
                 <button
                     className={style.saveButton}
-                    aria-label={isPending ? "Отменить удаление" : "Удалить из избранного"}
+                    aria-label={isLikePending ? "Отменить удаление" : "Удалить из избранного"}
                     onClick={handleClickLike}
                 >
                     <img
                         className={style.save}
-                        src={isPending ? heartUnactive : heartActive}
-                        alt={isPending ? 'Отменить сохранение' : 'Сохранить'}
+                        src={isLikePending ? heartUnactive : heartActive}
+                        alt=""
                     />
                 </button>
             );
         }
         return (
-            <button className={style.saveButton} aria-label="Сохранить" onClick={handleClickLike}>
+            <button className={style.saveButton} onClick={handleClickLike}>
                 <img
                     className={style.save}
                     src={isLiked ? heartActive : heartUnactive}
-                    alt={isLiked ? 'Отменить сохранение' : 'Сохранить'}
+                    alt=""
                 />
             </button>
         );
@@ -164,10 +113,20 @@ export default function Card({
     const renderBasketButton = () => {
         if (mode === 'basket') {
             return (
-                <div className={isPending ? style.btnChoose : style.btnChooseActive}>
-                    <button className={style.addOrDeleteBtn} onClick={() => handleCounter('delete')}>-</button>
+                <div className={isBasketPending ? style.btnChoose : style.btnChooseActive}>
+                    <button 
+                        className={style.addOrDeleteBtn} 
+                        onClick={() => handleCounter('delete')}
+                    >
+                        -
+                    </button>
                     <span className={style.counterProduct}>{currentCount}</span>
-                    <button className={style.addOrDeleteBtn} onClick={() => handleCounter('add')}>+</button>
+                    <button 
+                        className={style.addOrDeleteBtn} 
+                        onClick={() => handleCounter('add')}
+                    >
+                        +
+                    </button>
                 </div>
             );
         }
@@ -192,8 +151,41 @@ export default function Card({
         return null;
     };
 
+    function generateTags() {
+        const tags = [];
+        const marks = card.marks || [];
+        if (marks.some(m => m.Mark_Name === 'hit')) tags.push(<p key="hit" className={style.statusCardHit}>ХИТ</p>);
+        if (marks.some(m => m.Mark_Name === 'premium')) tags.push(<p key="premium" className={style.statusCardPremium}>ПРЕМИУМ</p>);
+        if (marks.some(m => m.Mark_Name === 'new')) tags.push(<p key="new" className={style.statusCardNew}>NEW</p>);
+        if (marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount')) tags.push(<p key="sale" className={style.statusCardSalary}>SALE</p>);
+        return tags;
+    }
+    
+    function generateActPrice() {
+        const marks = card.marks || [];
+        const hasSale = marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount');
+        if (hasSale && card.old_price) {
+            return (
+                <div className={style.priceContainer}>
+                    <h4 className={style.finalPrice}>{card.price}₽</h4>
+                    <div className={style.salaryContainer}>
+                        <span className={style.originalPrice}>{card.old_price}₽</span>
+                        <span className={style.salary}>-{Math.round(100 - (card.price / card.old_price) * 100)}%</span>
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div className={style.priceContainer}>
+                    <h4 className={style.finalPrice}>{card.price}₽</h4>
+                    {card.old_price && <s style={{ color: '#999' }}>{card.old_price}₽</s>}
+                </div>
+            );
+        }
+    }
+
     return (
-        <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
+        <div className={`${style.cardProduct} ${(isLikePending || isBasketPending) ? style.pendingOpacity : ''}`}>
             <div className={style.headerCard}>
                 <div className={style.tags}>{generateTags()}</div>
                 <div className={style.controlBtns}>
@@ -202,23 +194,24 @@ export default function Card({
                 </div>
             </div>
 
-        <Link to={`/product/${card.id}`} className={style.linkContainer}>
-            {card.images?.[0]?.Image_URL && !imgError ? (
-                <img
-                    className={style.imgProduct}
-                    src={card.images[0].Image_URL}
-                    alt={card.name}
-                    onError={() => setImgError(true)}
-                />
-            ) : (
-                <div className={style.imgProductPlaceholder}></div>
-            )}
-            <div className={style.descriptionContainer}>
-                {generateActPrice()}
-                <p className={style.description}>{card.name}</p>
-            </div>
-        </Link>
-        {renderBasketButton()}
+            <Link to={`/product/${card.id}`} className={style.linkContainer}>
+                {card.images?.[0]?.Image_URL && !imgError ? (
+                    <img
+                        className={style.imgProduct}
+                        src={card.images[0].Image_URL}
+                        alt={card.name}
+                        onError={() => setImgError(true)}
+                    />
+                ) : (
+                    <div className={style.imgProductPlaceholder}></div>
+                )}
+                <div className={style.descriptionContainer}>
+                    {generateActPrice()}
+                    <p className={style.description}>{card.name}</p>
+                </div>
+            </Link>
+
+            {renderBasketButton()}
         </div>
     );
 }

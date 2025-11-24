@@ -1,17 +1,17 @@
 import style from './style.module.css'
 import { NavLink } from 'react-router'
 
-import HomeUnActiveIcon from '../../assets/homeUnActive.svg'
-import CatalogUnActiveIcon from '../../assets/catalogUnActive.svg'
-import FavoriteUnActiveIcon from '../../assets/favoriteUnActive.svg'
-import CartUnActiveIcon from '../../assets/cartUnActive.svg'
-import AccountUnActiveIcon from '../../assets/accountUnActive.svg'
+import HomeUnActiveIcon from '../../assets/media/homeUnActive.svg'
+import CatalogUnActiveIcon from '../../assets/media/catalogUnActive.svg'
+import FavoriteUnActiveIcon from '../../assets/media/favoriteUnActive.svg'
+import CartUnActiveIcon from '../../assets/media/cartUnActive.svg'
+import AccountUnActiveIcon from '../../assets/media/accountUnActive.svg'
 
-import HomeActiveIcon from '../../assets/homeActive.svg'
-import CatalogActiveIcon from '../../assets/catalogActive.svg'
-import FavoriteActiveIcon from '../../assets/favoriteActive.svg'
-import CartActiveIcon from '../../assets/cartActive.svg'
-import AccountActiveIcon from '../../assets/accountActive.svg'
+import HomeActiveIcon from '../../assets/media/homeActive.svg'
+import CatalogActiveIcon from '../../assets/media/catalogActive.svg'
+import FavoriteActiveIcon from '../../assets/media/favoriteActive.svg'
+import CartActiveIcon from '../../assets/media/cartActive.svg'
+import AccountActiveIcon from '../../assets/media/accountActive.svg'
 
 export default function Navigation() {
     return (

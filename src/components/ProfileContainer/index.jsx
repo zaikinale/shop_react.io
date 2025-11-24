@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import avatarIcon from '../../assets/avatar.svg'
+import avatarIcon from '../../assets/media/avatar.svg'
 
 export default function ProfileContainer ({ person, setPerson }) {
     const handleLogout = () => {

@@ -2,8 +2,8 @@ import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import style from './style.module.css';
-import heartUnactive from "../../assets/heart_unactive.svg";
-import heartActive from "../../assets/heart_active.svg";
+import heartUnactive from "../../assets/media/heart_unactive.svg";
+import heartActive from "../../assets/media/heart_active.svg";
 import RecommendContainer from '../../components/RecommendContainer';
 
 export default function ProductDetail() {

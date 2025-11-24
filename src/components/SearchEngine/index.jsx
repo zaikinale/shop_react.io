@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import style from './style.module.css';
-import SearchIcon from '../../assets/search.svg'
+import SearchIcon from '../../assets/media/search.svg'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router'
 
