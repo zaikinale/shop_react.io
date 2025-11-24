@@ -27,25 +27,6 @@ function App() {
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
 
-  // useEffect(() => {
-  //   fetch('https://noxer-test.ru/webapp/api/products/on_main')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       dispatch({ type: 'SET_CARDS', payload: data.products || [] });
-  //       dispatch({ type: 'SET_TYPES', payload: data.categories || [] });
-
-  //       if (data.special_project_parameters_json && data.special_project_parameters_json.fast_search_strings) {
-  //         setFastSearchStrings(data.special_project_parameters_json.fast_search_strings.parameters_list || []);
-  //       } else {
-  //         setFastSearchStrings([]);
-  //       }
-  //     })
-  //     .catch(() => {
-  //       dispatch({ type: 'SET_CARDS', payload: [] });
-  //       dispatch({ type: 'SET_TYPES', payload: [] });
-  //     });
-  // }, [dispatch]);
-
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -63,8 +44,8 @@ function App() {
           setFastSearchStrings([]);
         }
   
-      } catch (error) {
-        console.warn('⚠️ Не удалось загрузить данные с сервера. Используем локальные...');
+      } catch (e) {
+        console.warn('Не удалось загрузить данные с сервера. Используем локальные...', e);
   
         try {
           const localRes = await fetch('/data.json');
