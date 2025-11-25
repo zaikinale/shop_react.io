@@ -70,7 +70,6 @@
     background-repeat: no-repeat;
 }
 
-
 .priceContainer {
     display: flex;
     flex-direction: row;
@@ -106,8 +105,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 200px;
-    /* max-width: 100%; */
+    width: 100%;
 }
 
 .descriptionContainer {
@@ -115,11 +113,11 @@
     flex-direction: column;
     padding-left: 5px;
     gap: 5px;
+    width: 100%;
 }
 
 .description {
-    max-width: 100%;
-    /* width: 340px; */
+    width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     line-clamp: 5; 
@@ -128,36 +126,18 @@
     text-overflow: ellipsis;
     text-align: start;
     line-height: 1.4;
-    /* max-height: 2.8em;  */
     color: var(--tc);
 }
-/* 
-.btnChoose {
-    width: 140px;
-    max-width: 100%;
-    border-radius: 20px;
-    background-color: var(--bg);
-    color: var(--tc);
-    padding: 3px;
-    font-size: clamp(14px, 3.5vw, 16px);
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-} */
-
 .controlBtns {
     display: flex;
     gap: 5px;
-    /* align-items: center; */
 }
 
 .btnChooseActive {
-    /* width: 140px; */
     margin: 0 auto;
     width: 100%;
     border-radius: 20px;
     background-color: var(--bg);
-    /* background-color: rgb(255, 217, 0); */
     color: var(--tc);
     padding: 3px;
     font-size: clamp(14px, 3.5vw, 16px);
@@ -177,7 +157,6 @@
     background: none;
     color: var(--tc);
 }
-
 
 .statusCardNew {
     width: fit-content;
@@ -214,6 +193,7 @@
     color: white;
     background-color: #292928;
 }
+
 /* 
 @media (max-width: 600px) {
     .cardProduct {
