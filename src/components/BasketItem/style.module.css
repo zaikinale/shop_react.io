@@ -1,6 +1,6 @@
 .cardProduct {
-    width: 360px;
-    max-width: 360px;
+    width: 350px;
+    max-width: 350px;
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -194,20 +194,12 @@
     background-color: #292928;
 }
 
-/* 
+
 @media (max-width: 600px) {
     .cardProduct {
-        width: 173px;
-        height: 272px;
         padding: 2px;
         border-radius: 18px;
         gap: 1px;
-    }
-
-    .headerCard {
-        top: 5px;
-        left: 5px;
-        width: 160px;
     }
 
     .headerCard > * {
@@ -216,14 +208,12 @@
 
 
     .imgProduct {
-        min-width: 169px;
-        min-height: 169px;
         border-radius: 15px;
     }
 
     .imgProductPlaceholder {
-        min-width: 169px;
-        min-height: 169px;
+        /* min-width: 169px; */
+        /* min-height: 169px; */
         border-radius: 15px;
     }
 
@@ -273,4 +263,4 @@
     }
 
 
-}  */
+}  
