@@ -19,7 +19,7 @@ export default function RecommendContainer() {
     return (
         <section className={style.container}>
             <h2 className={style.sectionTitle}>Рекомендации:</h2>
-            <div className={style.containerCards}>
+            <div className={style.containerProducts}>
                 {displayCards.length > 0 ? (
                     displayCards.map(card => (
                         <Card

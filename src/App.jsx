@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await fetch('https://noxer-test.ru/webapp/api/products/on_main');
+        const res = await fetch('http://noxer-test.ru/webapp/api/products/on_main');
         if (!res.ok) throw new Error('Server error');
   
         const data = await res.json();
