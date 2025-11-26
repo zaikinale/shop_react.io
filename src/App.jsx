@@ -20,8 +20,6 @@ import LogoIcon from './assets/media/logo_xp.jpeg';
 function App() {
   const dispatch = useDispatch();
   const [fastSearchStrings, setFastSearchStrings] = useState([]);
-  // const [isSearchActive, setIsSearchActive] = useState(false);
-  // const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
@@ -105,6 +103,14 @@ function App() {
     return !isSearchActive ? <Navigation /> : null;
   }
 
+  function BlurredRoute({ children }) {
+    return (
+      <div className={isSettingsActive ? 'contentBlur' : ''}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <BrowserRouter>
         <SearchProvider>
@@ -117,27 +123,27 @@ function App() {
                 <Route
                     index
                     element={
-                        <div className={isSettingsActive ? 'contentBlur' : ''}>
+                        <BlurredRoute>
                             <Main fastSearchStrings={fastSearchStrings} />
-                        </div>
+                        </BlurredRoute>
                     }
                 />
 
                 <Route
                     path="product/:id"
                     element={
-                        <div className={isSettingsActive ? 'contentBlur' : ''}>
+                        <BlurredRoute>
                             <ProductDetail />
-                        </div>
+                        </BlurredRoute>
                     }
                 />
 
                 <Route
                     path="catalog"
                     element={
-                        <div className={isSettingsActive ? 'contentBlur' : ''}>
+                        <BlurredRoute>
                             <Catalog />
-                        </div>
+                        </BlurredRoute>
                     }
                 />
 
@@ -145,9 +151,9 @@ function App() {
                     path="saved"
                     element={
                         isLogin ? (
-                            <div className={isSettingsActive ? 'contentBlur' : ''}>
+                            <BlurredRoute>
                                 <Saved />
-                            </div>
+                            </BlurredRoute>
                         ) : (
                             <Login onSaveUser={handleSaveUser} />
                         )
@@ -158,9 +164,9 @@ function App() {
                     path="basket"
                     element={
                         isLogin ? (
-                            <div className={isSettingsActive ? 'contentBlur' : ''}>
+                            <BlurredRoute>
                                 <Basket />
-                            </div>
+                            </BlurredRoute>
                         ) : (
                             <Login onSaveUser={handleSaveUser} />
                         )
@@ -171,9 +177,9 @@ function App() {
                     path="profile"
                     element={
                         isLogin ? (
-                            <div className={isSettingsActive ? 'contentBlur' : ''}>
+                            <BlurredRoute>
                                 <Profile person={person} setPerson={setPerson} />
-                            </div>
+                            </BlurredRoute>
                         ) : (
                             <Login onSaveUser={handleSaveUser} />
                         )
