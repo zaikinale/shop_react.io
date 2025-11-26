@@ -3,9 +3,11 @@ import style from './style.module.css';
 import SearchIcon from '../../assets/media/search.svg'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router'
+import { useSearch } from '../../context/SearchContext';
 
 
-export default function SearchEngine({ setIsSearchActive, setSearchQuery, searchQuery }) {
+export default function SearchEngine() {
+  const { searchQuery, setSearchQuery, setIsSearchActive } = useSearch();
   const cards = useSelector(state => state.cards);
   const [query, setQuery] = useState('');
 

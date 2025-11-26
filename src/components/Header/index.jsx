@@ -1,6 +1,8 @@
 import style from './style.module.css';
 import { useNavigate, useLocation } from 'react-router';
+import { useSearch } from '../../context/SearchContext';
 import useDarkTheme from '../../hooks/useDarkTheme';
+
 import CloseImg from '../../assets/media/close.svg';
 import TelegramIcon from '../../assets/media/icon_tg.svg';
 import VectorImg from '../../assets/media/Vector.svg';
@@ -9,11 +11,10 @@ import SunIcon from '../../assets/media/sun.svg';
 import MoonIcon from '../../assets/media/moon.svg';
 
 export default function Header({
-    setIsSearchActive,
-    isSearchActive,
     isSettingsActive,
     setIsSettingsActive
 }) {
+    const { isSearchActive, setIsSearchActive } = useSearch();
     const navigate = useNavigate();
     const location = useLocation();
 

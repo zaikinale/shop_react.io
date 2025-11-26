@@ -13,15 +13,15 @@ import Login from './components/Login/index.jsx';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { useDispatch } from 'react-redux';
+import { SearchProvider, useSearch } from './context/SearchContext.jsx';
 
 import LogoIcon from './assets/media/logo_xp.jpeg';
 
 function App() {
   const dispatch = useDispatch();
-  
   const [fastSearchStrings, setFastSearchStrings] = useState([]);
-  const [isSearchActive, setIsSearchActive] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  // const [isSearchActive, setIsSearchActive] = useState(false);
+  // const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
@@ -100,75 +100,90 @@ function App() {
     localStorage.setItem('person', JSON.stringify(updatedPerson));
   };
 
+  function NavigationToggle() {
+    const { isSearchActive } = useSearch();
+    return !isSearchActive ? <Navigation /> : null;
+  }
+
   return (
-    <>
-      <BrowserRouter>
-        <Header 
-          setIsSearchActive={setIsSearchActive} 
-          isSearchActive={isSearchActive} 
-          isSettingsActive={isSettingsActive} 
-          setIsSettingsActive={setIsSettingsActive}>
-        </Header>
+    <BrowserRouter>
+        <SearchProvider>
+            <Header
+                isSettingsActive={isSettingsActive}
+                setIsSettingsActive={setIsSettingsActive}
+            />
 
-        <Routes>
-
-          <Route index element={(
-            <div className={isSettingsActive ? 'contentBlur' : ''}>
-              <Main 
-                setIsSearchActive={setIsSearchActive} 
-                isSearchActive={isSearchActive} 
-                searchQuery={searchQuery} 
-                setSearchQuery={setSearchQuery} 
-                fastSearchStrings={fastSearchStrings}
-              />
-            </div>
-          )}>
-          </Route>
-
-          <Route path="product/:id" element={
-            <div className={isSettingsActive && 'contentBlur'}>
-              <ProductDetail />
-            </div>
-          } />
-
-          <Route path='catalog' element={
-            <div className={isSettingsActive ? 'contentBlur' : ''}>
-              <Catalog />
-            </div>
-          }>
-          </Route>
-
-          <Route path='saved' element={
-            isLogin ? 
-              <div className={isSettingsActive ? 'contentBlur' : ''}>
-                <Saved />
-              </div> :
-                <Login onSaveUser={handleSaveUser} />
-          }></Route>
-
-          <Route path='basket' element={
-            isLogin ? 
-            <div className={isSettingsActive ? 'contentBlur' : ''}>
-              <Basket />
-            </div> : 
-              <Login onSaveUser={handleSaveUser} />
-          }></Route>
-
-          <Route path='profile' element={
-            isLogin ? 
-              <div className={isSettingsActive ? 'contentBlur' : ''}>
-                <Profile 
-                  person={person} 
-                  setPerson={setPerson} 
+            <Routes>
+                <Route
+                    index
+                    element={
+                        <div className={isSettingsActive ? 'contentBlur' : ''}>
+                            <Main fastSearchStrings={fastSearchStrings} />
+                        </div>
+                    }
                 />
-              </div> : 
-              <Login onSaveUser={handleSaveUser} />
-          }>
-          </Route>
-        </Routes>
-        {!isSearchActive && <Navigation></Navigation>}  
-      </BrowserRouter>
-    </>
+
+                <Route
+                    path="product/:id"
+                    element={
+                        <div className={isSettingsActive ? 'contentBlur' : ''}>
+                            <ProductDetail />
+                        </div>
+                    }
+                />
+
+                <Route
+                    path="catalog"
+                    element={
+                        <div className={isSettingsActive ? 'contentBlur' : ''}>
+                            <Catalog />
+                        </div>
+                    }
+                />
+
+                <Route
+                    path="saved"
+                    element={
+                        isLogin ? (
+                            <div className={isSettingsActive ? 'contentBlur' : ''}>
+                                <Saved />
+                            </div>
+                        ) : (
+                            <Login onSaveUser={handleSaveUser} />
+                        )
+                    }
+                />
+
+                <Route
+                    path="basket"
+                    element={
+                        isLogin ? (
+                            <div className={isSettingsActive ? 'contentBlur' : ''}>
+                                <Basket />
+                            </div>
+                        ) : (
+                            <Login onSaveUser={handleSaveUser} />
+                        )
+                    }
+                />
+
+                <Route
+                    path="profile"
+                    element={
+                        isLogin ? (
+                            <div className={isSettingsActive ? 'contentBlur' : ''}>
+                                <Profile person={person} setPerson={setPerson} />
+                            </div>
+                        ) : (
+                            <Login onSaveUser={handleSaveUser} />
+                        )
+                    }
+                />
+            </Routes>
+
+            <NavigationToggle />
+        </SearchProvider>
+    </BrowserRouter>
   );
 }
 
