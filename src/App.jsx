@@ -23,7 +23,6 @@ function App() {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsActive, setIsSettingsActive] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -101,14 +100,6 @@ function App() {
     localStorage.setItem('person', JSON.stringify(updatedPerson));
   };
 
-  useEffect(() => {
-    if (isDarkTheme) {
-      document.body.classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-    }
-  }, [isDarkTheme]);
-
   return (
     <>
       <BrowserRouter>
@@ -116,9 +107,7 @@ function App() {
           setIsSearchActive={setIsSearchActive} 
           isSearchActive={isSearchActive} 
           isSettingsActive={isSettingsActive} 
-          setIsSettingsActive={setIsSettingsActive} 
-          setIsDarkTheme={setIsDarkTheme} 
-          isDarkTheme={isDarkTheme}>
+          setIsSettingsActive={setIsSettingsActive}>
         </Header>
 
         <Routes>
