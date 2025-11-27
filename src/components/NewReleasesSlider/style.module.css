@@ -1,0 +1,41 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 10px;
+}
+
+.sliderContainer {
+    width: 350px;
+}
+
+.sliderImg {
+    border-radius: 10px;
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.controlContainer {
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    gap: 5px;
+}
+
+.controlBtn {
+    padding: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    opacity: 0.5;
+    background-color: var(--bg);
+}
+
+.controlBtnActive {
+    opacity: 1;
+    padding: 0;
+    background-color: white;
+}

@@ -4,7 +4,8 @@ import SearchEngine from '../../components/SearchEngine/index.jsx';
 import SliderProductTypes from '../../components/SliderProductTypes/index.jsx';
 import ProductContainer from '../../components/ProductContainer/index.jsx';
 import SearchedContainer from '../../components/SearchedContainer/index.jsx';
-import { useSearch } from '../../context/SearchContext'; // ← новый импорт
+import NewReleasesSlider from '../../components/NewReleasesSlider/index.jsx';
+import { useSearch } from '../../context/SearchContext'; 
 
 export default function Main({ fastSearchStrings }) {
     const { isSearchActive, searchQuery, setSearchQuery } = useSearch();
@@ -24,6 +25,7 @@ export default function Main({ fastSearchStrings }) {
                 )
             ) : (
                 <>
+                    <NewReleasesSlider />
                     <SliderProductTypes />
                     <ProductContainer />
                 </>
