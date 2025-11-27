@@ -1,5 +1,6 @@
 import style from './style.module.css';
 import SavedContainer from '../../components/SavedContainer'
+import RecommendContainer from '../../components/RecommendContainer';
 
 export default function Saved () {
     
@@ -8,6 +9,7 @@ export default function Saved () {
         <h1 className={style.sectionTitle}>Избранное:</h1>
         <>
             <SavedContainer />
+            <RecommendContainer />
         </>
     </div>
     )

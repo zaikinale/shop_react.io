@@ -49,12 +49,10 @@ export default function Card({ card, mode = 'default' }) {
     const handleClickBasket = () => {
         if (mode === 'basket') {
             if (isBasketPending) {
-                // Отмена удаления
                 clearTimeout(basketTimeoutRef.current);
                 setIsBasketPending(false);
                 basketTimeoutRef.current = null;
             } else {
-                // Запуск таймера удаления
                 setIsBasketPending(true);
                 basketTimeoutRef.current = setTimeout(() => {
                     dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: 0 } });
@@ -62,7 +60,6 @@ export default function Card({ card, mode = 'default' }) {
                 }, 3000);
             }
         } else {
-            // В обычном режиме
             if (isBasket) {
                 dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: 0 } });
             } else {
@@ -75,7 +72,6 @@ export default function Card({ card, mode = 'default' }) {
         if (mode !== 'basket') return;
         
         if (type === 'delete' && currentCount <= 1) {
-            // При удалении последнего товара - таймер
             handleClickBasket();
         } else {
             const newCount = type === 'delete' ? currentCount - 1 : currentCount + 1;

@@ -91,6 +91,7 @@
 }
 
 .miniDescProductContainer {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -136,3 +137,60 @@
     color: #F24131;
     font-weight: 700;
 } 
+
+.miniDescProductContainerText {
+    display: flex;
+    gap: 20px;
+}
+
+
+.saveButton {
+    position: absolute;
+    right: 0;
+    margin: 4px;
+    width: 20px;
+    max-height: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.save {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.btnChoose,
+.btnChooseActive {
+    position: absolute;
+    right: 0;
+    margin-left: 20px;
+    width: 100%;
+    max-width: 100px;
+    border-radius: 16px;
+    padding: 4px;
+    /* font-size: clamp(12px, 3.5vw, 16px); */
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+}
+
+.btnChoose {
+    background-color: var(--bg);
+    color: var(--tc);
+}
+
+.btnChooseActive {
+    background-color: rgb(255, 217, 0);
+    color: white;
+}
