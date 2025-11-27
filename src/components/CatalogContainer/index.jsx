@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import CatalogItem from '../CatalogItem/index.jsx'
+import TypeCard from '../TypeCard/index.jsx'
 import { useSelector } from 'react-redux'
 
 export default function CatalogContainer () {
@@ -10,7 +10,7 @@ export default function CatalogContainer () {
     <div className={style.sliderTypes}>
 
       {typesList.map(type => (
-        <CatalogItem key={type.Category_ID} types={type} />
+        <TypeCard key={type.Category_ID} type={type} />
       ))}
     
     </div>
