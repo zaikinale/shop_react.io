@@ -7,6 +7,15 @@ const initialState = {
 
 function appReducer(state = initialState, action) {
     switch (action.type) {
+        case 'RESET_APP':
+            return {
+                ...initialState,
+                cards: state.cards,
+                types: state.types,
+                likedItems: [],
+                basketItems: {}
+            };
+
         case 'SET_TYPES':
             return {
                 ...state,

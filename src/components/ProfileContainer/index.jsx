@@ -1,10 +1,13 @@
 import style from './style.module.css'
 import avatarIcon from '../../assets/media/avatar.svg'
+import { useDispatch } from 'react-redux';
 
 export default function ProfileContainer ({ person, setPerson }) {
+    const dispatch = useDispatch()
     const handleLogout = () => {
-        localStorage.removeItem('person');
+        localStorage.clear()
         setPerson([]);
+        dispatch({ type: 'RESET_APP' })
     };
 
     return (

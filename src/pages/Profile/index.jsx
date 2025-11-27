@@ -20,15 +20,9 @@ export default function Profile({ person, setPerson }) {
                 person={person} 
                 setPerson={setPerson} 
             />
-            {/* <Link to="/saved" style={{ textDecoration: 'none', color: 'inherit' }}> */}
-                <SliderCardsContainer type={type[0]} cards={likedCards} />
-            {/* </Link> */}
-
-            {/* <Link to="/basket" style={{ textDecoration: 'none', color: 'inherit' }}> */}
-                <SliderCardsContainer type={type[1]}  cards={basketCards} />
-            {/* </Link> */}
+            <SliderCardsContainer type={type[0]} cards={likedCards} />
+            <SliderCardsContainer type={type[1]}  cards={basketCards} />
             <RecommendContainer />
-
         </>
     ) 
 }
