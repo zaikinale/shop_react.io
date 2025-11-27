@@ -111,6 +111,10 @@ function App() {
     );
   }
 
+  function LoginRoute({ children }) {
+    return isLogin ? children : <Login onSaveUser={handleSaveUser} />;
+  }
+
   return (
     <BrowserRouter>
         <SearchProvider>
@@ -150,39 +154,33 @@ function App() {
                 <Route
                     path="saved"
                     element={
-                        isLogin ? (
-                            <BlurredRoute>
-                                <Saved />
-                            </BlurredRoute>
-                        ) : (
-                            <Login onSaveUser={handleSaveUser} />
-                        )
+                      <LoginRoute>
+                        <BlurredRoute>
+                          <Saved />
+                        </BlurredRoute>
+                      </LoginRoute>
                     }
                 />
 
                 <Route
                     path="basket"
                     element={
-                        isLogin ? (
-                            <BlurredRoute>
-                                <Basket />
-                            </BlurredRoute>
-                        ) : (
-                            <Login onSaveUser={handleSaveUser} />
-                        )
+                        <LoginRoute>
+                          <BlurredRoute>
+                            <Basket />
+                          </BlurredRoute>
+                        </LoginRoute>
                     }
                 />
 
                 <Route
                     path="profile"
                     element={
-                        isLogin ? (
-                            <BlurredRoute>
-                                <Profile person={person} setPerson={setPerson} />
-                            </BlurredRoute>
-                        ) : (
-                            <Login onSaveUser={handleSaveUser} />
-                        )
+                        <LoginRoute>
+                          <BlurredRoute>
+                            <Profile person={person} setPerson={setPerson} />
+                          </BlurredRoute>
+                        </LoginRoute>
                     }
                 />
             </Routes>
