@@ -14,9 +14,34 @@ export default function Header({
     isSettingsActive,
     setIsSettingsActive
 }) {
+    const location = useLocation();
+
+    const getTitle = () => {
+        switch (location.pathname) {
+            case '/':
+                return 'Главная';
+            case '/catalog':
+                return 'Каталог';
+            case '/saved':
+                return 'Избранное';
+            case '/basket':
+                return 'Корзина';
+            case '/profile':
+                return 'Профиль';
+            default:
+                if (location.pathname.startsWith('/product/')) {
+                return 'Назад';
+                }
+            return 'Закрыть';
+        }
+    };
+    
+    const title = getTitle();
+
+
+
     const { isSearchActive, setIsSearchActive } = useSearch();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const [isDarkTheme, setIsDarkTheme] = useDarkTheme();
 
@@ -47,7 +72,7 @@ export default function Header({
         <div className={style.header}>
             <button className={style.exit} onClick={handleBackOrClose}>
                 <img src={CloseImg} alt="close" className={style.icon} />
-                {isSearchActive ? 'Назад' : 'Закрыть'}
+                {isSearchActive ? 'Назад' : title}
             </button>
 
             <button className={style.link}>

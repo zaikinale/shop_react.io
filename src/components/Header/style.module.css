@@ -5,7 +5,7 @@
     justify-content: space-between; */
 
     display: grid;
-    grid-template-columns: 110px 1fr 80px;
+    grid-template-columns: 130px 1fr 80px;
     /* margin-top: clamp(12px, 3vw, 20px); */
     margin-bottom: clamp(12px, 3vw, 20px);
     padding: clamp(8px, 2vw, 12px) clamp(0, 4vw, 24px);
