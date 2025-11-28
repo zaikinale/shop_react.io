@@ -3,9 +3,10 @@
     /* display: flex;
     align-items: center;
     justify-content: space-between; */
-
-    display: grid;
-    grid-template-columns: 130px 1fr 80px;
+    display: flex;
+    justify-content: space-between;
+    /* display: grid; */
+    /* grid-template-columns: 130px 1fr 80px; */
     /* margin-top: clamp(12px, 3vw, 20px); */
     margin-bottom: clamp(12px, 3vw, 20px);
     padding: clamp(8px, 2vw, 12px) clamp(0, 4vw, 24px);
@@ -16,8 +17,6 @@
 }
 
 .icon {
-    /* width: clamp(14px, 3.5vw, 15px);
-    height: clamp(14px, 3.5vw, 15px); */
     width: 10px;
     height: 10px;
     flex-shrink: 0;
@@ -100,7 +99,6 @@
 
 @media (max-width: 425px) {
     .header {
-        grid-template-columns: 90px 1fr 60px;
         margin: 0;
     }
     .exit, .link, .settings {

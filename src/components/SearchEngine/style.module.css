@@ -110,6 +110,7 @@
     display: flex;
     gap: 5px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .miniSalaryContainer {
@@ -140,13 +141,14 @@
 
 .miniDescProductContainerText {
     display: flex;
+    justify-content: space-between;
     gap: 20px;
 }
 
 
 .saveButton {
-    position: absolute;
-    right: 0;
+    /* position: absolute;
+    right: 0; */
     margin: 4px;
     width: 20px;
     max-height: 20px;
@@ -168,8 +170,8 @@
 
 .btnChoose,
 .btnChooseActive {
-    position: absolute;
-    right: 0;
+    /* position: absolute;
+    right: 0; */
     margin-left: 20px;
     width: 100%;
     max-width: 100px;

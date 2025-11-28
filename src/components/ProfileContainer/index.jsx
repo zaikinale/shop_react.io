@@ -12,7 +12,7 @@ export default function ProfileContainer ({ person, setPerson }) {
 
     return (
         <section className={style.container}>
-            <h1 className={style.container__title}>Профиль</h1>
+            <h1 className={style.container__title}></h1>
             <div className={style.data}>
                 <h2 className={style.subtitle}>Данные пользователя</h2> 
                 <div className={style.dataContainer}>
