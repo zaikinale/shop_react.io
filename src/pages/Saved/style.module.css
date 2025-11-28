@@ -11,8 +11,9 @@
 
 .sectionTitle {
   color: black;
-  width: 500px;
+  margin: 0 auto;
+  width: 350px;
   margin: 10px auto;
-  font-size: 24px;
+  font-size: 16px;
   text-align: start;
 }
