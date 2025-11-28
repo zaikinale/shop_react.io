@@ -122,7 +122,7 @@
 }
 
 .description {
-    width: 100%;
+    width: calc(100% - 5px);
     display: -webkit-box;
     -webkit-line-clamp: 5;
     line-clamp: 5; 
