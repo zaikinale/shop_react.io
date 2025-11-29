@@ -24,7 +24,7 @@
 .card__title {
     font-size: 16px;
     font-weight: 500;
-    color: var(--tc);
+    color: var(--text-color);
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
