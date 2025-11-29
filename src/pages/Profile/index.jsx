@@ -1,6 +1,6 @@
 // import style from './style.module.css'
 import ProfileContainer from '../../components/ProfileContainer'
-import RecommendContainer from '../../components/RecommendContainer'
+import CardsContainer from '../../components/CardsContainer'
 import SliderCardsContainer from '../../components/SliderCardsConteiner'
 import { useSelector } from 'react-redux'
 // import { Link } from 'react-router'
@@ -22,7 +22,7 @@ export default function Profile({ person, setPerson }) {
             />
             <SliderCardsContainer type={type[0]} cards={likedCards} />
             <SliderCardsContainer type={type[1]}  cards={basketCards} />
-            <RecommendContainer />
+            <CardsContainer mode={'recommend'} />
         </>
     ) 
 }

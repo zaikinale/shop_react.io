@@ -1,7 +1,12 @@
-.container {
+.containerProducts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center; 
+    gap: 16px;
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 70px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .sectionTitle {
@@ -13,21 +18,10 @@
     margin-bottom: 10px;
 }
 
-.containerProducts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 250px);
-    justify-content: center; 
-    gap: 16px;
-    width: 100%;
-    /* padding: 0 8px; */
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
-
 .empty {
     font-weight: bold;
     font-size: 40px;
-    color: white;
+    color: var(--tc);
 }
 
 @media (max-width: 600px) {
