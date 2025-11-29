@@ -131,7 +131,7 @@
     text-overflow: ellipsis;
     text-align: start;
     line-height: 1.4;
-    color: var(--tc);
+    color: var(--text-color);
 }
 .controlBtns {
     display: flex;
@@ -143,7 +143,7 @@
     width: 100%;
     border-radius: 20px;
     background-color: var(--bg);
-    color: var(--tc);
+    color: var(--text-color);
     padding: 3px;
     font-size: clamp(14px, 3.5vw, 16px);
     display: flex;
@@ -160,7 +160,7 @@
     padding: 5px;
     margin: 0 10px;
     background: none;
-    color: var(--tc);
+    color: var(--text-color);
 }
 
 .statusCardNew {
