@@ -152,8 +152,11 @@
     box-sizing: border-box;
 }
 
-.deleteBrn {
-    width: 18px;
+.deleteBtn {
+    width: 24px;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: var(--bg);
 }
 
 .addOrDeleteBtn {

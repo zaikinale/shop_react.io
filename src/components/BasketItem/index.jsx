@@ -144,7 +144,7 @@ export default function BasketItem({ card }) {
 
         <div className={style.controlBtns}>
           <button className={style.saveButton} onClick={() => handleBasket(card.id)}>
-            <img className={style.deleteBrn} src={CloseImg} alt="delete" />
+            <img className={style.deleteBtn} src={CloseImg} alt="delete" />
           </button>
           <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
             <img
