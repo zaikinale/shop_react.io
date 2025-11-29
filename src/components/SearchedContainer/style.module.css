@@ -6,7 +6,7 @@
 
 .searchTitle {
     text-align: left;
-    color: var(--tc);
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 

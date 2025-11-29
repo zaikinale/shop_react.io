@@ -21,7 +21,7 @@
     text-align: left;
     font-size: 11px;
     width: 100%;
-    color: var(--tc);
+    color: var(--text-color);
     padding-bottom: 5px;
-    border-bottom: 1px solid var(--block-color);
+    border-bottom: 1px solid var(--text-color);
 }
