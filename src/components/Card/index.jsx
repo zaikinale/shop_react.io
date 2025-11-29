@@ -6,7 +6,7 @@ import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CloseImg from '../../assets/media/close.svg';
 
-export default function Card({ card, mode = 'default' }) {
+export default function Card({ card, type = 'default' }) {
     const dispatch = useDispatch();
     const basketItems = useSelector(state => state.basketItems);
     const likedItems = useSelector(state => state.likedItems);
@@ -29,7 +29,7 @@ export default function Card({ card, mode = 'default' }) {
     }, []);
 
     const handleClickLike = () => {
-        if (mode === 'saved') {
+        if (type === 'saved') {
             if (isLikePending) {
                 clearTimeout(likeTimeoutRef.current);
                 setIsLikePending(false);
@@ -47,7 +47,7 @@ export default function Card({ card, mode = 'default' }) {
     };
 
     const handleClickBasket = () => {
-        if (mode === 'basket') {
+        if (type === 'basket') {
             if (isBasketPending) {
                 clearTimeout(basketTimeoutRef.current);
                 setIsBasketPending(false);
@@ -69,7 +69,7 @@ export default function Card({ card, mode = 'default' }) {
     };
 
     const handleCounter = (type) => {
-        if (mode !== 'basket') return;
+        if (type !== 'basket') return;
         
         if (type === 'delete' && currentCount <= 1) {
             handleClickBasket();
@@ -80,7 +80,7 @@ export default function Card({ card, mode = 'default' }) {
     };
 
     const renderLikeButton = () => {
-        if (mode === 'saved') {
+        if (type === 'saved') {
             return (
                 <button
                     className={style.saveButton}
@@ -107,7 +107,7 @@ export default function Card({ card, mode = 'default' }) {
     };
 
     const renderBasketButton = () => {
-        if (mode === 'basket') {
+        if (type === 'basket') {
             return (
                 <div className={isBasketPending ? style.btnChoose : style.btnChooseActive}>
                     <button 
@@ -137,7 +137,7 @@ export default function Card({ card, mode = 'default' }) {
     };
 
     const renderRemoveButton = () => {
-        if (mode === 'basket') {
+        if (type === 'basket') {
             return (
                 <button className={style.saveButton} onClick={handleClickBasket}>
                     <img className={style.deleteBrn} src={CloseImg} alt="delete" />

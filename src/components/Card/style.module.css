@@ -1,5 +1,3 @@
-/* Card.module.css */
-
 .cardProduct {
     width: 100%;
     max-width: 250px;
@@ -100,7 +98,7 @@
   .finalPrice {
     font-weight: bold;
     font-size: 20px;
-    color: black;
+    color: var(--title-color);
   }
   
   .salaryContainer {
@@ -148,8 +146,6 @@
     color: var(--text-color);
   }
   
-  /* ———— Кнопки ———— */
-  
   .btnChoose,
   .btnChooseActive {
     width: 100%;
@@ -172,10 +168,9 @@
   
   .btnChooseActive {
     background-color: rgb(255, 217, 0);
-    color: white;
+    color: var(--title-color);
   }
   
-  /* Счётчик в корзине */
   .addOrDeleteBtn {
     padding: 5px;
     margin: 0 10px;
@@ -201,8 +196,6 @@
     gap: 5px;
     align-items: start;
   }
-  
-  /* ———— Теги статусов ———— */
   
   .statusCardNew,
   .statusCardHit,
@@ -233,9 +226,7 @@
   .statusCardPremium {
     background-color: #292928;
   }
-  
-  /* ———— Адаптив ———— */
-  
+
   @media (max-width: 600px) {
     .cardProduct {
       width: 173px;

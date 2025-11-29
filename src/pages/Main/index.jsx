@@ -2,7 +2,7 @@
 import style from './style.module.css';
 import SearchEngine from '../../components/SearchEngine/index.jsx';
 import SliderProductTypes from '../../components/SliderProductTypes/index.jsx';
-import ProductContainer from '../../components/ProductContainer/index.jsx';
+import CardsContainer from '../../components/CardsContainer/index.jsx';
 import SearchedContainer from '../../components/SearchedContainer/index.jsx';
 import NewReleasesSlider from '../../components/NewReleasesSlider/index.jsx';
 import { useSearch } from '../../context/SearchContext'; 
@@ -27,7 +27,7 @@ export default function Main({ fastSearchStrings }) {
                 <>
                     <NewReleasesSlider />
                     <SliderProductTypes />
-                    <ProductContainer />
+                    <CardsContainer mode={'default'} />
                 </>
             )}
         </div>
