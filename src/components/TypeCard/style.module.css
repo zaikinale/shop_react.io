@@ -18,14 +18,14 @@
     height: 90px;
     object-fit: cover;
     border-radius: 20px;
-    background-color: white;
+    background-color: gray;
 }
 
 .card__title {
     max-width: 90px;
     font-size: 16px;
     font-weight: 500;
-    color: var(--tc);
+    color: var(--text-color);
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;

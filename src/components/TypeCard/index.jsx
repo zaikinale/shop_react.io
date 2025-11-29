@@ -9,7 +9,6 @@ export default function TypeCard({ type }) {
                 <img className={style.card__img} src={type.Category_Image} alt={type.Category_Name} onError={() => setImgError(true)} /> 
                 : <div className={style.card__img}></div> }
             <h3 className={style.card__title}>{type.Category_Name}</h3>
-        
         </div>
     );
 }

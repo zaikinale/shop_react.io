@@ -4,8 +4,8 @@ import SliderImg1 from '../../assets/media/slider_1.png';
 import SliderImg2 from '../../assets/media/slider_2.png';
 
 const dataSliders = [
-  { id: 1, img: SliderImg1 },
-  { id: 2, img: SliderImg2 }
+    { id: 1, img: SliderImg1 },
+    { id: 2, img: SliderImg2 }
 ];
 
 export default function NewReleasesSlider() {

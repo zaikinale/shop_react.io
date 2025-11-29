@@ -13,16 +13,22 @@
   -moz-osx-font-smoothing: grayscale;
 
   --bg: #F1F1F1;
-  --bc: #F0F0F0;
+
+  --block-color: white;
   --bb: #C6C6C6;
-  --tc: #666666;
+
+  --title-color: black;
+  --text-color: #666666;
 }
 
 body.dark-theme {
   --bg: black;
-  --bc: #000000
+  --block-color: #666666;
   --bb: #666666;
-  --tc: #666666;
+
+  --title-color: white;
+
+  --text-color: white;
 }
 
 * {

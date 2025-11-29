@@ -23,5 +23,5 @@
     width: 100%;
     color: var(--tc);
     padding-bottom: 5px;
-    border-bottom: 1px solid var(--tc);
+    border-bottom: 1px solid var(--block-color);
 }

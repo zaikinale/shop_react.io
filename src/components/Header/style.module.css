@@ -1,13 +1,7 @@
 .header {
     width: 100%;
-    /* display: flex;
-    align-items: center;
-    justify-content: space-between; */
     display: flex;
     justify-content: space-between;
-    /* display: grid; */
-    /* grid-template-columns: 130px 1fr 80px; */
-    /* margin-top: clamp(12px, 3vw, 20px); */
     margin-bottom: clamp(12px, 3vw, 20px);
     padding: clamp(8px, 2vw, 12px) clamp(0, 4vw, 24px);
     position: sticky;
@@ -36,11 +30,11 @@
     min-width: 36px;
     cursor: pointer;
     transition: background-color 0.2s;
-    color: var(--tc);
+    color: var(--text-color);
 }
 
 .exit, .settings {
-    background-color: var(--bb);
+    background-color: gray;
 }
 
 .exit {
@@ -60,10 +54,10 @@
     width: 140px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
     border-radius: 10px;
     padding: 5px;
-    background-color: var(--bb);
+    background-color: var(--block-color);
 }
 
 .btnControl {
@@ -72,7 +66,7 @@
     display: flex;
     align-items: center;
     gap: 7px;
-    background-color: white;
+    background-color: gray;
 }
 
 .btnControlImg {
@@ -90,16 +84,13 @@
 
 .btnControlText {
     font-size: 13px;
-    color: var(--tc);
+    color: var(--text-color);
 }
-
 
 .link {
     width: 150px;
     margin: 0 auto;
 }
-
-
 
 @media (max-width: 425px) {
     .header {

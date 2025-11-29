@@ -10,7 +10,7 @@
 }
 
 .sectionTitle {
-  color: black;
+  color: var(--title-color);
   margin: 0 auto;
   width: 350px;
   margin: 10px auto;

@@ -6,7 +6,7 @@
     max-width: 100%;
     border-radius: 20px;
     /* padding: 5px; */
-    background-color: white;
+    background-color: var(--block-color);
 
 }
 
@@ -19,14 +19,13 @@
     max-width: 100%;
     border-radius: 20px;
     padding: 5px;
-    background-color: white;
+    background-color: var(--block-color);
     color: gray;
     display: flex;
     flex-direction: row;
     align-items: center;
     
 }
-
 
 .searchActive {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
@@ -47,13 +46,13 @@
     align-items: center;
     width: 100%;
     font-size: 16px;
-    background-color: white;
-    color: var(--tc);
+    background-color: var(--block-color);
+    color: var(--text-color);
     padding: 10px 10px;
 }
 
 .searchInput::placeholder {
-    color: var(--tc);
+    color: var(--text-color);
 }
 
 .goToProduct {
@@ -71,7 +70,7 @@
     display: flex;
     gap: 30px;
     padding: 15px;
-    background-color: white;
+    background-color:  var(--block-color);
     border-radius: 10px;
 }
 
@@ -96,12 +95,11 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-
 }
 
 .miniDescProduct {
     font-size: 13px;
-    color: var(--tc);
+    color: var(--text-color);
     text-align: start;
 
 }
@@ -122,7 +120,7 @@
 .miniFinalPrice {
     text-align: left;
     font-size: 16px;
-    color: #292928;
+    color: var(--title-color);
     font-weight: 600;
 } 
 
@@ -188,7 +186,7 @@
 
 .btnChoose {
     background-color: var(--bg);
-    color: var(--tc);
+    color: var(--text-color);
 }
 
 .btnChooseActive {

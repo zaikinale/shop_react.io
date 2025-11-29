@@ -5,9 +5,9 @@
     align-items: center;
     justify-content: space-around;
     padding: 15px;
-    border: 1px solid var(--tc);
+    border: 1px solid var(--bb);
     border-radius: 30px;
-    background-color: white;
+    background-color: var(--block-color);
     position: fixed;
     bottom: 10px;
     left: 10px; 

@@ -9,7 +9,7 @@
 
 .container__title {
     font-size: 18px;
-    color: var(--tc);
+    color: var(--title-color);
 }
 
 .data {
@@ -23,7 +23,7 @@
     padding: 10px;
     border-radius: 10px;
     background-color: white;
-    color: var(--tc);
+    color: var(--block-color);
 }
 
 .data__items {
@@ -39,7 +39,7 @@
     width: 100%;
     padding: 4px;
     background-color: var(--bg);
-    color: var(--tc);
+    color: var(--text-color);
     border-radius: 10px;
     font-size: 13px;
 }
@@ -48,7 +48,7 @@
     width: 100%;
     padding: 4px;
     background-color: var(--bg);
-    color: var(--tc);
+    color: var(--text-color);
     border-radius: 10px;
     font-weight: 400;
     font-size: 13px;
