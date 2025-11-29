@@ -135,7 +135,7 @@
 }
 .controlBtns {
     display: flex;
-    gap: 5px;
+    gap: 2px;
 }
 
 .btnChooseActive {
