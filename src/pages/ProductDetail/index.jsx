@@ -5,6 +5,7 @@ import generateTags from '../../utils/generateTags.jsx'
 import generateActPrice from '../../utils/generateActPrice.jsx'
 import CardImg from '../../components/CardImg/CardImg.jsx'
 import SaveButton from '../../components/SaveButton/SaveButton.jsx'
+import BasketButton from '../../components/BasketButton/BasketButton.jsx'
 import style from './style.module.css';
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
@@ -22,13 +23,13 @@ export default function ProductDetail() {
     }
     const inBasket = isBasket(product.id);
 
-    function toggleBtnSave() {
-        dispatch({ type: 'LIKE_ITEM', payload: { id: product.id } });
-    }
-
-    function handleBasket() {
-        dispatch({ type: 'ADD_TO_BASKET', payload: { id: product.id } });
-    }
+    const handleBasketToggle = () => {
+        if (inBasket) {
+            dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: product.id, count: 0 } });
+        } else {
+            dispatch({ type: 'ADD_TO_BASKET', payload: { id: product.id } });
+        }
+    };
 
     return (
     <>
@@ -48,9 +49,17 @@ export default function ProductDetail() {
                     {generateActPrice(product, style)}
                     <p className={style.description}>{product.name}</p>
                 </div>
-                <button className={inBasket ? style.btnChooseActive : style.btnChoose} onClick={handleBasket}>
-                    {inBasket ? 'Убрать' : 'Выбрать'}
-                </button>
+
+                <BasketButton
+                    type={'default'}
+                    isBasket={inBasket}
+                    isBasketPending={''}
+                    currentCount={''}
+                    onToggle={handleBasketToggle}
+                    onAdd={''}
+                    onDelete={''}
+                    style={style}
+                ></BasketButton>
             </div>
         </div>
 

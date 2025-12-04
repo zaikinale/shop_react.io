@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 import generateTags from '../../utils/generateTags.jsx'
 import generateActPrice from '../../utils/generateActPrice.jsx'
 import SaveButton from '../SaveButton/SaveButton.jsx'
+import DeleteButton from '../DeleteButton/DeleteButton.jsx'
+import BasketButton from '../BasketButton/BasketButton.jsx'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CloseImg from '../../assets/media/close.svg';
@@ -59,53 +61,17 @@ export default function Card({ card, type = 'default' }) {
         }
     };
 
-    const renderBasketButton = () => {
-        if (type === 'basket') {
-            return (
-                <div className={isBasketPending ? style.btnChoose : style.btnChooseActive}>
-                    <button 
-                        className={style.addOrDeleteBtn} 
-                        onClick={() => handleCounter('delete')}
-                    >
-                        -
-                    </button>
-                    <span className={style.counterProduct}>{currentCount}</span>
-                    <button 
-                        className={style.addOrDeleteBtn} 
-                        onClick={() => handleCounter('add')}
-                    >
-                        +
-                    </button>
-                </div>
-            );
-        }
-        return (
-            <button
-                className={isBasket ? style.btnChooseActive : style.btnChoose}
-                onClick={handleClickBasket}
-            >
-                {isBasket ? 'Убрать' : 'Выбрать'}
-            </button>
-        );
-    };
-
-    const renderRemoveButton = () => {
-        if (type === 'basket') {
-            return (
-                <button className={style.saveButton} onClick={handleClickBasket}>
-                    <img className={style.deleteBrn} src={CloseImg} alt="delete" />
-                </button>
-            );
-        }
-        return null;
-    };
-
     return (
         <div className={`${style.cardProduct} ${(isLikePending || isBasketPending) ? style.pendingOpacity : ''}`}>
             <div className={style.headerCard}>
                 <div className={style.tags}>{generateTags(card, style)}</div>
                 <div className={style.controlBtns}>
-                    {renderRemoveButton()}
+                    {type === 'basket' && (
+                        <DeleteButton
+                            onClick={handleClickBasket}
+                            style={style}
+                        />
+                    )}
                     <SaveButton type={type} card={card} style={style} isLikePending={isLikePending} setIsLikePending={setIsLikePending}></SaveButton>
                 </div>
             </div>
@@ -117,8 +83,16 @@ export default function Card({ card, type = 'default' }) {
                     <p className={style.description}>{card.name}</p>
                 </div>
             </Link>
-
-            {renderBasketButton()}
+            <BasketButton
+                type={type}
+                isBasket={isBasket}
+                isBasketPending={isBasketPending}
+                currentCount={currentCount}
+                onToggle={handleClickBasket}
+                onAdd={() => handleCounter('add')}
+                onDelete={() => handleCounter('delete')}
+                style={style}
+            />
         </div>
     );
 }

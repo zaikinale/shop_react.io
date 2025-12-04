@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { useSearch } from '../../context/SearchContext';
 import CardImg from '../CardImg/CardImg.jsx'
 import SaveButton from '../SaveButton/SaveButton.jsx'
+import BasketButton from '../BasketButton/BasketButton.jsx'
 import heartUnactive from '../../assets/media/heart_unactive.svg';
 import heartActive from '../../assets/media/heart_active.svg';
 
@@ -108,12 +109,22 @@ export default function SearchEngine() {
                                         </span>
                                     </div>
                                 )}
-                                <button
-                                    className={isBasket ? style.btnChooseActive : style.btnChoose}
-                                    onClick={handleClickBasket}
-                                >
-                                    {isBasket ? 'Убрать' : 'Выбрать'}
-                                </button>
+                                <BasketButton
+                                    type={'default'}
+                                    isBasket={isBasket}
+                                    isBasketPending={''}
+                                    currentCount={''}
+                                    onToggle={handleClickBasket}
+                                    onAdd={''}
+                                    onDelete={''}
+                                    style={style}
+                                ></BasketButton>
+                                {/*<button*/}
+                                {/*    className={isBasket ? style.btnChooseActive : style.btnChoose}*/}
+                                {/*    onClick={handleClickBasket}*/}
+                                {/*>*/}
+                                {/*    {isBasket ? 'Убрать' : 'Выбрать'}*/}
+                                {/*</button>*/}
                             </div>
                         </div>
                     </div>

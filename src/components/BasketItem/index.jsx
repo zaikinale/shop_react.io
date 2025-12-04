@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router';
 import generateActPrice from '../../utils/generateActPrice.jsx'
 import CardImg from '../CardImg/CardImg.jsx'
+import DeleteButton from '../DeleteButton/DeleteButton.jsx'
+import BasketButton from '../BasketButton/BasketButton.jsx'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import SaveButton from '../SaveButton/SaveButton.jsx'
@@ -13,7 +15,7 @@ import CloseImg from '../../assets/media/close.svg'
 export default function BasketItem({ card }) {
   const dispatch = useDispatch();
   const basketItems = useSelector(state => state.basketItems);
-  const isBasket = (id) => Object.prototype.hasOwnProperty.call(basketItems, String(id));
+  const isBasket = Object.prototype.hasOwnProperty.call(basketItems, String(card.id));
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
@@ -50,10 +52,10 @@ export default function BasketItem({ card }) {
     setTimeoutId(timerId);
   };
 
-  function handleBasket(id) {
+  function handleBasket() {
     if (isPending) {
       cancelRemoval();
-    } else if (isBasket(id)) {
+    } else if (isBasket) {
       scheduleRemoval();
     } else {
       dispatch({ type: 'ADD_TO_BASKET', payload: { id: card.id } });
@@ -88,9 +90,7 @@ export default function BasketItem({ card }) {
         </div>
 
         <div className={style.controlBtns}>
-          <button className={style.saveButton} onClick={() => handleBasket(card.id)}>
-            <img className={style.deleteBtn} src={CloseImg} alt="delete" />
-          </button>
+            <DeleteButton onClick={handleBasket} style={style} />
             <SaveButton type={"default"} card={card} style={style} isLikePending={''} setIsLikePending={''}></SaveButton>
         </div>
       </div>
@@ -104,13 +104,16 @@ export default function BasketItem({ card }) {
           {generateActPrice(card, style)}
           <p className={style.description}>{card.name}</p>
         </div>
-
-        <div
-          className={style.btnChooseActive}>
-          <button className={style.addOrDeleteBtn} onClick={() => handleCounter('delete')}>-</button>
-          <span className={style.counterProduct}>{currentCount}</span>
-          <button className={style.addOrDeleteBtn} onClick={() => handleCounter('add')}>+</button>
-        </div>
+          <BasketButton
+              type="basket"
+              isBasket={isBasket}
+              isBasketPending={isPending}
+              currentCount={currentCount}
+              onAdd={() => handleCounter('add')}
+              onDelete={() => handleCounter('delete')}
+              onToggle={handleBasket}
+              style={style}
+          />
       </div>
     </div>
   );
