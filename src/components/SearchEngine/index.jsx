@@ -119,12 +119,6 @@ export default function SearchEngine() {
                                     onDelete={''}
                                     style={style}
                                 ></BasketButton>
-                                {/*<button*/}
-                                {/*    className={isBasket ? style.btnChooseActive : style.btnChoose}*/}
-                                {/*    onClick={handleClickBasket}*/}
-                                {/*>*/}
-                                {/*    {isBasket ? 'Убрать' : 'Выбрать'}*/}
-                                {/*</button>*/}
                             </div>
                         </div>
                     </div>
