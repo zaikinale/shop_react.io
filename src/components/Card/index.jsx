@@ -2,6 +2,7 @@ import style from './style.module.css';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
+import generateTags from '../../utils/generateTags.jsx'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CloseImg from '../../assets/media/close.svg';
@@ -146,17 +147,17 @@ export default function Card({ card, type = 'default' }) {
         }
         return null;
     };
-
-    function generateTags() {
-        const tags = [];
-        const marks = card.marks || [];
-        if (marks.some(m => m.Mark_Name === 'hit')) tags.push(<p key="hit" className={style.statusCardHit}>ХИТ</p>);
-        if (marks.some(m => m.Mark_Name === 'premium')) tags.push(<p key="premium" className={style.statusCardPremium}>ПРЕМИУМ</p>);
-        if (marks.some(m => m.Mark_Name === 'new')) tags.push(<p key="new" className={style.statusCardNew}>NEW</p>);
-        if (marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount')) tags.push(<p key="sale" className={style.statusCardSalary}>SALE</p>);
-        return tags;
-    }
-    
+    //
+    // function generateTags() {
+    //     const tags = [];
+    //     const marks = card.marks || [];
+    //     if (marks.some(m => m.Mark_Name === 'hit')) tags.push(<p key="hit" className={style.statusCardHit}>ХИТ</p>);
+    //     if (marks.some(m => m.Mark_Name === 'premium')) tags.push(<p key="premium" className={style.statusCardPremium}>ПРЕМИУМ</p>);
+    //     if (marks.some(m => m.Mark_Name === 'new')) tags.push(<p key="new" className={style.statusCardNew}>NEW</p>);
+    //     if (marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount')) tags.push(<p key="sale" className={style.statusCardSalary}>SALE</p>);
+    //     return tags;
+    // }
+    //
     function generateActPrice() {
         const marks = card.marks || [];
         const hasSale = marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount');
@@ -183,7 +184,7 @@ export default function Card({ card, type = 'default' }) {
     return (
         <div className={`${style.cardProduct} ${(isLikePending || isBasketPending) ? style.pendingOpacity : ''}`}>
             <div className={style.headerCard}>
-                <div className={style.tags}>{generateTags()}</div>
+                <div className={style.tags}>{generateTags(card, style)}</div>
                 <div className={style.controlBtns}>
                     {renderRemoveButton()}
                     {renderLikeButton()}
