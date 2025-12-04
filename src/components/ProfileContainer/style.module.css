@@ -22,7 +22,7 @@
     gap: 10px;
     padding: 10px;
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--block-color);
     color: var(--block-color);
 }
 
