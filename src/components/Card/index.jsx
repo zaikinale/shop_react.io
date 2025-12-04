@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import generateTags from '../../utils/generateTags.jsx'
+import generateActPrice from '../../utils/generateActPrice.jsx'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CloseImg from '../../assets/media/close.svg';
@@ -157,29 +158,29 @@ export default function Card({ card, type = 'default' }) {
     //     if (marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount')) tags.push(<p key="sale" className={style.statusCardSalary}>SALE</p>);
     //     return tags;
     // }
-    //
-    function generateActPrice() {
-        const marks = card.marks || [];
-        const hasSale = marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount');
-        if (hasSale && card.old_price) {
-            return (
-                <div className={style.priceContainer}>
-                    <h4 className={style.finalPrice}>{card.price}₽</h4>
-                    <div className={style.salaryContainer}>
-                        <span className={style.originalPrice}>{card.old_price}₽</span>
-                        <span className={style.salary}>-{Math.round(100 - (card.price / card.old_price) * 100)}%</span>
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <div className={style.priceContainer}>
-                    <h4 className={style.finalPrice}>{card.price}₽</h4>
-                    {card.old_price && <s style={{ color: '#999' }}>{card.old_price}₽</s>}
-                </div>
-            );
-        }
-    }
+    // //
+    // function generateActPrice() {
+    //     const marks = card.marks || [];
+    //     const hasSale = marks.some(m => m.Mark_Name === 'sale' || m.Mark_Name === 'discount');
+    //     if (hasSale && card.old_price) {
+    //         return (
+    //             <div className={style.priceContainer}>
+    //                 <h4 className={style.finalPrice}>{card.price}₽</h4>
+    //                 <div className={style.salaryContainer}>
+    //                     <span className={style.originalPrice}>{card.old_price}₽</span>
+    //                     <span className={style.salary}>-{Math.round(100 - (card.price / card.old_price) * 100)}%</span>
+    //                 </div>
+    //             </div>
+    //         );
+    //     } else {
+    //         return (
+    //             <div className={style.priceContainer}>
+    //                 <h4 className={style.finalPrice}>{card.price}₽</h4>
+    //                 {card.old_price && <s style={{ color: '#999' }}>{card.old_price}₽</s>}
+    //             </div>
+    //         );
+    //     }
+    // }
 
     return (
         <div className={`${style.cardProduct} ${(isLikePending || isBasketPending) ? style.pendingOpacity : ''}`}>
@@ -203,7 +204,7 @@ export default function Card({ card, type = 'default' }) {
                     <div className={style.imgProductPlaceholder}></div>
                 )}
                 <div className={style.descriptionContainer}>
-                    {generateActPrice()}
+                    {generateActPrice(card, style)}
                     <p className={style.description}>{card.name}</p>
                 </div>
             </Link>
