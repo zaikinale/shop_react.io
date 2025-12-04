@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import generateTags from '../../utils/generateTags.jsx'
 import generateActPrice from '../../utils/generateActPrice.jsx'
+import SaveButton from '../SaveButton/SaveButton.jsx'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CloseImg from '../../assets/media/close.svg';
@@ -12,40 +13,18 @@ import CardImg from "../CardImg/CardImg.jsx";
 export default function Card({ card, type = 'default' }) {
     const dispatch = useDispatch();
     const basketItems = useSelector(state => state.basketItems);
-    const likedItems = useSelector(state => state.likedItems);
     const [isLikePending, setIsLikePending] = useState(false);
     const [isBasketPending, setIsBasketPending] = useState(false);
-    const likeTimeoutRef = useRef(null);
     const basketTimeoutRef = useRef(null);
 
-    const isLiked = likedItems.includes(card.id);
     const isBasket = Object.prototype.hasOwnProperty.call(basketItems, String(card.id));
     const currentCount = basketItems[String(card.id)] || 0;
 
     useEffect(() => {
         return () => {
-            if (likeTimeoutRef.current) clearTimeout(likeTimeoutRef.current);
             if (basketTimeoutRef.current) clearTimeout(basketTimeoutRef.current);
         };
     }, []);
-
-    const handleClickLike = () => {
-        if (type === 'saved') {
-            if (isLikePending) {
-                clearTimeout(likeTimeoutRef.current);
-                setIsLikePending(false);
-                likeTimeoutRef.current = null;
-            } else {
-                setIsLikePending(true);
-                likeTimeoutRef.current = setTimeout(() => {
-                    dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
-                    setIsLikePending(false);
-                }, 3000);
-            }
-        } else {
-            dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
-        }
-    };
 
     const handleClickBasket = () => {
         if (type === 'basket') {
@@ -78,33 +57,6 @@ export default function Card({ card, type = 'default' }) {
             const newCount = type === 'delete' ? currentCount - 1 : currentCount + 1;
             dispatch({ type: 'SET_BASKET_ITEM_COUNT', payload: { id: card.id, count: newCount } });
         }
-    };
-
-    const renderLikeButton = () => {
-        if (type === 'saved') {
-            return (
-                <button
-                    className={style.saveButton}
-                    aria-label={isLikePending ? "Отменить удаление" : "Удалить из избранного"}
-                    onClick={handleClickLike}
-                >
-                    <img
-                        className={style.save}
-                        src={isLikePending ? heartUnactive : heartActive}
-                        alt=""
-                    />
-                </button>
-            );
-        }
-        return (
-            <button className={style.saveButton} onClick={handleClickLike}>
-                <img
-                    className={style.save}
-                    src={isLiked ? heartActive : heartUnactive}
-                    alt=""
-                />
-            </button>
-        );
     };
 
     const renderBasketButton = () => {
@@ -154,7 +106,7 @@ export default function Card({ card, type = 'default' }) {
                 <div className={style.tags}>{generateTags(card, style)}</div>
                 <div className={style.controlBtns}>
                     {renderRemoveButton()}
-                    {renderLikeButton()}
+                    <SaveButton type={type} card={card} style={style} isLikePending={isLikePending} setIsLikePending={setIsLikePending}></SaveButton>
                 </div>
             </div>
 

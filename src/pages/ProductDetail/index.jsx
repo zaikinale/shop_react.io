@@ -4,6 +4,7 @@ import { useState } from 'react';
 import generateTags from '../../utils/generateTags.jsx'
 import generateActPrice from '../../utils/generateActPrice.jsx'
 import CardImg from '../../components/CardImg/CardImg.jsx'
+import SaveButton from '../../components/SaveButton/SaveButton.jsx'
 import style from './style.module.css';
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
@@ -13,15 +14,12 @@ export default function ProductDetail() {
     const { id } = useParams();
     const dispatch = useDispatch(); 
     const basketItems = useSelector(state => state.basketItems);
-    const likedItems = useSelector(state => state.likedItems);
-    const isLiked = (id) => likedItems.includes(id);
     const isBasket = (id) => !!basketItems[String(id)];
     const cards = useSelector(state => state.cards);
     const product = cards.find(card => String(card.id) === String(id));
     if (!product) {
         return <div className={style.empty}>Товар не найден</div>;
     }
-    const isOn = isLiked(product.id);
     const inBasket = isBasket(product.id);
 
     function toggleBtnSave() {
@@ -39,14 +37,8 @@ export default function ProductDetail() {
                 <div className={style.tags}>
                     {generateTags(product, style)}
                 </div>
-            
-                <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
-                    <img
-                        className={style.save}
-                        src={isOn ? heartActive : heartUnactive}
-                        alt="Сохранить"
-                    />
-                </button>
+
+                <SaveButton type={'default'} card={product} style={style} isLikePending={''} setIsLikePending={''}></SaveButton>
             </div>
 
             <CardImg card={product} style={style}></CardImg>

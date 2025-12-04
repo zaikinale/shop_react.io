@@ -5,21 +5,15 @@ import { Link } from 'react-router';
 import generateActPrice from '../../utils/generateActPrice.jsx'
 import CardImg from '../CardImg/CardImg.jsx'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
-import heartActive from "../../assets/media/heart_active.svg"; 
+import heartActive from "../../assets/media/heart_active.svg";
+import SaveButton from '../SaveButton/SaveButton.jsx'
 // import trashIcon from '../../assets/trash.svg'
 import CloseImg from '../../assets/media/close.svg'
 
 export default function BasketItem({ card }) {
-
   const dispatch = useDispatch();
-
-  const likedItems = useSelector(state => state.likedItems);
   const basketItems = useSelector(state => state.basketItems);
-
-  const isLiked = (id) => likedItems.includes(id);
   const isBasket = (id) => Object.prototype.hasOwnProperty.call(basketItems, String(id));
-
-  const isOn = isLiked(card.id);
 
   const [isPending, setIsPending] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
@@ -56,10 +50,6 @@ export default function BasketItem({ card }) {
     setTimeoutId(timerId);
   };
 
-  function toggleBtnSave() {
-    dispatch({ type: 'LIKE_ITEM', payload: { id: card.id } });
-  }
-
   function handleBasket(id) {
     if (isPending) {
       cancelRemoval();
@@ -90,7 +80,6 @@ export default function BasketItem({ card }) {
     }
   }
 
-
   return (
     <div className={`${style.cardProduct} ${isPending ? style.pendingOpacity : ''}`}>
       <div className={style.headerCard}>
@@ -102,13 +91,7 @@ export default function BasketItem({ card }) {
           <button className={style.saveButton} onClick={() => handleBasket(card.id)}>
             <img className={style.deleteBtn} src={CloseImg} alt="delete" />
           </button>
-          <button className={style.saveButton} aria-label="Сохранить" onClick={toggleBtnSave}>
-            <img
-              className={style.save}
-              src={isOn ? heartActive : heartUnactive}
-              alt="Сохранить"
-            />
-          </button>
+            <SaveButton type={"default"} card={card} style={style} isLikePending={''} setIsLikePending={''}></SaveButton>
         </div>
       </div>
 
@@ -123,7 +106,6 @@ export default function BasketItem({ card }) {
         </div>
 
         <div
-          // className={isPending ? style.btnChoose : (isBasket(card.id) ? style.btnChooseActive : style.btnChoose)}>
           className={style.btnChooseActive}>
           <button className={style.addOrDeleteBtn} onClick={() => handleCounter('delete')}>-</button>
           <span className={style.counterProduct}>{currentCount}</span>

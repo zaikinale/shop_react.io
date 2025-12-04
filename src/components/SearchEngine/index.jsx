@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import { useSearch } from '../../context/SearchContext';
 import CardImg from '../CardImg/CardImg.jsx'
+import SaveButton from '../SaveButton/SaveButton.jsx'
 import heartUnactive from '../../assets/media/heart_unactive.svg';
 import heartActive from '../../assets/media/heart_active.svg';
 
 export default function SearchEngine() {
     const dispatch = useDispatch();
     const basketItems = useSelector(state => state.basketItems);
-    const likedItems = useSelector(state => state.likedItems);
     const { searchQuery, setSearchQuery, setIsSearchActive } = useSearch();
     const cards = useSelector(state => state.cards);
     const [query, setQuery] = useState('');
@@ -40,7 +40,6 @@ export default function SearchEngine() {
 
     const hasMatch = foundCard && query.trim() !== '';
 
-    const isLiked = foundCard ? likedItems.includes(foundCard.id) : false;
     const isBasket = foundCard
         ? Object.prototype.hasOwnProperty.call(basketItems, String(foundCard.id))
         : false;
@@ -94,15 +93,8 @@ export default function SearchEngine() {
                         <CardImg card={foundCard} style={style}/>
                         <div className={style.miniDescProductContainer}>
                           <div className={style.miniDescProductContainerText}>
-                            <p className={style.miniDescProduct}>{foundCard.name}</p>
-                            <button className={style.saveButton} onClick={handleClickLike}>
-                                <img
-                                    className={style.save}
-                                    src={isLiked ? heartActive : heartUnactive}
-                                    alt=""
-                                />
-                            </button>
-
+                              <p className={style.miniDescProduct}>{foundCard.name}</p>
+                              <SaveButton type={'default'} card={foundCard} style={style} isLikePending={''} setIsLikePending={''}></SaveButton>
                           </div>
                             <div className={style.miniPriceContainer}>
                                 <h4 className={style.miniFinalPrice}>{foundCard.price}₽</h4>
