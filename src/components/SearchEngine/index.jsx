@@ -4,6 +4,7 @@ import SearchIcon from '../../assets/media/search.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import { useSearch } from '../../context/SearchContext';
+import CardImg from '../CardImg/CardImg.jsx'
 import heartUnactive from '../../assets/media/heart_unactive.svg';
 import heartActive from '../../assets/media/heart_active.svg';
 
@@ -90,15 +91,7 @@ export default function SearchEngine() {
             {hasMatch && (
                 <div className={`${style.foundProductContainer} ${style.overlay}`}>
                     <div className={style.miniContainerProduct}>
-                        {foundCard.images?.[0]?.Image_URL ? (
-                            <img
-                                className={style.miniProductImg}
-                                src={foundCard.images[0].Image_URL}
-                                alt={foundCard.name}
-                            />
-                        ) : (
-                            <div className={style.miniProductImgPlaceholder}></div>
-                        )}
+                        <CardImg card={foundCard} style={style}/>
                         <div className={style.miniDescProductContainer}>
                           <div className={style.miniDescProductContainerText}>
                             <p className={style.miniDescProduct}>{foundCard.name}</p>
