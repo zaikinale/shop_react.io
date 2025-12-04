@@ -4,9 +4,10 @@ import SearchIcon from '../../assets/media/search.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import { useSearch } from '../../context/SearchContext';
+import generateActPrice from '../../utils/generateActPrice.jsx';
 import CardImg from '../CardImg/CardImg.jsx'
-import SaveButton from '../SaveButton/SaveButton.jsx'
-import BasketButton from '../BasketButton/BasketButton.jsx'
+import SaveButton from '../CardBtns/SaveButton.jsx'
+import BasketButton from '../CardBtns/BasketButton.jsx'
 import heartUnactive from '../../assets/media/heart_unactive.svg';
 import heartActive from '../../assets/media/heart_active.svg';
 
@@ -98,17 +99,7 @@ export default function SearchEngine() {
                               <SaveButton type={'default'} card={foundCard} style={style} isLikePending={''} setIsLikePending={''}></SaveButton>
                           </div>
                             <div className={style.miniPriceContainer}>
-                                <h4 className={style.miniFinalPrice}>{foundCard.price}₽</h4>
-                                {foundCard.old_price && foundCard.old_price > foundCard.price && (
-                                    <div className={style.miniSalaryContainer}>
-                                        <span className={style.miniOriginalPrice}>
-                                            {foundCard.old_price}₽
-                                        </span>
-                                        <span className={style.miniSalary}>
-                                            -{Math.round(100 - (foundCard.price / foundCard.old_price) * 100)}%
-                                        </span>
-                                    </div>
-                                )}
+                                {generateActPrice(foundCard, style)}
                                 <BasketButton
                                     type={'default'}
                                     isBasket={isBasket}

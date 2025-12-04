@@ -111,27 +111,33 @@
     justify-content: space-between;
 }
 
-.miniSalaryContainer {
+.priceContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.salaryContainer {
     display: flex; 
     gap: 5px;
     align-items: center;
 }
 
-.miniFinalPrice {
+.finalPrice {
     text-align: left;
     font-size: 16px;
     color: var(--title-color);
     font-weight: 600;
 } 
 
-.miniOriginalPrice {
+.originalPrice {
     font-size: 10px;
     color: #BFBFBF;
     font-weight: 500;
     text-decoration: line-through;
 }
 
-.miniSalary {
+.salary {
     font-size: 10px;
     color: #F24131;
     font-weight: 700;

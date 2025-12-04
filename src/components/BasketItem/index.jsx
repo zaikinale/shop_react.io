@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router';
 import generateActPrice from '../../utils/generateActPrice.jsx'
 import CardImg from '../CardImg/CardImg.jsx'
-import DeleteButton from '../DeleteButton/DeleteButton.jsx'
-import BasketButton from '../BasketButton/BasketButton.jsx'
+import DeleteButton from '../CardBtns/DeleteButton.jsx'
+import BasketButton from '../CardBtns/BasketButton.jsx'
+import SaveButton from '../CardBtns/SaveButton.jsx'
+// import trashIcon from '../../assets/trash.svg'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
-import SaveButton from '../SaveButton/SaveButton.jsx'
-// import trashIcon from '../../assets/trash.svg'
 import CloseImg from '../../assets/media/close.svg'
 
 export default function BasketItem({ card }) {

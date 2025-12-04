@@ -4,8 +4,8 @@ import { useState } from 'react';
 import generateTags from '../../utils/generateTags.jsx'
 import generateActPrice from '../../utils/generateActPrice.jsx'
 import CardImg from '../../components/CardImg/CardImg.jsx'
-import SaveButton from '../../components/SaveButton/SaveButton.jsx'
-import BasketButton from '../../components/BasketButton/BasketButton.jsx'
+import SaveButton from '../../components/CardBtns/SaveButton.jsx'
+import BasketButton from '../../components/CardBtns/BasketButton.jsx'
 import style from './style.module.css';
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
