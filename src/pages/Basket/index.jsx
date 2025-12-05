@@ -7,11 +7,9 @@ export default function Basket() {
     return (
     <div className={style.main}>
         {/* <h1 className="">Корзина</h1> */}
-        <>
-            <BasketLid />
-            <BasketContainer />
-            <BasketInvoice />
-        </>
+        <BasketLid />
+        <BasketContainer />
+        <BasketInvoice />
     </div>
     )
 }
