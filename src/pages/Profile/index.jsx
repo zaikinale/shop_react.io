@@ -2,16 +2,10 @@
 import ProfileContainer from '../../components/ProfileContainer'
 import CardsContainer from '../../components/CardsContainer'
 import SliderCardsContainer from '../../components/SliderCardsConteiner'
-import { useSelector } from 'react-redux'
-// import { Link } from 'react-router'
+import { useCardsDatas } from '../../hooks/useCardsDatas.js'
 
 export default function Profile({ person, setPerson }) {
-
-    const cardsList = useSelector(state => state.cards)
-    const likedItems = useSelector(state => state.likedItems) 
-    const basketItems = useSelector(state => state.basketItems); 
-    const likedCards = (cardsList || []).filter((item) => likedItems.includes(item.id));
-    const basketCards = (cardsList || []).filter(item => !!basketItems[String(item.id)]);
+    const { likedCards, basketCards } = useCardsDatas();
     const type = ['saved', 'basket']
 
     return (

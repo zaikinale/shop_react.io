@@ -10,13 +10,13 @@ import style from './style.module.css';
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CardsContainer from '../../components/CardsContainer';
+import { useCardsDatas } from '../../hooks/useCardsDatas.js'
 
 export default function ProductDetail() {
     const { id } = useParams();
-    const dispatch = useDispatch(); 
-    const basketItems = useSelector(state => state.basketItems);
-    const isBasket = (id) => !!basketItems[String(id)];
-    const cards = useSelector(state => state.cards);
+    const dispatch = useDispatch();
+    const { cards, likedCards, basketCards } = useCardsDatas()
+    const isBasket = (id) => !!basketCards[String(id)];
     const product = cards.find(card => String(card.id) === String(id));
     if (!product) {
         return <div className={style.empty}>Товар не найден</div>;

@@ -1,22 +1,17 @@
 import style from './style.module.css';
+import { useCardsDatas } from '../../hooks/useCardsDatas.js'
 import BasketItem from '../BasketItem/index.jsx';
 import Card from '../Card';
-import { useSelector } from 'react-redux';
 
 export default function BasketContainer() {
-  const cardsList = useSelector(state => state.cards);
-  const basketItems = useSelector(state => state.basketItems); 
-
-  const filteredCards = (cardsList || []).filter(item => !!basketItems[String(item.id)]);
-
+    const { basketCards } = useCardsDatas();
   return (
     <div className={style.containerProducts}>
-      {filteredCards.length > 0 ? (
-        filteredCards.map(card => (
+      {basketCards.length > 0 ? (
+          basketCards.map(card => (
           <BasketItem
             key={card.id}
-            card={card} 
-            // mode="basket"
+            card={card}
           />
         ))
       ) : (

@@ -7,14 +7,15 @@ import generateActPrice from '../../utils/generateActPrice.jsx'
 import SaveButton from '../CardBtns/SaveButton.jsx'
 import DeleteButton from '../CardBtns/DeleteButton.jsx'
 import BasketButton from '../CardBtns/BasketButton.jsx'
+import CardImg from "../CardImg/CardImg.jsx";
+import { useCardsDatas } from "../../hooks/useCardsDatas.js";
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CloseImg from '../../assets/media/close.svg';
-import CardImg from "../CardImg/CardImg.jsx";
 
 export default function Card({ card, type = 'default' }) {
     const dispatch = useDispatch();
-    const basketItems = useSelector(state => state.basketItems);
+    const { basketItems } = useCardsDatas()
     const [isLikePending, setIsLikePending] = useState(false);
     const [isBasketPending, setIsBasketPending] = useState(false);
     const basketTimeoutRef = useRef(null);

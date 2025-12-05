@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import style from './style.module.css';
 import SearchIcon from '../../assets/media/search.svg';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router';
 import { useSearch } from '../../context/SearchContext';
 import generateActPrice from '../../utils/generateActPrice.jsx';
-import CardImg from '../CardImg/CardImg.jsx'
-import SaveButton from '../CardBtns/SaveButton.jsx'
-import BasketButton from '../CardBtns/BasketButton.jsx'
+import CardImg from '../CardImg/CardImg.jsx';
+import SaveButton from '../CardBtns/SaveButton.jsx';
+import BasketButton from '../CardBtns/BasketButton.jsx';
+import { useCardsDatas } from "../../hooks/useCardsDatas.js";
 import heartUnactive from '../../assets/media/heart_unactive.svg';
 import heartActive from '../../assets/media/heart_active.svg';
 
 export default function SearchEngine() {
     const dispatch = useDispatch();
-    const basketItems = useSelector(state => state.basketItems);
+    const { cards, basketItems } = useCardsDatas()
     const { searchQuery, setSearchQuery, setIsSearchActive } = useSearch();
-    const cards = useSelector(state => state.cards);
     const [query, setQuery] = useState('');
 
     useEffect(() => {
@@ -71,7 +71,7 @@ export default function SearchEngine() {
                 <input
                     className={style.searchInput}
                     type="search"
-                    placeholder="Найти товары"
+                    placeholder="Найти товары?"
                     id="searchInput"
                     name="searchInput"
                     value={query}
@@ -92,12 +92,19 @@ export default function SearchEngine() {
             {hasMatch && (
                 <div className={`${style.foundProductContainer} ${style.overlay}`}>
                     <div className={style.miniContainerProduct}>
-                        <CardImg card={foundCard} style={style}/>
+                        <CardImg card={foundCard} style={style} />
                         <div className={style.miniDescProductContainer}>
-                          <div className={style.miniDescProductContainerText}>
-                              <p className={style.miniDescProduct}>{foundCard.name}</p>
-                              <SaveButton type={'default'} card={foundCard} style={style} isLikePending={''} setIsLikePending={''}></SaveButton>
-                          </div>
+                            <div className={style.miniDescProductContainerText}>
+                                <p className={style.miniDescProduct}>{foundCard.name}</p>
+                                <SaveButton
+                                    type={'default'}
+                                    card={foundCard}
+                                    style={style}
+                                    isLikePending={''}
+                                    setIsLikePending={''}
+                                />
+                            </div>
+
                             <div className={style.miniPriceContainer}>
                                 {generateActPrice(foundCard, style)}
                                 <BasketButton
@@ -109,7 +116,7 @@ export default function SearchEngine() {
                                     onAdd={''}
                                     onDelete={''}
                                     style={style}
-                                ></BasketButton>
+                                />
                             </div>
                         </div>
                     </div>

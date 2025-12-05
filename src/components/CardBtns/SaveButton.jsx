@@ -2,15 +2,16 @@ import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import { useCardsDatas }  from '../../hooks/useCardsDatas.js'
 
 
 export default function SaveButton({type, card, style, isLikePending, setIsLikePending}) {
     const dispatch = useDispatch();
-    const likedItems = useSelector(state => state.likedItems);
-    // const [isLikePending, setIsLikePending] = useState(false);
-    const [isBasketPending, setIsBasketPending] = useState(false);
+    const { likedItems } = useCardsDatas();
     const likeTimeoutRef = useRef(null);
 
+
+    // Вынести логику проверки наличия элемента в категориях в hook?
     const isLiked = likedItems.includes(card.id);
 
     useEffect(() => {

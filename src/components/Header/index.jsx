@@ -74,11 +74,6 @@ export default function Header({
                 <img src={CloseImg} alt="close" className={style.icon} />
                 {isSearchActive ? 'Назад' : title}
             </button>
-{/* 
-            <button className={style.link}>
-                <img src={TelegramIcon} alt="telegram" className={style.iconTg} />
-                наш tg-канал
-            </button> */}
 
             <button className={style.settings} onClick={handleOpenSettings}>
                 <img src={VectorImg} alt="vector" className={style.icon} />

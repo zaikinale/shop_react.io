@@ -1,13 +1,13 @@
 import style from './style.module.css'
 import TypeCard from '../TypeCard/index.jsx'
-import { useSelector } from 'react-redux';
+import { useCardsDatas } from "../../hooks/useCardsDatas.js";
 
 
 export default function SliderProductTypes() {
-  const typesList = useSelector(state => state.types) || [];
+    const { typesItems } = useCardsDatas()
   return (
     <div className={style.sliderTypes}>
-      {typesList.map(type => (
+      {typesItems.map(type => (
         <TypeCard key={type.Category_ID} type={type} />
       ))}
     </div>

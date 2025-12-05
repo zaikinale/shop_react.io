@@ -1,22 +1,13 @@
 import style from './style.module.css'
-import { useSelector } from 'react-redux'
-
-function getItemsText(count) {
-    const titles = ['товар', 'товара', 'товаров'];
-    const cases = [2, 0, 1, 1, 1, 2];
-    const idx = (count % 100 > 4 && count % 100 < 20)
-        ? 2
-        : cases[(count % 10 < 5) ? count % 10 : 5];
-    return `${count} ${titles[idx]}`;
-}
+import {getItemsText} from "../../utils/getItemsText.js";
+import { useCardsDatas }  from '../../hooks/useCardsDatas.js'
 
 export default function BasketInvoice() {
-    const cardsList = useSelector(state => state.cards);
-    const basketItems = useSelector(state => state.basketItems); 
+    const { cards, basketItems } = useCardsDatas()
   
     const cartItems = Object.entries(basketItems)
         .map(([id, count]) => {
-            const card = cardsList.find(c => String(c.id) === String(id));
+            const card = cards.find(c => String(c.id) === String(id));
             return card ? { ...card, count } : null;
         })
         .filter(Boolean);

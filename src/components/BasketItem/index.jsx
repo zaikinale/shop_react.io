@@ -7,14 +7,15 @@ import CardImg from '../CardImg/CardImg.jsx'
 import DeleteButton from '../CardBtns/DeleteButton.jsx'
 import BasketButton from '../CardBtns/BasketButton.jsx'
 import SaveButton from '../CardBtns/SaveButton.jsx'
+import { useCardsDatas } from "../../hooks/useCardsDatas.js";
 // import trashIcon from '../../assets/trash.svg'
 import heartUnactive from "../../assets/media/heart_unactive.svg";
 import heartActive from "../../assets/media/heart_active.svg";
 import CloseImg from '../../assets/media/close.svg'
 
 export default function BasketItem({ card }) {
+    const { basketItems } = useCardsDatas()
   const dispatch = useDispatch();
-  const basketItems = useSelector(state => state.basketItems);
   const isBasket = Object.prototype.hasOwnProperty.call(basketItems, String(card.id));
 
   const [isPending, setIsPending] = useState(false);
