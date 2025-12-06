@@ -93,3 +93,14 @@ npm run build
 Существует также TypeScript-версия этого проекта, где к той же логике добавлена строгая типизация и улучшена безопасность кода.
 
 [https://github.com/zaikinale/shop_react-ts.io  ](https://github.com/zaikinale/shop_react-ts.io  )
+
+## Документация
+Полная документация для разработчиков — в папке `/docs`.
+
+
+## 📂 С чего начать?
+
+- [Архитектура](./docs/ARCHITECTURE.md)
+- [Структура папок](./docs/FOLDER_STRUCTURE.md)
+- [API и типы данных](./docs/API.md)
+- [Redux и хуки](./docs/REDUX_STORE.md)
