@@ -1,16 +1,106 @@
-# React + Vite
+# Онлайн-магазин - клиентская часть
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- ![Online Store Preview](https://via.placeholder.com/800x400?text=Online+Store+Preview  ) -->
 
-Currently, two official plugins are available:
+Это **готовый клиент онлайн-магазина**, разработанный с акцентом на удобство и скорость.  
+Интерфейс минималистичный, поддерживает **тёмную и светлую темы**, работает на всех устройствах - от смартфонов до десктопов.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Что умеет магазин:
+- **Вход в профиль** через email (без бэкенда — данные хранятся локально)  
+- **Сохранять товары в «Избранное»**  
+- **Добавлять товары в корзину**, изменять количество, удалять с подтверждением  
+- **Искать товары** — с подсказками популярных запросов  
+- **Переключать тему** — тёмная по умолчанию (щадит глаза!)  
+- **Работать на любом устройстве** — адаптивный дизайн  
+- **Загружаться без интернета** — если сервер недоступен, используются локальные данные
 
-## React Compiler
+<!-- 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🖼️ Как это выглядит?
 
-## Expanding the ESLint configuration
+| Главная | Товар | Корзина |
+|--------|-------|--------|
+| ![Главная](https://via.placeholder.com/280x500?text  =Главная+страница) | ![Товар](https://via.placeholder.com/280x500?text  =Страница+товара) | ![Корзина](https://via.placeholder.com/280x500?text  =Корзина) |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> 💡 Замени ссылки на реальные скриншоты из твоего проекта! -->
+
+
+## Как запустить:
+
+1. Убедись, что на компьютере установлен [Node.js](https://nodejs.org/  ) (рекомендуется версия 18+).
+2. Скачай или клонируй этот проект.
+3. Открой терминал в папке проекта и выполни:
+   ```bash
+    npm install
+    npm run dev
+   ```
+4. Открой в браузере ссылку, которую покажет терминал (`http://localhost:5173`).
+
+Готово! Магазин работает локально на твоём компьютере.
+
+## Технические детали:
+
+### Стек технологий:
+- **Фронтенд**: React 18 + JavaScript
+- **Маршрутизация**: React Router v6
+- **Состояние**: Redux (чистый, без доп. библиотек)
+- **Стили**: CSS Modules, методология BEM
+- **Сборка**: Vite
+
+### Особенности архитектуры:
+
+- Все глобальные стили (темы, сброс браузерных стилей) — в `main.tsx`
+- Данные о товарах загружаются с API: `http://noxer-test.ru/webapp/api/products/on_main`
+- При ошибке сети — данные берутся из локального `public/data.json`
+- Тема (`dark`/`light`) сохраняется в `localStorage`
+- Профиль пользователя (email) — хранится в `localStorage`
+- Кастомные хуки: `useCardsDatas`, `useDarkTheme`
+- Контекст: `SearchContext` для управления поиском
+
+### Структура проекта
+
+```
+src/
+├── assets/            # Изображения, иконки
+├── components/        # Переиспользуемые компоненты (Card, Header и т.д.)
+├── context/           # Контекст (SearchContext)
+├── hooks/             # Кастомные хуки
+├── pages/             # Страницы: Main, Profile, Catalog, Basket и т.д.
+├── store/             # Redux-стор
+├── utils/             # Вспомогательные функции (generateTags, getItemsText)
+├── App.tsx            # Корневой компонент
+└── main.tsx           # Точка входа + импорт глобальных стилей
+```
+<!-- 
+### Как собрать для продакшена?
+```bash
+npm run build
+```
+— результат будет в папке `dist`. Её можно загрузить на любой хостинг статических сайтов.
+
+--- -->
+
+## Почему этот проект выделяется?
+
+- **UX-ориентированность**: подтверждение удаления, плавные переходы, интуитивная навигация  
+- **Оффлайн-поддержка**: магазин работает даже без интернета  
+- **Чистый код**: семантический HTML, BEM, TypeScript
+- **Минимализм**: никаких фреймворков вроде Bootstrap или Tailwind — всё на чистом CSS
+
+<!-- 
+### 🔧 Что тебе осталось:
+
+1. Замени `https://via.placeholder.com/...  ` на **реальные скриншоты** (можно сделать через `Cmd+Shift+4` на Mac или `Win+Shift+S` на Windows).
+2. Если у тебя есть **демо-ссылка** (например, на Vercel) — добавь её в начало:  
+   ```markdown
+   **Демо**: [https://online-store.vercel.app  ](https...)
+   ```
+3. Обнови путь к API, если он изменился. -->
+
+## Особенности
+
+Это - оригинальная JavaScript-версия онлайн-магазина. Именно здесь зародилась вся архитектура, реализованы первые фичи и накоплено наибольшее количество коммитов, отражающих пошаговое развитие проекта: от базовой верстки до интеграции Redux, маршрутизации и кастомных хуков.
+
+Существует также TypeScript-версия этого проекта, где к той же логике добавлена строгая типизация и улучшена безопасность кода.
+
+[https://github.com/zaikinale/shop_react&ts.io  ](https://github.com/zaikinale/shop_react&ts.io  )

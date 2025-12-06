@@ -9,8 +9,6 @@ import CardImg from '../CardImg/CardImg.jsx';
 import SaveButton from '../CardBtns/SaveButton.jsx';
 import BasketButton from '../CardBtns/BasketButton.jsx';
 import { useCardsDatas } from "../../hooks/useCardsDatas.js";
-import heartUnactive from '../../assets/media/heart_unactive.svg';
-import heartActive from '../../assets/media/heart_active.svg';
 
 export default function SearchEngine() {
     const dispatch = useDispatch();
@@ -45,12 +43,6 @@ export default function SearchEngine() {
     const isBasket = foundCard
         ? Object.prototype.hasOwnProperty.call(basketItems, String(foundCard.id))
         : false;
-
-    const handleClickLike = () => {
-        if (foundCard) {
-            dispatch({ type: 'LIKE_ITEM', payload: { id: foundCard.id } });
-        }
-    };
 
     const handleClickBasket = () => {
         if (!foundCard) return;

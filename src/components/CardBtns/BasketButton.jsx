@@ -1,4 +1,3 @@
-// BasketActionButton.jsx
 export default function BasketActionButton({ type, isBasket, isBasketPending, currentCount, onAdd, onDelete, onToggle, style}) {
     if (type === 'basket') {
         return (
