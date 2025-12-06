@@ -4,7 +4,7 @@ import { useCardsDatas }  from '../../hooks/useCardsDatas.js'
 
 export default function BasketInvoice() {
     const { cards, basketItems } = useCardsDatas()
-  
+
     const cartItems = Object.entries(basketItems)
         .map(([id, count]) => {
             const card = cards.find(c => String(c.id) === String(id));

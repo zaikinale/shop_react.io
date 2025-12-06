@@ -1,6 +1,6 @@
 import style from './style.module.css';
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router';
 import generateTags from '../../utils/generateTags.jsx'
 import generateActPrice from '../../utils/generateActPrice.jsx'
@@ -9,9 +9,6 @@ import DeleteButton from '../CardBtns/DeleteButton.jsx'
 import BasketButton from '../CardBtns/BasketButton.jsx'
 import CardImg from "../CardImg/CardImg.jsx";
 import { useCardsDatas } from "../../hooks/useCardsDatas.js";
-import heartUnactive from "../../assets/media/heart_unactive.svg";
-import heartActive from "../../assets/media/heart_active.svg";
-import CloseImg from '../../assets/media/close.svg';
 
 export default function Card({ card, type = 'default' }) {
     const dispatch = useDispatch();
