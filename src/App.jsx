@@ -24,11 +24,13 @@ function App() {
   const [person, setPerson] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await fetch('http://noxer-test.ru/webapp/api/products/on_main');
-        if (!res.ok) throw new Error('Server error');
+        // const res = await fetch('http://noxer-test.ru/webapp/api/products/on_main');
+        const res = await fetch(`${apiUrl}/all`);
   
         const data = await res.json();
   
@@ -67,7 +69,7 @@ function App() {
     };
   
     loadData();
-  }, [dispatch]);
+  }, [apiUrl, dispatch]);
 
   useEffect(() => {
     const savedPerson = localStorage.getItem('person');
